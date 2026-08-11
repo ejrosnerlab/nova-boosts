@@ -11,8 +11,8 @@
   <style>
     :root {
       --bg-main: #090212;
-      --bg-card: rgba(20, 10, 35,  0.75);
-      --bg-card-hover: rgba(35, 15, 60,  0.85);
+      --bg-card: rgba(20, 10, 35, 0.75);
+      --bg-card-hover: rgba(35, 15, 60, 0.85);
       --accent-cyan: #00f2fe;
       --accent-purple: #c084fc;
       --accent-pink: #ff2a8d;
@@ -50,7 +50,6 @@
       z-index: -1;
     }
 
-    /* Header / Navbar */
     header {
       position: sticky;
       top: 0;
@@ -100,17 +99,6 @@
       align-items: center;
     }
 
-    .nav-links a {
-      color: var(--text-muted);
-      text-decoration: none;
-      font-weight: 600;
-      transition: color 0.3s;
-    }
-
-    .nav-links a:hover {
-      color: var(--accent-pink);
-    }
-
     .nav-btn {
       background: rgba(255, 42, 141, 0.15);
       border: 1px solid var(--accent-pink);
@@ -154,7 +142,7 @@
     /* Owner Dashboard Panel */
     .owner-panel {
       display: none;
-      background: rgba(15, 5, 29, 0.8);
+      background: rgba(15, 5, 29, 0.9);
       border: 1px solid var(--accent-cyan);
       border-radius: 12px;
       max-width: 1200px;
@@ -261,69 +249,11 @@
       -webkit-text-fill-color: transparent;
     }
 
-    .hero p {
-      color: var(--text-muted);
-      font-size: 1.2rem;
-      max-width: 700px;
-      margin: 0 auto 2rem;
-    }
-
-    .payment-notice {
-      background: rgba(192, 132, 252, 0.08);
-      border: 1px solid rgba(192, 132, 252, 0.25);
-      border-radius: 10px;
-      padding: 0.8rem 1.5rem;
-      max-width: 550px;
-      margin: 0 auto 3rem;
-      text-align: center;
-      font-size: 0.9rem;
-      color: #e2e8f0;
-    }
-
-    .payment-notice span {
-      color: var(--accent-cyan);
-      font-weight: 700;
-    }
-
-    .safety-banner {
-      background: rgba(0, 242, 254, 0.05);
-      border: 1px solid rgba(0, 242, 254, 0.2);
-      border-radius: 12px;
-      padding: 1rem 1.5rem;
-      max-width: 750px;
-      margin: 0 auto 3rem;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      gap: 0.4rem;
-      color: var(--accent-cyan);
-      font-weight: 600;
-      font-size: 0.95rem;
-      backdrop-filter: blur(10px);
-    }
-
-    .safety-banner .warning {
-      color: var(--accent-pink);
-      font-size: 0.85rem;
-    }
-
     /* Products Section */
     .products-section {
       max-width: 1200px;
       margin: 2rem auto 6rem;
       padding: 0 2rem;
-    }
-
-    .section-title {
-      text-align: center;
-      margin-bottom: 3rem;
-    }
-
-    .section-title h2 {
-      font-size: 2.5rem;
-      font-weight: 800;
-      letter-spacing: 1px;
     }
 
     .product-grid {
@@ -430,7 +360,7 @@
       box-shadow: 0 0 20px rgba(255, 42, 141, 0.5);
     }
 
-    /* Modals */
+    /* Modals & Drawers */
     .drawer-overlay {
       position: fixed;
       top: 0;
@@ -509,7 +439,7 @@
 
     .drawer-btn {
       width: 100%;
-      padding: 1rem;
+      padding: 0.9rem;
       background: linear-gradient(135deg, var(--accent-pink), var(--accent-purple));
       color: #fff;
       border: none;
@@ -517,8 +447,32 @@
       font-weight: 800;
       text-transform: uppercase;
       cursor: pointer;
+      margin-top: 0.5rem;
+    }
+
+    /* Payment Buttons Layout inside Cart */
+    .payment-buttons-grid {
+      display: flex;
+      flex-direction: column;
+      gap: 0.5rem;
       margin-top: 1rem;
     }
+
+    .pay-btn {
+      width: 100%;
+      padding: 0.75rem;
+      border-radius: 8px;
+      font-weight: 700;
+      cursor: pointer;
+      border: 1px solid rgba(255,255,255,0.2);
+      color: #fff;
+      text-align: center;
+      transition: opacity 0.2s;
+    }
+    .pay-btn:hover { opacity: 0.85; }
+    .btn-cashapp { background: #00D632; color: #000; border: none; }
+    .btn-venmo { background: #008CFF; border: none; }
+    .btn-paypal { background: #003087; border: none; }
 
     .auth-form {
       display: flex;
@@ -552,23 +506,111 @@
       border-color: var(--accent-pink);
     }
 
-    .support-notification {
+    /* In-Website Live Chat Floating Widget */
+    .live-chat-widget {
       position: fixed;
-      bottom: -150px;
-      right: 30px;
-      background: linear-gradient(135deg, #180a2a, #0e051a);
-      border: 1px solid var(--accent-pink);
-      padding: 1.25rem;
-      border-radius: 12px;
-      width: 320px;
-      z-index: 1100;
-      transition: transform 0.5s ease, opacity 0.5s ease;
-      opacity: 0;
+      bottom: 20px;
+      right: 20px;
+      z-index: 1050;
     }
 
-    .support-notification.show {
-      transform: translateY(-170px);
-      opacity: 1;
+    .chat-toggle-btn {
+      background: linear-gradient(135deg, var(--accent-pink), var(--accent-purple));
+      color: #fff;
+      border: none;
+      padding: 0.8rem 1.25rem;
+      border-radius: 50px;
+      font-weight: 800;
+      cursor: pointer;
+      box-shadow: 0 5px 20px rgba(255, 42, 141, 0.4);
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .chat-window {
+      display: none;
+      position: absolute;
+      bottom: 60px;
+      right: 0;
+      width: 340px;
+      height: 450px;
+      background: #0d0617;
+      border: 1px solid var(--accent-pink);
+      border-radius: 12px;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.8);
+      flex-direction: column;
+      overflow: hidden;
+    }
+
+    .chat-window.open {
+      display: flex;
+    }
+
+    .chat-header {
+      background: rgba(255, 42, 141, 0.15);
+      padding: 1rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border-bottom: 1px solid rgba(255, 42, 141, 0.3);
+    }
+
+    .chat-messages {
+      flex: 1;
+      padding: 1rem;
+      overflow-y: auto;
+      display: flex;
+      flex-direction: column;
+      gap: 0.75rem;
+    }
+
+    .message {
+      max-width: 80%;
+      padding: 0.6rem 0.9rem;
+      border-radius: 8px;
+      font-size: 0.85rem;
+    }
+
+    .message.incoming {
+      background: rgba(255,255,255,0.08);
+      align-self: flex-start;
+      color: var(--text-main);
+    }
+
+    .message.outgoing {
+      background: var(--accent-pink);
+      align-self: flex-end;
+      color: #fff;
+    }
+
+    .chat-input-area {
+      padding: 0.75rem;
+      border-top: 1px solid rgba(255,255,255,0.1);
+      display: flex;
+      gap: 0.5rem;
+    }
+
+    .chat-input-area input {
+      flex: 1;
+      background: rgba(255,255,255,0.05);
+      border: 1px solid rgba(255,255,255,0.1);
+      padding: 0.5rem;
+      border-radius: 6px;
+      color: #fff;
+      font-size: 0.85rem;
+    }
+
+    .chat-input-area input:focus { outline: none; border-color: var(--accent-pink); }
+
+    .chat-input-area button {
+      background: var(--accent-pink);
+      border: none;
+      color: #fff;
+      padding: 0 1rem;
+      border-radius: 6px;
+      font-weight: bold;
+      cursor: pointer;
     }
   </style>
 </head>
@@ -585,7 +627,7 @@
         <span class="logo-badge">PC BOOSTS</span>
       </div>
       <ul class="nav-links">
-        <li><a href="#services">Packages</a></li>
+        <li><a href="#services" style="color:var(--text-muted); text-decoration:none; font-weight:600;">Packages</a></li>
         <li>
           <button class="nav-btn" onclick="toggleAuth()">👤 <span id="authButtonText">Sign Up</span></button>
         </li>
@@ -611,16 +653,17 @@
             <th>Order ID</th>
             <th>Customer Email</th>
             <th>Item / Package</th>
+            <th>Payment Method</th>
             <th>Total</th>
             <th>Status</th>
           </tr>
         </thead>
         <tbody id="adminOrdersList">
-          <!-- Mock History -->
           <tr>
             <td>#NOV-8092</td>
             <td>gamerkid99@yahoo.com</td>
             <td>Diamond Casino Heist</td>
+            <td>CashApp</td>
             <td>$4.99</td>
             <td class="status-completed">Completed</td>
           </tr>
@@ -641,7 +684,6 @@
   <!-- Products Section -->
   <section class="products-section" id="services">
     <div class="product-grid">
-      <!-- Feature 1 -->
       <div class="card featured">
         <span class="badge-featured">Ultimate Value</span>
         <div class="card-header">
@@ -652,7 +694,6 @@
         <button class="btn-card" onclick="addToCart('NOVA Max Boost', 29.99)">Add to Cart</button>
       </div>
 
-      <!-- Feature 2 -->
       <div class="card">
         <div class="card-header">
           <span class="card-tag">🛠️ Modded Heists</span>
@@ -662,7 +703,6 @@
         <button class="btn-card" onclick="addToCart('Diamond Casino Heist', 4.99)">Add to Cart</button>
       </div>
       
-       <!-- Feature 3 -->
       <div class="card">
         <div class="card-header">
           <span class="card-tag">Entry Level</span>
@@ -674,7 +714,7 @@
     </div>
   </section>
 
-  <!-- Cart Modal -->
+  <!-- Cart Modal with Payment Buttons -->
   <div class="cart-modal" id="cartModal">
     <div class="drawer-header">
       <h3>Your Cart</h3>
@@ -682,11 +722,16 @@
     </div>
     <div class="cart-items" id="cartItemsContainer"></div>
     <div class="cart-footer">
-      <div style="display: flex; justify-content: space-between; font-weight: bold; font-size: 1.1rem;">
+      <div style="display: flex; justify-content: space-between; font-weight: bold; font-size: 1.1rem; margin-bottom: 0.5rem;">
         <span>Total:</span>
         <span id="cartTotal">$0.00</span>
       </div>
-      <button class="drawer-btn" onclick="checkoutDiscord()">Checkout via Discord</button>
+      <p style="font-size: 0.8rem; color: var(--text-muted); margin-bottom: 0.5rem;">Select your secure payment method:</p>
+      <div class="payment-buttons-grid">
+        <button class="pay-btn btn-cashapp" onclick="processPayment('CashApp')">Pay with CashApp</button>
+        <button class="pay-btn btn-venmo" onclick="processPayment('Venmo')">Pay with Venmo</button>
+        <button class="pay-btn btn-paypal" onclick="processPayment('PayPal')">Pay with PayPal</button>
+      </div>
     </div>
   </div>
 
@@ -709,20 +754,28 @@
     </div>
   </div>
 
-  <!-- Notification -->
-  <div class="support-notification" id="supportNotification">
-    <div style="font-weight: bold; color: var(--accent-cyan);">💬 NOVA Automated System</div>
-    <div style="font-size: 0.85rem; color: var(--text-muted); margin-top: 5px;">Order placed successfully! Waiting for an employee message.</div>
+  <!-- In-Website Live Support Chat Widget -->
+  <div class="live-chat-widget">
+    <button class="chat-toggle-btn" onclick="toggleLiveChat()">💬 Live Support Chat</button>
+    <div class="chat-window" id="chatWindow">
+      <div class="chat-header">
+        <span style="font-weight: bold; font-size: 0.9rem; color: var(--accent-cyan);">NOVA Live Help</span>
+        <button class="close-drawer" onclick="toggleLiveChat()" style="font-size: 1.2rem;">&times;</button>
+      </div>
+      <div class="chat-messages" id="chatMessages">
+        <div class="message incoming">Hello! Welcome to NOVA. How can our moderation team help you with your PC recovery package today?</div>
+      </div>
+      <div class="chat-input-area">
+        <input type="text" id="chatInput" placeholder="Type your message..." onkeypress="handleChatKeyPress(event)">
+        <button onclick="sendChatMessage()">Send</button>
+      </div>
+    </div>
   </div>
 
   <script>
     let cart = [];
     let currentUser = null;
     const OWNER_EMAIL = "ejrosner333@gmail.com";
-    
-    // ==========================================
-    // 🔒 CHANGE YOUR SECURE OWNER PASSWORD HERE
-    // ==========================================
     const OWNER_PASSWORD = "NovaBoss26!"; 
 
     function closeAllDrawers() {
@@ -747,6 +800,10 @@
       else { overlay.classList.remove('open'); }
     }
 
+    function toggleLiveChat() {
+      document.getElementById('chatWindow').classList.toggle('open');
+    }
+
     function handleAuthSubmit() {
       const email = document.getElementById('authEmail').value.trim().toLowerCase();
       const password = document.getElementById('authPassword').value;
@@ -756,12 +813,9 @@
         return;
       }
 
-      // Security Check: If it is the owner's email, check the hardcoded password
-      if (email === OWNER_EMAIL) {
-        if (password !== OWNER_PASSWORD) {
-          alert('🚨 Access Denied: Incorrect owner password. Nice try!');
-          return;
-        }
+      if (email === OWNER_EMAIL && password !== OWNER_PASSWORD) {
+        alert('🚨 Access Denied: Incorrect owner password.');
+        return;
       }
 
       currentUser = email;
@@ -824,40 +878,63 @@
       totalEl.innerText = `$${total.toFixed(2)}`;
     }
 
-    function checkoutDiscord() {
+    function processPayment(method) {
       if (cart.length === 0) {
         alert("Your cart is empty!");
         return;
       }
 
-      // Generate a fake order to push to the Admin Dashboard
       let total = cart.reduce((sum, item) => sum + item.price, 0);
       let itemsString = cart.map(i => i.name).join(", ");
       let randomOrderId = Math.floor(1000 + Math.random() * 9000);
       let buyerEmail = currentUser && currentUser !== OWNER_EMAIL ? currentUser : 'guest' + randomOrderId + '@email.com';
 
-      // Push the order to the Owner Table dynamically
       const adminTable = document.getElementById('adminOrdersList');
       const newRow = document.createElement('tr');
       newRow.innerHTML = `
         <td>#NOV-${randomOrderId}</td>
         <td>${buyerEmail}</td>
         <td>${itemsString}</td>
+        <td>${method}</td>
         <td>$${total.toFixed(2)}</td>
-        <td class="status-pending">Pending Discord Msg</td>
+        <td class="status-pending">Awaiting Verification</td>
       `;
-      // Insert at the top of the list
       adminTable.insertBefore(newRow, adminTable.firstChild);
 
-      // Clear cart
       toggleCart();
       cart = [];
       updateCartUI();
 
-      // Show notification
-      const notification = document.getElementById('supportNotification');
-      notification.classList.add('show');
-      setTimeout(() => notification.classList.remove('show'), 4000);
+      // Open chat window automatically and prompt user
+      document.getElementById('chatWindow').classList.add('open');
+      const chatMessages = document.getElementById('chatMessages');
+      chatMessages.innerHTML += `
+        <div class="message incoming">Order #NOV-${randomOrderId} placed via ${method}! A moderator has been notified and will join this chat shortly to assist with your account injection.</div>
+      `;
+      chatMessages.scrollTop = chatMessages.scrollHeight;
+    }
+
+    function handleChatKeyPress(e) {
+      if (e.key === 'Enter') {
+        sendChatMessage();
+      }
+    }
+
+    function sendChatMessage() {
+      const input = document.getElementById('chatInput');
+      const text = input.value.trim();
+      if (!text) return;
+
+      const chatMessages = document.getElementById('chatMessages');
+      chatMessages.innerHTML += `<div class="message outgoing">${text}</div>`;
+      input.value = '';
+      chatMessages.scrollTop = chatMessages.scrollHeight;
+
+      // Simulated auto-reply from moderator team after 1.5 seconds
+      setTimeout(() => {
+        chatMessages.innerHTML += `<div class="message incoming">Thanks for reaching out! A moderator is reviewing your message now. Please have your PC credentials ready.</div>`;
+        chatMessages.scrollTop = chatMessages.scrollHeight;
+      }, 1500);
     }
   </script>
 </body>
