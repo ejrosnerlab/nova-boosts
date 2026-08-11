@@ -437,20 +437,6 @@
       padding-top: 1rem;
     }
 
-    .drawer-btn {
-      width: 100%;
-      padding: 0.9rem;
-      background: linear-gradient(135deg, var(--accent-pink), var(--accent-purple));
-      color: #fff;
-      border: none;
-      border-radius: 8px;
-      font-weight: 800;
-      text-transform: uppercase;
-      cursor: pointer;
-      margin-top: 0.5rem;
-    }
-
-    /* Payment Buttons Layout inside Cart */
     .payment-buttons-grid {
       display: flex;
       flex-direction: column;
@@ -506,7 +492,6 @@
       border-color: var(--accent-pink);
     }
 
-    /* In-Website Live Chat Floating Widget */
     .live-chat-widget {
       position: fixed;
       bottom: 20px;
@@ -659,14 +644,7 @@
           </tr>
         </thead>
         <tbody id="adminOrdersList">
-          <tr>
-            <td>#NOV-8092</td>
-            <td>gamerkid99@yahoo.com</td>
-            <td>Diamond Casino Heist</td>
-            <td>CashApp</td>
-            <td>$4.99</td>
-            <td class="status-completed">Completed</td>
-          </tr>
+          <!-- Fresh start: no fake rows here -->
         </tbody>
       </table>
     </div>
@@ -684,6 +662,8 @@
   <!-- Products Section -->
   <section class="products-section" id="services">
     <div class="product-grid">
+
+      <!-- PACKAGE 1 -->
       <div class="card featured">
         <span class="badge-featured">Ultimate Value</span>
         <div class="card-header">
@@ -694,15 +674,17 @@
         <button class="btn-card" onclick="addToCart('NOVA Max Boost', 29.99)">Add to Cart</button>
       </div>
 
+      <!-- PACKAGE 2 -->
       <div class="card">
         <div class="card-header">
-          <span class="card-tag">🛠️ Modded Heists</span>
-          <h3 class="card-title">Diamond Casino Heist</h3>
-          <div class="price">$4.99 <span>$10.00</span></div>
+          <span class="card-tag">Mid-Tier Boost</span>
+          <h3 class="card-title">Standard Boost</h3>
+          <div class="price">$19.99 <span>$39.99</span></div>
         </div>
-        <button class="btn-card" onclick="addToCart('Diamond Casino Heist', 4.99)">Add to Cart</button>
+        <button class="btn-card" onclick="addToCart('Standard Boost', 19.99)">Add to Cart</button>
       </div>
-      
+
+      <!-- PACKAGE 3 -->
       <div class="card">
         <div class="card-header">
           <span class="card-tag">Entry Level</span>
@@ -711,10 +693,69 @@
         </div>
         <button class="btn-card" onclick="addToCart('Starter Top-Up', 11.99)">Add to Cart</button>
       </div>
+
+      <!-- PACKAGE 4 -->
+      <div class="card">
+        <div class="card-header">
+          <span class="card-tag">Property Focus</span>
+          <h3 class="card-title">Max Cargo & Unlocks</h3>
+          <div class="price">$14.99 <span>$29.99</span></div>
+        </div>
+        <button class="btn-card" onclick="addToCart('Max Cargo & Unlocks', 14.99)">Add to Cart</button>
+      </div>
+
+      <!-- PACKAGE 5 -->
+      <div class="card">
+        <div class="card-header">
+          <span class="card-tag">Rank Injection</span>
+          <h3 class="card-title">Level 4000 Express</h3>
+          <div class="price">$12.99 <span>$22.99</span></div>
+        </div>
+        <button class="btn-card" onclick="addToCart('Level 4000 Express', 12.99)">Add to Cart</button>
+      </div>
+
+      <!-- PACKAGE 6 -->
+      <div class="card">
+        <div class="card-header">
+          <span class="card-tag">Cash Only</span>
+          <h3 class="card-title">Custom 65M Injection</h3>
+          <div class="price">$22.99 <span>$44.99</span></div>
+        </div>
+        <button class="btn-card" onclick="addToCart('Custom 65M Injection', 22.99)">Add to Cart</button>
+      </div>
+
+      <!-- MODDED HEISTS -->
+      <div class="card">
+        <div class="card-header">
+          <span class="card-tag">🛠️ Modded Heists</span>
+          <h3 class="card-title">Diamond Casino Heist</h3>
+          <div class="price">$4.99 <span>$10.00</span></div>
+        </div>
+        <button class="btn-card" onclick="addToCart('Diamond Casino Heist', 4.99)">Add to Cart</button>
+      </div>
+
+      <div class="card">
+        <div class="card-header">
+          <span class="card-tag">🛠️ Modded Heists</span>
+          <h3 class="card-title">Cayo Perico Heist</h3>
+          <div class="price">$4.99 <span>$10.00</span></div>
+        </div>
+        <button class="btn-card" onclick="addToCart('Cayo Perico Heist', 4.99)">Add to Cart</button>
+      </div>
+
+      <div class="card">
+        <div class="card-header">
+          <span class="card-tag">🛠️ Modded Heists</span>
+          <h3 class="card-title">Doomsday Heist</h3>
+          <div class="price">$4.99 <span>$10.00</span></div>
+        </div>
+        <button class="btn-card" onclick="addToCart('Doomsday Heist', 4.99)">Add to Cart</button>
+      </div>
+
     </div>
   </section>
 
-  <!-- Cart Modal with Payment Buttons -->
+  <!-- Cart Modal with Direct Payment Options -->
   <div class="cart-modal" id="cartModal">
     <div class="drawer-header">
       <h3>Your Cart</h3>
@@ -750,11 +791,11 @@
         <label>Password</label>
         <input type="password" id="authPassword" placeholder="••••••••">
       </div>
-      <button class="drawer-btn" onclick="handleAuthSubmit()">Log In</button>
+      <button class="btn-card" style="margin-top:0.5rem;" onclick="handleAuthSubmit()">Log In</button>
     </div>
   </div>
 
-  <!-- In-Website Live Support Chat Widget -->
+  <!-- Live Chat Widget -->
   <div class="live-chat-widget">
     <button class="chat-toggle-btn" onclick="toggleLiveChat()">💬 Live Support Chat</button>
     <div class="chat-window" id="chatWindow">
@@ -905,7 +946,6 @@
       cart = [];
       updateCartUI();
 
-      // Open chat window automatically and prompt user
       document.getElementById('chatWindow').classList.add('open');
       const chatMessages = document.getElementById('chatMessages');
       chatMessages.innerHTML += `
@@ -930,7 +970,6 @@
       input.value = '';
       chatMessages.scrollTop = chatMessages.scrollHeight;
 
-      // Simulated auto-reply from moderator team after 1.5 seconds
       setTimeout(() => {
         chatMessages.innerHTML += `<div class="message incoming">Thanks for reaching out! A moderator is reviewing your message now. Please have your PC credentials ready.</div>`;
         chatMessages.scrollTop = chatMessages.scrollHeight;
