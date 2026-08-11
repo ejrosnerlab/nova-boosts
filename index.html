@@ -1,3 +1,4 @@
+```html
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -10,15 +11,15 @@
   
   <style>
     :root {
-      --bg-main: #07080c;
-      --bg-card: #0f121d;
-      --bg-card-hover: #161b2b;
+      --bg-main: #090212;
+      --bg-card: rgba(20, 10, 35,  0.75);
+      --bg-card-hover: rgba(35, 15, 60,  0.85);
       --accent-cyan: #00f2fe;
-      --accent-purple: #9d4edd;
-      --accent-pink: #ff007f;
+      --accent-purple: #c084fc;
+      --accent-pink: #ff2a8d;
       --text-main: #f8fafc;
-      --text-muted: #94a3b8;
-      --border-glow: rgba(0, 242, 254, 0.25);
+      --text-muted: #cbd5e1;
+      --border-glow: rgba(255, 42, 141, 0.4);
     }
 
     * {
@@ -33,19 +34,22 @@
       font-family: 'Outfit', sans-serif;
       line-height: 1.6;
       overflow-x: hidden;
+      position: relative;
     }
 
-    /* Ambient Glow Background */
-    .glow-bg {
+    /* Galaxy Pinkish Purple with a bit of blue background effect */
+    .galaxy-bg {
       position: fixed;
-      width: 600px;
-      height: 600px;
-      background: radial-gradient(circle, rgba(157, 78, 221, 0.15) 0%, rgba(0, 0, 0, 0) 70%);
-      top: -150px;
-      left: 50%;
-      transform: translateX(-50%);
-      pointer-events: none;
-      z-index: 0;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      background: 
+        radial-gradient(circle at 20% 20%, rgba(255, 42, 141, 0.22) 0%, transparent 45%),
+        radial-gradient(circle at 80% 75%, rgba(192, 132, 252, 0.2) 0%, transparent 50%),
+        radial-gradient(circle at 50% 50%, rgba(0, 242, 254, 0.12) 0%, transparent 60%),
+        linear-gradient(135deg, #0f051d 0%, #05020a 100%);
+      z-index: -1;
     }
 
     /* Header / Navbar */
@@ -53,9 +57,9 @@
       position: sticky;
       top: 0;
       z-index: 100;
-      background: rgba(7, 8, 12, 0.85);
-      backdrop-filter: blur(12px);
-      border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+      background: rgba(9, 2, 18, 0.85);
+      backdrop-filter: blur(15px);
+      border-bottom: 1px solid rgba(255, 42, 141, 0.2);
     }
 
     .nav-container {
@@ -72,10 +76,10 @@
       font-size: 2rem;
       font-weight: 900;
       letter-spacing: 3px;
-      background: linear-gradient(135deg, var(--accent-cyan), var(--accent-purple));
+      background: linear-gradient(135deg, var(--accent-pink), var(--accent-purple), var(--accent-cyan));
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
-      text-shadow: 0 0 25px rgba(0, 242, 254, 0.3);
+      text-shadow: 0 0 30px rgba(255, 42, 141, 0.4);
       display: flex;
       align-items: center;
       gap: 0.5rem;
@@ -83,9 +87,9 @@
 
     .logo-badge {
       font-size: 0.65rem;
-      background: rgba(0, 242, 254, 0.1);
-      border: 1px solid var(--accent-cyan);
-      color: var(--accent-cyan);
+      background: rgba(255, 42, 141, 0.15);
+      border: 1px solid var(--accent-pink);
+      color: var(--accent-pink);
       padding: 2px 6px;
       border-radius: 4px;
       letter-spacing: 1px;
@@ -95,6 +99,7 @@
       display: flex;
       gap: 2rem;
       list-style: none;
+      align-items: center;
     }
 
     .nav-links a {
@@ -105,27 +110,36 @@
     }
 
     .nav-links a:hover {
-      color: var(--accent-cyan);
+      color: var(--accent-pink);
     }
 
-    .btn-primary {
-      background: linear-gradient(135deg, var(--accent-cyan), var(--accent-purple));
-      color: #000;
-      font-weight: 800;
-      padding: 0.75rem 1.75rem;
+    /* Cart Widget UI */
+    .cart-btn {
+      background: rgba(255, 42, 141, 0.15);
+      border: 1px solid var(--accent-pink);
+      color: #fff;
+      padding: 0.5rem 1rem;
       border-radius: 8px;
-      text-decoration: none;
-      text-transform: uppercase;
-      letter-spacing: 1px;
-      border: none;
+      font-weight: 700;
       cursor: pointer;
-      box-shadow: 0 0 20px rgba(0, 242, 254, 0.3);
-      transition: all 0.3s ease;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      transition: all 0.3s;
     }
 
-    .btn-primary:hover {
-      transform: translateY(-2px);
-      box-shadow: 0 0 30px rgba(0, 242, 254, 0.5);
+    .cart-btn:hover {
+      background: var(--accent-pink);
+      box-shadow: 0 0 20px rgba(255, 42, 141, 0.5);
+    }
+
+    .cart-count {
+      background: #fff;
+      color: #000;
+      font-size: 0.75rem;
+      padding: 1px 6px;
+      border-radius: 50px;
+      font-weight: 900;
     }
 
     /* Hero Section */
@@ -148,9 +162,9 @@
 
     .hero-tag {
       display: inline-block;
-      background: rgba(157, 78, 221, 0.15);
+      background: rgba(192, 132, 252, 0.15);
       border: 1px solid var(--accent-purple);
-      color: #d8b4fe;
+      color: #e9d5ff;
       padding: 0.4rem 1.2rem;
       border-radius: 50px;
       font-size: 0.85rem;
@@ -160,7 +174,7 @@
     }
 
     .hero-tag.pc-badge {
-      background: rgba(255, 0, 127, 0.15);
+      background: rgba(255, 42, 141, 0.15);
       border-color: var(--accent-pink);
       color: var(--accent-pink);
     }
@@ -174,7 +188,7 @@
     }
 
     .hero h1 span {
-      background: linear-gradient(135deg, #ffffff, var(--accent-cyan));
+      background: linear-gradient(135deg, #ffffff, var(--accent-pink));
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
     }
@@ -183,75 +197,49 @@
       color: var(--text-muted);
       font-size: 1.2rem;
       max-width: 700px;
-      margin: 0 auto 2.5rem;
+      margin: 0 auto 2rem;
+    }
+
+    /* Payment Methods Banner */
+    .payment-notice {
+      background: rgba(192, 132, 252, 0.08);
+      border: 1px solid rgba(192, 132, 252, 0.25);
+      border-radius: 10px;
+      padding: 0.8rem 1.5rem;
+      max-width: 550px;
+      margin: 0 auto 3rem;
+      text-align: center;
+      font-size: 0.9rem;
+      color: #e2e8f0;
+    }
+
+    .payment-notice span {
+      color: var(--accent-cyan);
+      font-weight: 700;
     }
 
     /* Safety Banner */
     .safety-banner {
       background: rgba(0, 242, 254, 0.05);
       border: 1px solid rgba(0, 242, 254, 0.2);
-      border-radius: 8px;
-      padding: 0.75rem 1.5rem;
+      border-radius: 12px;
+      padding: 1rem 1.5rem;
       max-width: 750px;
       margin: 0 auto 3rem;
       display: flex;
       flex-direction: column;
       align-items: center;
       justify-content: center;
-      gap: 0.5rem;
+      gap: 0.4rem;
       color: var(--accent-cyan);
       font-weight: 600;
       font-size: 0.95rem;
+      backdrop-filter: blur(10px);
     }
     
     .safety-banner .warning {
       color: var(--accent-pink);
       font-size: 0.85rem;
-    }
-
-    /* How It Works Section */
-    .steps-container {
-      display: flex;
-      justify-content: center;
-      gap: 1.5rem;
-      padding: 1.5rem;
-      background: rgba(255, 255, 255, 0.02);
-      border: 1px solid rgba(255, 255, 255, 0.05);
-      border-radius: 12px;
-      max-width: 1000px;
-      margin: 0 auto 4rem;
-    }
-
-    .step {
-      flex: 1;
-      text-align: center;
-      padding: 0.5rem;
-    }
-
-    .step-number {
-      width: 36px;
-      height: 36px;
-      background: linear-gradient(135deg, var(--accent-cyan), var(--accent-purple));
-      color: #000;
-      font-weight: 900;
-      border-radius: 50%;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      margin: 0 auto 0.75rem;
-      font-size: 1rem;
-    }
-
-    .step h4 {
-      color: #fff;
-      font-size: 1rem;
-      margin-bottom: 0.25rem;
-    }
-
-    .step p {
-      font-size: 0.8rem;
-      color: var(--text-muted);
-      margin: 0;
     }
 
     /* Products Section */
@@ -285,7 +273,8 @@
     /* Product Cards */
     .card {
       background: var(--bg-card);
-      border: 1px solid rgba(255, 255, 255, 0.08);
+      backdrop-filter: blur(10px);
+      border: 1px solid rgba(255, 42, 141, 0.15);
       border-radius: 16px;
       padding: 1.75rem;
       position: relative;
@@ -299,20 +288,20 @@
       background: var(--bg-card-hover);
       transform: translateY(-5px);
       border-color: var(--border-glow);
-      box-shadow: 0 10px 30px rgba(0, 242, 254, 0.15);
+      box-shadow: 0 10px 35px rgba(255, 42, 141, 0.2);
     }
 
     .card.featured {
-      border: 2px solid var(--accent-cyan);
-      box-shadow: 0 0 25px rgba(0, 242, 254, 0.25);
+      border: 2px solid var(--accent-pink);
+      box-shadow: 0 0 25px rgba(255, 42, 141, 0.3);
     }
 
     .badge-featured {
       position: absolute;
       top: -12px;
       right: 20px;
-      background: linear-gradient(135deg, var(--accent-cyan), var(--accent-purple));
-      color: #000;
+      background: linear-gradient(135deg, var(--accent-pink), var(--accent-purple));
+      color: #fff;
       font-weight: 900;
       font-size: 0.75rem;
       padding: 4px 12px;
@@ -356,13 +345,12 @@
       text-decoration: line-through;
     }
 
-    /* Custom CSS Graphical Badges (No Image Files) */
     .stat-badge-list {
       display: flex;
       flex-direction: column;
       gap: 0.65rem;
       margin: 1.2rem 0;
-      background: rgba(0, 0, 0, 0.25);
+      background: rgba(0, 0, 0, 0.35);
       padding: 1rem;
       border-radius: 10px;
       border: 1px solid rgba(255, 255, 255, 0.05);
@@ -390,8 +378,8 @@
 
     .icon-cash { background: rgba(0, 255, 136, 0.15); color: #00ff88; border: 1px solid #00ff88; }
     .icon-cargo { background: rgba(0, 242, 254, 0.15); color: var(--accent-cyan); border: 1px solid var(--accent-cyan); }
-    .icon-level { background: rgba(157, 78, 221, 0.15); color: #d8b4fe; border: 1px solid var(--accent-purple); }
-    .icon-shield { background: rgba(255, 0, 127, 0.15); color: var(--accent-pink); border: 1px solid var(--accent-pink); }
+    .icon-level { background: rgba(192, 132, 252, 0.15); color: #e9d5ff; border: 1px solid var(--accent-purple); }
+    .icon-shield { background: rgba(255, 42, 141, 0.15); color: var(--accent-pink); border: 1px solid var(--accent-pink); }
 
     .card-features {
       list-style: none;
@@ -409,7 +397,7 @@
 
     .card-features li::before {
       content: "✓";
-      color: var(--accent-cyan);
+      color: var(--accent-pink);
       font-weight: bold;
     }
 
@@ -417,7 +405,7 @@
       width: 100%;
       padding: 0.85rem;
       background: rgba(255, 255, 255, 0.05);
-      border: 1px solid rgba(255, 255, 255, 0.1);
+      border: 1px solid rgba(255, 42, 141, 0.3);
       color: #fff;
       font-weight: 700;
       border-radius: 8px;
@@ -431,28 +419,105 @@
     }
 
     .card:hover .btn-card {
-      background: linear-gradient(135deg, var(--accent-cyan), var(--accent-purple));
-      color: #000;
+      background: linear-gradient(135deg, var(--accent-pink), var(--accent-purple));
+      color: #fff;
       border-color: transparent;
-      box-shadow: 0 0 15px rgba(0, 242, 254, 0.4);
+      box-shadow: 0 0 20px rgba(255, 42, 141, 0.5);
     }
 
     .security-notice {
-      color: var(--accent-pink);
-      font-weight: bold;
-      font-size: 0.8rem;
+      color: var(--text-muted);
+      font-weight: 500;
+      font-size: 0.75rem;
       margin-top: 0.75rem;
       text-align: center;
+      opacity: 0.7;
+    }
+
+    /* Cart Modal Styles */
+    .cart-modal {
+      position: fixed;
+      top: 0;
+      right: -400px;
+      width: 380px;
+      height: 100%;
+      background: #0d0617;
+      border-left: 1px solid rgba(255, 42, 141, 0.3);
+      box-shadow: -10px 0 30px rgba(0,0,0,0.8);
+      z-index: 1000;
+      transition: right 0.3s ease;
+      display: flex;
+      flex-direction: column;
+      padding: 2rem;
+    }
+
+    .cart-modal.open {
+      right: 0;
+    }
+
+    .cart-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border-bottom: 1px solid rgba(255,255,255,0.1);
+      padding-bottom: 1rem;
+      margin-bottom: 1rem;
+    }
+
+    .close-cart {
+      background: none;
+      border: none;
+      color: #fff;
+      font-size: 1.5rem;
+      cursor: pointer;
+    }
+
+    .cart-items {
+      flex: 1;
+      overflow-y: auto;
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+    }
+
+    .cart-item {
+      background: rgba(255,255,255,0.03);
+      padding: 10px;
+      border-radius: 8px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border: 1px solid rgba(255,255,255,0.05);
+    }
+
+    .cart-footer {
+      border-top: 1px solid rgba(255,255,255,0.1);
+      padding-top: 1rem;
+    }
+
+    .checkout-btn {
+      width: 100%;
+      padding: 1rem;
+      background: linear-gradient(135deg, var(--accent-pink), var(--accent-purple));
+      color: #fff;
+      border: none;
+      border-radius: 8px;
+      font-weight: 800;
+      text-transform: uppercase;
+      cursor: pointer;
+      margin-top: 1rem;
+      box-shadow: 0 0 15px rgba(255, 42, 141, 0.4);
     }
 
     /* Footer */
     footer {
-      border-top: 1px solid rgba(255, 255, 255, 0.08);
+      border-top: 1px solid rgba(255, 42, 141, 0.2);
       padding: 3rem 2rem;
       text-align: center;
       color: var(--text-muted);
       font-size: 0.9rem;
       margin-top: 6rem;
+      background: rgba(9, 2, 18, 0.9);
     }
 
     footer p {
@@ -464,7 +529,7 @@
 </head>
 <body>
 
-  <div class="glow-bg"></div>
+  <div class="galaxy-bg"></div>
 
   <!-- Header -->
   <header>
@@ -475,10 +540,13 @@
       </div>
       <ul class="nav-links">
         <li><a href="#services">Packages</a></li>
-        <li><a href="#how-it-works">How It Works</a></li>
-        <li><a href="#safety">Safety Info</a></li>
+        <li><a href="https://discord.gg/pMCPCcPtY" target="_blank">Discord</a></li>
+        <li>
+          <button class="cart-btn" onclick="toggleCart()">
+            🛒 Cart <span class="cart-count" id="cartCount">0</span>
+          </button>
+        </li>
       </ul>
-      <a href="https://discord.gg/pMCPCcPtY" class="btn-primary">View Packages</a>
     </div>
   </header>
 
@@ -492,32 +560,13 @@
     <h1>We Level Up <span>YOUR</span> Account</h1>
     <p>Provide your existing GTA V account login and our team will securely inject cash, ranks, and unlocked cargo storage directly into your profile. Currently servicing PC platforms exclusively.</p>
 
+    <div class="payment-notice">
+      💳 <strong>Accepted Payment Methods:</strong> Currently accepting <span>PayPal</span>, <span>CashApp</span>, and <span>Venmo</span> right now.
+    </div>
+
     <div class="safety-banner" id="safety">
       <span>🛡️ <strong>Safety Guarantee:</strong> All cash injections are strictly capped at <strong>$65,000,000</strong> to guarantee 100% anti-ban protection.</span>
       <span class="warning">⚠️ Notice: We do not support Xbox or PlayStation accounts at this time.</span>
-    </div>
-
-    <div class="steps-container" id="how-it-works">
-      <div class="step">
-        <div class="step-number">1</div>
-        <h4>Choose Service</h4>
-        <p>Select your desired cash, rank, or cargo package.</p>
-      </div>
-      <div class="step">
-        <div class="step-number">2</div>
-        <h4>Submit Details</h4>
-        <p>Provide your PC account login (Steam, Epic Games, or Rockstar Social Club).</p>
-      </div>
-      <div class="step">
-        <div class="step-number">3</div>
-        <h4>Injection Process</h4>
-        <p>Our team logs in safely and applies your requested mods directly.</p>
-      </div>
-      <div class="step">
-        <div class="step-number">4</div>
-        <h4>Ready To Play</h4>
-        <p>Log back in and enjoy your maxed out PC profile!</p>
-      </div>
     </div>
   </section>
 
@@ -530,70 +579,142 @@
 
     <div class="product-grid">
 
-      <!-- CATEGORY 1: MONEY INJECTIONS -->
+      <!-- PACKAGE 1 -->
       <div class="card featured">
-        <span class="badge-featured">Popular</span>
+        <span class="badge-featured">Ultimate Value</span>
         <div class="card-header">
-          <span class="card-tag">💰 Money Injections</span>
-          <h3 class="card-title">Custom 65M Injection</h3>
-          <div class="price">$5.00 <span>$15.00</span></div>
+          <span class="card-tag">Full Service Package</span>
+          <h3 class="card-title">NOVA Max Boost</h3>
+          <div class="price">$29.99 <span>$59.99</span></div>
         </div>
 
         <div class="stat-badge-list">
           <div class="badge-item">
             <div class="badge-icon icon-cash">$</div>
-            <span>$65,000,000 Direct Cash</span>
+            <span>$65,000,000 Cash (Max Safe Limit)</span>
+          </div>
+          <div class="badge-item">
+            <div class="badge-icon icon-cargo">📦</div>
+            <span>Max Cargo Storage & Warehouses</span>
+          </div>
+          <div class="badge-item">
+            <div class="badge-icon icon-level">⭐</div>
+            <span>Level 4000 Rank Boost</span>
           </div>
           <div class="badge-item">
             <div class="badge-icon icon-shield">🛡️</div>
-            <span>Safely Deposited in Bank</span>
+            <span>Anti-Ban Guarantee</span>
           </div>
         </div>
 
         <ul class="card-features">
           <li>PC Only (Steam / Epic / Rockstar)</li>
-          <li>Pure Cash Injection (No Unlocks)</li>
-          <li>Keeps Existing Character Stats</li>
+          <li>All Heist Unlocks & Achievements</li>
+          <li>Max Character Stats (Shooting, Flying)</li>
+          <li>Fast Run & Modded Outfits Unlocked</li>
         </ul>
 
-        <a href="https://discord.gg/pMCPCcPtY" class="btn-card">Order in Discord</a>
+        <button class="btn-card" onclick="addToCart('NOVA Max Boost', 29.99)">Add to Cart</button>
         <p class="security-notice">Requires PC Account Credentials</p>
       </div>
 
+      <!-- PACKAGE 2 -->
       <div class="card">
         <div class="card-header">
-          <span class="card-tag">💰 Money Injections</span>
-          <h3 class="card-title">Mega Money Bundle</h3>
-          <div class="price">$12.00 <span>$25.00</span></div>
+          <span class="card-tag">Mid-Tier Boost</span>
+          <h3 class="card-title">Standard Boost</h3>
+          <div class="price">$19.99 <span>$39.99</span></div>
         </div>
 
         <div class="stat-badge-list">
           <div class="badge-item">
             <div class="badge-icon icon-cash">$</div>
-            <span>Massive Cash Injection Package</span>
+            <span>$35,000,000 Cash</span>
+          </div>
+          <div class="badge-item">
+            <div class="badge-icon icon-level">⭐</div>
+            <span>Level 500 Rank</span>
           </div>
           <div class="badge-item">
             <div class="badge-icon icon-shield">🛡️</div>
-            <span>Safe PC Anti-Ban Injection</span>
+            <span>Safe PC Injection</span>
           </div>
         </div>
 
         <ul class="card-features">
           <li>PC Only (Steam / Epic / Rockstar)</li>
-          <li>Massive cash balance for instant buying power</li>
+          <li>Max Character Stats</li>
+          <li>Basic Outfits & Unlocks</li>
+        </ul>
+
+        <button class="btn-card" onclick="addToCart('Standard Boost', 19.99)">Add to Cart</button>
+        <p class="security-notice">Requires PC Account Credentials</p>
+      </div>
+
+      <!-- PACKAGE 3 -->
+      <div class="card">
+        <div class="card-header">
+          <span class="card-tag">Entry Level</span>
+          <h3 class="card-title">Starter Top-Up</h3>
+          <div class="price">$11.99 <span>$24.99</span></div>
+        </div>
+
+        <div class="stat-badge-list">
+          <div class="badge-item">
+            <div class="badge-icon icon-cash">$</div>
+            <span>$15,000,000 Cash</span>
+          </div>
+          <div class="badge-item">
+            <div class="badge-icon icon-level">⭐</div>
+            <span>Level 120 Rank (All Unlocks)</span>
+          </div>
+        </div>
+
+        <ul class="card-features">
+          <li>PC Only (Steam / Epic / Rockstar)</li>
+          <li>Standard Weapon Unlocks</li>
           <li>Fast 30-Minute Turnaround</li>
         </ul>
 
-        <a href="https://discord.gg/pMCPCcPtY" class="btn-card">Order in Discord</a>
+        <button class="btn-card" onclick="addToCart('Starter Top-Up', 11.99)">Add to Cart</button>
         <p class="security-notice">Requires PC Account Credentials</p>
       </div>
 
-      <!-- CATEGORY 2: RANK & STATS -->
+      <!-- PACKAGE 4 -->
       <div class="card">
         <div class="card-header">
-          <span class="card-tag">📈 Rank & Stats</span>
+          <span class="card-tag">Property Focus</span>
+          <h3 class="card-title">Max Cargo & Unlocks</h3>
+          <div class="price">$14.99 <span>$29.99</span></div>
+        </div>
+
+        <div class="stat-badge-list">
+          <div class="badge-item">
+            <div class="badge-icon icon-cargo">📦</div>
+            <span>Full Cargo & Warehouse Unlocks</span>
+          </div>
+          <div class="badge-item">
+            <div class="badge-icon icon-shield">🛡️</div>
+            <span>Full LSC Vehicle Modifications</span>
+          </div>
+        </div>
+
+        <ul class="card-features">
+          <li>PC Only (Steam / Epic / Rockstar)</li>
+          <li>Max CEO Warehouses Filled</li>
+          <li>All Bunker & Nightclub Research</li>
+        </ul>
+
+        <button class="btn-card" onclick="addToCart('Max Cargo & Unlocks', 14.99)">Add to Cart</button>
+        <p class="security-notice">Requires PC Account Credentials</p>
+      </div>
+
+      <!-- PACKAGE 5 -->
+      <div class="card">
+        <div class="card-header">
+          <span class="card-tag">Rank Injection</span>
           <h3 class="card-title">Level 4000 Express</h3>
-          <div class="price">$7.00 <span>$15.00</span></div>
+          <div class="price">$12.99 <span>$22.99</span></div>
         </div>
 
         <div class="stat-badge-list">
@@ -613,97 +734,59 @@
           <li>Ultra-Fast Delivery</li>
         </ul>
 
-        <a href="https://discord.gg/pMCPCcPtY" class="btn-card">Order in Discord</a>
+        <button class="btn-card" onclick="addToCart('Level 4000 Express', 12.99)">Add to Cart</button>
         <p class="security-notice">Requires PC Account Credentials</p>
       </div>
 
+      <!-- PACKAGE 6 -->
       <div class="card">
         <div class="card-header">
-          <span class="card-tag">📈 Rank & Stats</span>
-          <h3 class="card-title">Elite Stat Package</h3>
-          <div class="price">$15.00 <span>$30.00</span></div>
+          <span class="card-tag">Cash Only</span>
+          <h3 class="card-title">Custom 65M Injection</h3>
+          <div class="price">$22.99 <span>$44.99</span></div>
         </div>
 
         <div class="stat-badge-list">
           <div class="badge-item">
-            <div class="badge-icon icon-level">⭐</div>
-            <span>Full Level & Max Stats</span>
-          </div>
-          <div class="badge-item">
-            <div class="badge-icon icon-cargo">📦</div>
-            <span>All Skills Perfected</span>
-          </div>
-        </div>
-
-        <ul class="card-features">
-          <li>PC Only (Steam / Epic / Rockstar)</li>
-          <li>Max Shooting, Flying, Stamina, & Strength</li>
-          <li>Basic Outfits & Fast Run Unlocks</li>
-        </ul>
-
-        <a href="https://discord.gg/pMCPCcPtY" class="btn-card">Order in Discord</a>
-        <p class="security-notice">Requires PC Account Credentials</p>
-      </div>
-
-      <!-- CATEGORY 3: MODDED HEISTS -->
-      <div class="card">
-        <div class="card-header">
-          <span class="card-tag">🛠️ Modded Heists</span>
-          <h3 class="card-title">Modded Heists Pack</h3>
-          <div class="price">$10.00 <span>$22.00</span></div>
-        </div>
-
-        <div class="stat-badge-list">
-          <div class="badge-item">
-            <div class="badge-icon icon-cargo">📦</div>
-            <span>Premium Heist Payouts & Setups</span>
+            <div class="badge-icon icon-cash">$</div>
+            <span>$65,000,000 Direct Cash</span>
           </div>
           <div class="badge-item">
             <div class="badge-icon icon-shield">🛡️</div>
-            <span>Safe Execution</span>
+            <span>Safely Deposited in Bank</span>
           </div>
         </div>
 
         <ul class="card-features">
           <li>PC Only (Steam / Epic / Rockstar)</li>
-          <li>All Heist Unlocks & Achievement setups</li>
-          <li>Done completely for you</li>
+          <li>Pure Cash Injection (No Unlocks)</li>
+          <li>Keeps Existing Character Stats</li>
         </ul>
 
-        <a href="https://discord.gg/pMCPCcPtY" class="btn-card">Order in Discord</a>
-        <p class="security-notice">Requires PC Account Credentials</p>
-      </div>
-
-      <div class="card">
-        <div class="card-header">
-          <span class="card-tag">🛠️ Modded Heists</span>
-          <h3 class="card-title">Ultimate Heist Pack</h3>
-          <div class="price">$20.00 <span>$40.00</span></div>
-        </div>
-
-        <div class="stat-badge-list">
-          <div class="badge-item">
-            <div class="badge-icon icon-cargo">📦</div>
-            <span>Complete Heist Experience Bundle</span>
-          </div>
-          <div class="badge-item">
-            <div class="badge-icon icon-shield">🛡️</div>
-            <span>Maximized Efficiency</span>
-          </div>
-        </div>
-
-        <ul class="card-features">
-          <li>PC Only (Steam / Epic / Rockstar)</li>
-          <li>All pre-set heists completed with max payout setups</li>
-          <li>Priority Delivery</li>
-        </ul>
-
-        <a href="https://discord.gg/pMCPCcPtY" class="btn-card">Order in Discord</a>
+        <button class="btn-card" onclick="addToCart('Custom 65M Injection', 22.99)">Add to Cart</button>
         <p class="security-notice">Requires PC Account Credentials</p>
       </div>
 
     </div>
   </section>
+
+  <!-- Cart Slide-out Drawer -->
+  <div class="cart-modal" id="cartModal">
+    <div class="cart-header">
+      <h3>Your Cart</h3>
+      <button class="close-cart" onclick="toggleCart()">&times;</button>
+    </div>
+    <div class="cart-items" id="cartItemsContainer">
+      <p style="color: var(--text-muted); font-size: 0.9rem; text-align: center; margin-top: 2rem;">Your cart is empty.</p>
+    </div>
+    <div class="cart-footer">
+      <div style="display: flex; justify-content: space-between; font-weight: bold; font-size: 1.1rem;">
+        <span>Total:</span>
+        <span id="cartTotal">$0.00</span>
+      </div>
+      <button class="checkout-btn" onclick="checkoutDiscord()">Checkout via Discord</button>
+    </div>
+  </div>
 
   <!-- Footer -->
   <footer>
@@ -714,5 +797,67 @@
     <p>Grand Theft Auto V and GTA Online are registered trademarks of Rockstar Games. We are not affiliated with Rockstar Games. Console platforms are strictly not supported.</p>
   </footer>
 
+  <script>
+    let cart = [];
+
+    function toggleCart() {
+      const modal = document.getElementById('cartModal');
+      modal.classList.toggle('open');
+    }
+
+    function addToCart(name, price) {
+      cart.push({ name, price });
+      updateCartUI();
+      toggleCart();
+    }
+
+    function removeFromCart(index) {
+      cart.splice(index, 1);
+      updateCartUI();
+    }
+
+    function updateCartUI() {
+      const container = document.getElementById('cartItemsContainer');
+      const countEl = document.getElementById('cartCount');
+      const totalEl = document.getElementById('cartTotal');
+
+      countEl.innerText = cart.length;
+
+      if (cart.length === 0) {
+        container.innerHTML = '<p style="color: var(--text-muted); font-size: 0.9rem; text-align: center; margin-top: 2rem;">Your cart is empty.</p>';
+        totalEl.innerText = '$0.00';
+        return;
+      }
+
+      let html = '';
+      let total = 0;
+
+      cart.forEach((item, index) => {
+        total += item.price;
+        html += `
+          <div class="cart-item">
+            <div>
+              <div style="font-weight: 600; font-size: 0.9rem;">${item.name}</div>
+              <div style="color: var(--accent-cyan); font-size: 0.85rem;">$${item.price.toFixed(2)}</div>
+            </div>
+            <button onclick="removeFromCart(${index})" style="background:none; border:none; color:#ff4d4d; cursor:pointer; font-weight:bold;">✕</button>
+          </div>
+        `;
+      });
+
+      container.innerHTML = html;
+      totalEl.innerText = `$${total.toFixed(2)}`;
+    }
+
+    function checkoutDiscord() {
+      if (cart.length === 0) {
+        alert("Your cart is empty!");
+        return;
+      }
+      window.location.href = "https://discord.gg/pMCPCcPtY";
+    }
+  </script>
 </body>
 </html>
+
+```
