@@ -214,6 +214,39 @@
       color: #000;
     }
 
+    /* Test Bot Trigger Banner */
+    .test-bot-banner {
+      max-width: 1200px;
+      margin: 1.5rem auto 0;
+      padding: 0 2rem;
+      display: none;
+    }
+    .test-bot-banner.active {
+      display: block;
+    }
+    .test-bot-box {
+      background: linear-gradient(135deg, rgba(255, 42, 141, 0.15), rgba(192, 132, 252, 0.15));
+      border: 1px dashed var(--accent-pink);
+      padding: 1rem 1.5rem;
+      border-radius: 12px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 1rem;
+    }
+    .btn-test-trigger {
+      background: var(--accent-pink);
+      color: #fff;
+      border: none;
+      padding: 0.5rem 1rem;
+      border-radius: 6px;
+      font-weight: bold;
+      cursor: pointer;
+      box-shadow: 0 0 15px rgba(255, 42, 141, 0.4);
+    }
+    .btn-test-trigger:hover { opacity: 0.9; }
+
     /* Hero Section */
     .hero {
       position: relative;
@@ -641,6 +674,17 @@
     </div>
   </header>
 
+  <!-- Test Bot Simulator Banner (Visible only for Owner) -->
+  <div class="test-bot-banner" id="testBotBanner">
+    <div class="test-bot-box">
+      <div>
+        <strong style="color: var(--accent-cyan); display: block; margin-bottom: 2px;">🤖 Test Bot Order Simulator</strong>
+        <span style="font-size: 0.85rem; color: var(--text-muted);">Simulate an alt user purchase instantly to test your Discord Webhook and live chat messaging.</span>
+      </div>
+      <button class="btn-test-trigger" onclick="triggerTestBotPurchase()">Simulate Alt Purchase Test</button>
+    </div>
+  </div>
+
   <!-- Owner Dashboard Panel -->
   <div class="owner-panel" id="ownerPanel">
     <div class="owner-header">
@@ -661,7 +705,7 @@
           </tr>
         </thead>
         <tbody id="adminOrdersList">
-          <!-- Dynamic orders will populate here and persist -->
+          <!-- Dynamic orders will populate here -->
         </tbody>
       </table>
     </div>
@@ -826,7 +870,7 @@
   <script>
     let cart = [];
     let currentUser = null;
-    let activeChatUser = null; // Used by owner to target specific user
+    let activeChatUser = null; 
     const OWNER_EMAIL = "ejrosner333@gmail.com";
     const OWNER_PASSWORD = "NovaBoss26!"; 
 
@@ -836,13 +880,16 @@
         currentUser = savedUser;
         const authButtonText = document.getElementById('authButtonText');
         const ownerPanel = document.getElementById('ownerPanel');
+        const testBotBanner = document.getElementById('testBotBanner');
 
         if (currentUser === OWNER_EMAIL) {
           authButtonText.innerHTML = `${currentUser.split('@')[0]} <span class="owner-badge">Owner</span>`;
           ownerPanel.classList.add('active');
+          testBotBanner.classList.add('active');
         } else {
           authButtonText.innerText = currentUser.split('@')[0];
           ownerPanel.classList.remove('active');
+          testBotBanner.classList.remove('active');
         }
       }
       loadOrdersFromStorage();
@@ -895,14 +942,17 @@
 
       const authButtonText = document.getElementById('authButtonText');
       const ownerPanel = document.getElementById('ownerPanel');
+      const testBotBanner = document.getElementById('testBotBanner');
 
       if (currentUser === OWNER_EMAIL) {
         authButtonText.innerHTML = `${email.split('@')[0]} <span class="owner-badge">Owner</span>`;
         ownerPanel.classList.add('active');
-        alert('👑 Welcome back, Boss! Live Orders Dashboard unlocked.');
+        testBotBanner.classList.add('active');
+        alert('👑 Welcome back, Boss! Live Orders Dashboard & Test Bot Simulator unlocked.');
       } else {
         authButtonText.innerText = email.split('@')[0];
         ownerPanel.classList.remove('active');
+        testBotBanner.classList.remove('active');
         alert('Successfully logged in!');
       }
 
@@ -973,13 +1023,53 @@
       });
     }
 
-    // Owner clicks chat next to a customer order
     function openChatWithCustomer(customerEmail) {
       if (currentUser !== OWNER_EMAIL) return;
       activeChatUser = customerEmail;
       document.getElementById('chatWindowTitle').innerText = `Chat with: ${customerEmail}`;
       document.getElementById('chatWindow').classList.add('open');
       loadChatHistory();
+    }
+
+    // 🤖 Test Bot Simulator Function
+    function triggerTestBotPurchase() {
+      let testOrderId = '#NOV-TEST99';
+      let testBuyerEmail = 'alt_testbot_user@gmail.com';
+      let testItems = 'NOVA Max Boost (Test)';
+      let testMethod = 'CashApp';
+      let testTotal = 29.99;
+
+      const testOrder = {
+        id: testOrderId,
+        email: testBuyerEmail,
+        items: testItems,
+        method: testMethod,
+        total: testTotal,
+        status: 'Awaiting Verification (Test)'
+      };
+
+      // Save order
+      const orders = JSON.parse(localStorage.getItem('nova_orders') || '[]');
+      orders.unshift(testOrder);
+      localStorage.setItem('nova_orders', JSON.stringify(orders));
+      loadOrdersFromStorage();
+
+      // Send Discord Webhook
+      const webhookURL = "https://discord.com/api/webhooks/1536834974819549264/cIW1RkHIxDHPioonzzm6Y2-tKWtdA9mpPr2ghCVgKb7D5X-Kyn1r2bvPtlrLVz53HMn6";
+      const discordPayload = {
+        content: `🚨 **TEST BOT ORDER RECEIVED!** 🚨\n> **Order ID:** ${testOrderId}\n> **Customer:** ${testBuyerEmail}\n> **Items:** ${testItems}\n> **Payment:** ${testMethod}\n> **Total:** $${testTotal.toFixed(2)}\n*Simulated test order via Boss dashboard!*`
+      };
+
+      fetch(webhookURL, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(discordPayload)
+      }).catch(error => console.error('Error sending test webhook:', error));
+
+      // Prime chat thread for test bot user
+      saveMessageToStorage(testBuyerEmail, 'incoming', 'Hey! I just placed a test order for NOVA Max Boost. Are you ready to inject my account?');
+
+      alert("🤖 Test Bot Purchase Simulated! Check your Discord channel, your dashboard table below, and click the 'Chat' button on the test row to text the simulated buyer.");
     }
 
     function processPayment(method) {
@@ -1002,13 +1092,11 @@
         status: 'Awaiting Verification'
       };
 
-      // Save order to localStorage
       const orders = JSON.parse(localStorage.getItem('nova_orders') || '[]');
       orders.unshift(newOrder);
       localStorage.setItem('nova_orders', JSON.stringify(orders));
       loadOrdersFromStorage();
 
-      // Send Discord Webhook Notification
       const webhookURL = "https://discord.com/api/webhooks/1536834974819549264/cIW1RkHIxDHPioonzzm6Y2-tKWtdA9mpPr2ghCVgKb7D5X-Kyn1r2bvPtlrLVz53HMn6";
       const discordPayload = {
         content: `🚨 **NEW NOVA ORDER RECEIVED!** 🚨\n> **Order ID:** ${randomOrderId}\n> **Customer:** ${buyerEmail}\n> **Items:** ${itemsString}\n> **Payment:** ${method}\n> **Total:** $${total.toFixed(2)}\n*Check your website owner dashboard to verify!*`
@@ -1020,7 +1108,6 @@
         body: JSON.stringify(discordPayload)
       }).catch(error => console.error('Error sending to Discord:', error));
 
-      // Initialize chat message for this user
       saveMessageToStorage(buyerEmail, 'incoming', `Order ${randomOrderId} placed via ${method}! A moderator will assist you shortly.`);
 
       toggleCart();
@@ -1035,7 +1122,6 @@
       document.getElementById('chatWindow').classList.add('open');
     }
 
-    // Storage for multi-user chat threads: { "customer_email": [{sender: 'incoming'/'outgoing', text: '...'}] }
     function saveMessageToStorage(targetUser, sender, text) {
       if (!targetUser) return;
       let chatThreads = JSON.parse(localStorage.getItem('nova_chats') || '{}');
@@ -1063,9 +1149,7 @@
 
       let html = '';
       thread.forEach(msg => {
-        // If owner is looking, invert perspective appropriately or show context
-        let cssClass = msg.sender; 
-        html += `<div class="message ${cssClass}">${msg.text}</div>`;
+        html += `<div class="message ${msg.sender}">${msg.text}</div>`;
       });
       chatMessages.innerHTML = html;
       chatMessages.scrollTop = chatMessages.scrollHeight;
@@ -1088,14 +1172,10 @@
         return;
       }
 
-      // If owner is sending, it's outgoing to the customer thread. If customer is sending, it's incoming/outgoing depending on view.
-      let senderType = currentUser === OWNER_EMAIL ? 'outgoing' : 'outgoing';
-      saveMessageToStorage(targetThreadUser, senderType, text);
-      
+      saveMessageToStorage(targetThreadUser, 'outgoing', text);
       input.value = '';
       loadChatHistory();
 
-      // If regular user sent it, simulate automatic bot response after 1.5s
       if (currentUser !== OWNER_EMAIL) {
         setTimeout(() => {
           saveMessageToStorage(currentUser, 'incoming', "Thanks for messaging! The owner/mod has received your note and will review it shortly.");
