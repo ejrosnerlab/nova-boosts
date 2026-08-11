@@ -644,7 +644,7 @@
           </tr>
         </thead>
         <tbody id="adminOrdersList">
-          <!-- Fresh start: no fake rows here -->
+          <!-- Dynamic orders will populate here and persist -->
         </tbody>
       </table>
     </div>
@@ -819,6 +819,25 @@
     const OWNER_EMAIL = "ejrosner333@gmail.com";
     const OWNER_PASSWORD = "NovaBoss26!"; 
 
+    // Persistent Login & Orders Initialization on Page Load
+    window.onload = function() {
+      const savedUser = localStorage.getItem('nova_user');
+      if (savedUser) {
+        currentUser = savedUser;
+        const authButtonText = document.getElementById('authButtonText');
+        const ownerPanel = document.getElementById('ownerPanel');
+
+        if (currentUser === OWNER_EMAIL) {
+          authButtonText.innerHTML = `${currentUser.split('@')[0]} <span class="owner-badge">Owner</span>`;
+          ownerPanel.classList.add('active');
+        } else {
+          authButtonText.innerText = currentUser.split('@')[0];
+          ownerPanel.classList.remove('active');
+        }
+      }
+      loadOrdersFromStorage();
+    };
+
     function closeAllDrawers() {
       document.getElementById('cartModal').classList.remove('open');
       document.getElementById('authModal').classList.remove('open');
@@ -860,6 +879,8 @@
       }
 
       currentUser = email;
+      localStorage.setItem('nova_user', currentUser);
+
       const authButtonText = document.getElementById('authButtonText');
       const ownerPanel = document.getElementById('ownerPanel');
 
@@ -919,6 +940,25 @@
       totalEl.innerText = `$${total.toFixed(2)}`;
     }
 
+    function loadOrdersFromStorage() {
+      const orders = JSON.parse(localStorage.getItem('nova_orders') || '[]');
+      const adminTable = document.getElementById('adminOrdersList');
+      adminTable.innerHTML = '';
+      
+      orders.forEach(order => {
+        const newRow = document.createElement('tr');
+        newRow.innerHTML = `
+          <td>${order.id}</td>
+          <td>${order.email}</td>
+          <td>${order.items}</td>
+          <td>${order.method}</td>
+          <td>$${order.total.toFixed(2)}</td>
+          <td class="status-pending">${order.status}</td>
+        `;
+        adminTable.appendChild(newRow);
+      });
+    }
+
     function processPayment(method) {
       if (cart.length === 0) {
         alert("Your cart is empty!");
@@ -927,20 +967,24 @@
 
       let total = cart.reduce((sum, item) => sum + item.price, 0);
       let itemsString = cart.map(i => i.name).join(", ");
-      let randomOrderId = Math.floor(1000 + Math.random() * 9000);
-      let buyerEmail = currentUser && currentUser !== OWNER_EMAIL ? currentUser : 'guest' + randomOrderId + '@email.com';
+      let randomOrderId = '#NOV-' + Math.floor(1000 + Math.random() * 9000);
+      let buyerEmail = currentUser && currentUser !== OWNER_EMAIL ? currentUser : 'guest_' + Math.floor(100 + Math.random() * 900) + '@email.com';
 
-      const adminTable = document.getElementById('adminOrdersList');
-      const newRow = document.createElement('tr');
-      newRow.innerHTML = `
-        <td>#NOV-${randomOrderId}</td>
-        <td>${buyerEmail}</td>
-        <td>${itemsString}</td>
-        <td>${method}</td>
-        <td>$${total.toFixed(2)}</td>
-        <td class="status-pending">Awaiting Verification</td>
-      `;
-      adminTable.insertBefore(newRow, adminTable.firstChild);
+      const newOrder = {
+        id: randomOrderId,
+        email: buyerEmail,
+        items: itemsString,
+        method: method,
+        total: total,
+        status: 'Awaiting Verification'
+      };
+
+      // Save to localStorage so it stays across page refreshes
+      const orders = JSON.parse(localStorage.getItem('nova_orders') || '[]');
+      orders.unshift(newOrder);
+      localStorage.setItem('nova_orders', JSON.stringify(orders));
+
+      loadOrdersFromStorage();
 
       toggleCart();
       cart = [];
@@ -949,7 +993,7 @@
       document.getElementById('chatWindow').classList.add('open');
       const chatMessages = document.getElementById('chatMessages');
       chatMessages.innerHTML += `
-        <div class="message incoming">Order #NOV-${randomOrderId} placed via ${method}! A moderator has been notified and will join this chat shortly to assist with your account injection.</div>
+        <div class="message incoming">Order ${randomOrderId} placed via ${method}! A moderator has been notified and will join this chat shortly to assist with your account injection.</div>
       `;
       chatMessages.scrollTop = chatMessages.scrollHeight;
     }
