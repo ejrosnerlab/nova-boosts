@@ -127,126 +127,6 @@
       font-weight: 900;
     }
 
-    .owner-badge {
-      background: linear-gradient(135deg, #ff2a8d, #c084fc);
-      color: #fff;
-      font-size: 0.65rem;
-      padding: 2px 6px;
-      border-radius: 4px;
-      font-weight: 800;
-      text-transform: uppercase;
-      letter-spacing: 1px;
-      margin-left: 5px;
-    }
-
-    /* Owner Dashboard Panel */
-    .owner-panel {
-      display: none;
-      background: rgba(15, 5, 29, 0.9);
-      border: 1px solid var(--accent-cyan);
-      border-radius: 12px;
-      max-width: 1200px;
-      margin: 2rem auto 0;
-      padding: 1.5rem 2rem;
-      backdrop-filter: blur(10px);
-      box-shadow: 0 0 30px rgba(0, 242, 254, 0.15);
-    }
-
-    .owner-panel.active {
-      display: block;
-    }
-
-    .owner-header {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      border-bottom: 1px solid rgba(0, 242, 254, 0.2);
-      padding-bottom: 1rem;
-      margin-bottom: 1rem;
-    }
-
-    .owner-header h3 {
-      color: var(--accent-cyan);
-      display: flex;
-      align-items: center;
-      gap: 0.5rem;
-    }
-
-    .admin-table {
-      width: 100%;
-      border-collapse: collapse;
-      text-align: left;
-      font-size: 0.9rem;
-    }
-
-    .admin-table th, .admin-table td {
-      padding: 12px 15px;
-      border-bottom: 1px solid rgba(255, 255, 255, 0.05);
-    }
-
-    .admin-table th {
-      color: var(--accent-purple);
-      text-transform: uppercase;
-      letter-spacing: 1px;
-      font-size: 0.8rem;
-    }
-
-    .admin-table tbody tr:hover {
-      background: rgba(255, 255, 255, 0.03);
-    }
-
-    .status-pending { color: #facc15; font-weight: 600; }
-    .status-completed { color: #4ade80; font-weight: 600; }
-
-    .chat-user-btn {
-      background: rgba(0, 242, 254, 0.15);
-      border: 1px solid var(--accent-cyan);
-      color: var(--accent-cyan);
-      padding: 4px 10px;
-      border-radius: 6px;
-      cursor: pointer;
-      font-size: 0.75rem;
-      font-weight: bold;
-      transition: all 0.2s;
-    }
-    .chat-user-btn:hover {
-      background: var(--accent-cyan);
-      color: #000;
-    }
-
-    /* Test Bot Trigger Banner */
-    .test-bot-banner {
-      max-width: 1200px;
-      margin: 1.5rem auto 0;
-      padding: 0 2rem;
-      display: none;
-    }
-    .test-bot-banner.active {
-      display: block;
-    }
-    .test-bot-box {
-      background: linear-gradient(135deg, rgba(255, 42, 141, 0.15), rgba(192, 132, 252, 0.15));
-      border: 1px dashed var(--accent-pink);
-      padding: 1rem 1.5rem;
-      border-radius: 12px;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      flex-wrap: wrap;
-      gap: 1rem;
-    }
-    .btn-test-trigger {
-      background: var(--accent-pink);
-      color: #fff;
-      border: none;
-      padding: 0.5rem 1rem;
-      border-radius: 6px;
-      font-weight: bold;
-      cursor: pointer;
-      box-shadow: 0 0 15px rgba(255, 42, 141, 0.4);
-    }
-    .btn-test-trigger:hover { opacity: 0.9; }
-
     /* Hero Section */
     .hero {
       position: relative;
@@ -426,7 +306,7 @@
       display: block;
     }
 
-    .cart-modal, .auth-modal {
+    .cart-modal {
       position: fixed;
       top: 0;
       right: -420px;
@@ -442,7 +322,7 @@
       padding: 2rem;
     }
 
-    .cart-modal.open, .auth-modal.open {
+    .cart-modal.open {
       right: 0;
     }
 
@@ -508,150 +388,12 @@
     .btn-cashapp { background: #00D632; color: #000; border: none; }
     .btn-venmo { background: #008CFF; border: none; }
     .btn-paypal { background: #003087; border: none; }
-
-    .auth-form {
-      display: flex;
-      flex-direction: column;
-      gap: 1rem;
-    }
-
-    .form-group {
-      display: flex;
-      flex-direction: column;
-      gap: 0.4rem;
-    }
-
-    .form-group label {
-      font-size: 0.85rem;
-      color: var(--text-muted);
-      font-weight: 600;
-    }
-
-    .form-group input {
-      background: rgba(255, 255, 255, 0.05);
-      border: 1px solid rgba(255, 255, 255, 0.1);
-      padding: 0.75rem;
-      border-radius: 8px;
-      color: #fff;
-      font-family: inherit;
-    }
-
-    .form-group input:focus {
-      outline: none;
-      border-color: var(--accent-pink);
-    }
-
-    .live-chat-widget {
-      position: fixed;
-      bottom: 20px;
-      right: 20px;
-      z-index: 1050;
-    }
-
-    .chat-toggle-btn {
-      background: linear-gradient(135deg, var(--accent-pink), var(--accent-purple));
-      color: #fff;
-      border: none;
-      padding: 0.8rem 1.25rem;
-      border-radius: 50px;
-      font-weight: 800;
-      cursor: pointer;
-      box-shadow: 0 5px 20px rgba(255, 42, 141, 0.4);
-      display: flex;
-      align-items: center;
-      gap: 0.5rem;
-    }
-
-    .chat-window {
-      display: none;
-      position: absolute;
-      bottom: 60px;
-      right: 0;
-      width: 340px;
-      height: 450px;
-      background: #0d0617;
-      border: 1px solid var(--accent-pink);
-      border-radius: 12px;
-      box-shadow: 0 10px 30px rgba(0,0,0,0.8);
-      flex-direction: column;
-      overflow: hidden;
-    }
-
-    .chat-window.open {
-      display: flex;
-    }
-
-    .chat-header {
-      background: rgba(255, 42, 141, 0.15);
-      padding: 1rem;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      border-bottom: 1px solid rgba(255, 42, 141, 0.3);
-    }
-
-    .chat-messages {
-      flex: 1;
-      padding: 1rem;
-      overflow-y: auto;
-      display: flex;
-      flex-direction: column;
-      gap: 0.75rem;
-    }
-
-    .message {
-      max-width: 80%;
-      padding: 0.6rem 0.9rem;
-      border-radius: 8px;
-      font-size: 0.85rem;
-    }
-
-    .message.incoming {
-      background: rgba(255,255,255,0.08);
-      align-self: flex-start;
-      color: var(--text-main);
-    }
-
-    .message.outgoing {
-      background: var(--accent-pink);
-      align-self: flex-end;
-      color: #fff;
-    }
-
-    .chat-input-area {
-      padding: 0.75rem;
-      border-top: 1px solid rgba(255,255,255,0.1);
-      display: flex;
-      gap: 0.5rem;
-    }
-
-    .chat-input-area input {
-      flex: 1;
-      background: rgba(255,255,255,0.05);
-      border: 1px solid rgba(255,255,255,0.1);
-      padding: 0.5rem;
-      border-radius: 6px;
-      color: #fff;
-      font-size: 0.85rem;
-    }
-
-    .chat-input-area input:focus { outline: none; border-color: var(--accent-pink); }
-
-    .chat-input-area button {
-      background: var(--accent-pink);
-      border: none;
-      color: #fff;
-      padding: 0 1rem;
-      border-radius: 6px;
-      font-weight: bold;
-      cursor: pointer;
-    }
   </style>
 </head>
 <body>
 
   <div class="galaxy-bg"></div>
-  <div class="drawer-overlay" id="overlay" onclick="closeAllDrawers()"></div>
+  <div class="drawer-overlay" id="overlay" onclick="closeCart()"></div>
 
   <!-- Header -->
   <header>
@@ -663,9 +405,6 @@
       <ul class="nav-links">
         <li><a href="#services" style="color:var(--text-muted); text-decoration:none; font-weight:600;">Packages</a></li>
         <li>
-          <button class="nav-btn" onclick="toggleAuth()">👤 <span id="authButtonText">Sign Up</span></button>
-        </li>
-        <li>
           <button class="nav-btn" onclick="toggleCart()">
             🛒 Cart <span class="cart-count" id="cartCount">0</span>
           </button>
@@ -673,43 +412,6 @@
       </ul>
     </div>
   </header>
-
-  <!-- Test Bot Simulator Banner (Visible only for Owner) -->
-  <div class="test-bot-banner" id="testBotBanner">
-    <div class="test-bot-box">
-      <div>
-        <strong style="color: var(--accent-cyan); display: block; margin-bottom: 2px;">🤖 Test Bot Order Simulator</strong>
-        <span style="font-size: 0.85rem; color: var(--text-muted);">Simulate an alt user purchase instantly to test your Discord Webhook and live chat messaging.</span>
-      </div>
-      <button class="btn-test-trigger" onclick="triggerTestBotPurchase()">Simulate Alt Purchase Test</button>
-    </div>
-  </div>
-
-  <!-- Owner Dashboard Panel -->
-  <div class="owner-panel" id="ownerPanel">
-    <div class="owner-header">
-      <h3>👑 Live Orders Dashboard</h3>
-      <span style="font-size: 0.8rem; color: var(--text-muted); border: 1px solid var(--accent-cyan); padding: 2px 8px; border-radius: 4px;">ejrosner333@gmail.com</span>
-    </div>
-    <div style="overflow-x: auto;">
-      <table class="admin-table">
-        <thead>
-          <tr>
-            <th>Order ID</th>
-            <th>Customer Email</th>
-            <th>Item / Package</th>
-            <th>Payment Method</th>
-            <th>Total</th>
-            <th>Status</th>
-            <th>Action</th>
-          </tr>
-        </thead>
-        <tbody id="adminOrdersList">
-          <!-- Dynamic orders will populate here -->
-        </tbody>
-      </table>
-    </div>
-  </div>
 
   <!-- Main Hero -->
   <section class="hero">
@@ -779,33 +481,6 @@
         <button class="btn-card" onclick="addToCart('Custom 65M Injection', 22.99)">Add to Cart</button>
       </div>
 
-      <div class="card">
-        <div class="card-header">
-          <span class="card-tag">🛠️ Modded Heists</span>
-          <h3 class="card-title">Diamond Casino Heist</h3>
-          <div class="price">$4.99 <span>$10.00</span></div>
-        </div>
-        <button class="btn-card" onclick="addToCart('Diamond Casino Heist', 4.99)">Add to Cart</button>
-      </div>
-
-      <div class="card">
-        <div class="card-header">
-          <span class="card-tag">🛠️ Modded Heists</span>
-          <h3 class="card-title">Cayo Perico Heist</h3>
-          <div class="price">$4.99 <span>$10.00</span></div>
-        </div>
-        <button class="btn-card" onclick="addToCart('Cayo Perico Heist', 4.99)">Add to Cart</button>
-      </div>
-
-      <div class="card">
-        <div class="card-header">
-          <span class="card-tag">🛠️ Modded Heists</span>
-          <h3 class="card-title">Doomsday Heist</h3>
-          <div class="price">$4.99 <span>$10.00</span></div>
-        </div>
-        <button class="btn-card" onclick="addToCart('Doomsday Heist', 4.99)">Add to Cart</button>
-      </div>
-
     </div>
   </section>
 
@@ -830,134 +505,23 @@
     </div>
   </div>
 
-  <!-- Auth Modal -->
-  <div class="auth-modal" id="authModal">
-    <div class="drawer-header">
-      <h3 id="authTitle">Log In</h3>
-      <button class="close-drawer" onclick="toggleAuth()">&times;</button>
-    </div>
-    <div class="auth-form">
-      <div class="form-group">
-        <label>Email Address</label>
-        <input type="email" id="authEmail" placeholder="you@example.com">
-      </div>
-      <div class="form-group">
-        <label>Password</label>
-        <input type="password" id="authPassword" placeholder="••••••••">
-      </div>
-      <button class="btn-card" style="margin-top:0.5rem;" onclick="handleAuthSubmit()">Log In</button>
-    </div>
-  </div>
-
-  <!-- Live Chat Widget -->
-  <div class="live-chat-widget">
-    <button class="chat-toggle-btn" onclick="toggleLiveChat()">💬 Live Support Chat <span id="chatBadge" style="display:none; background:#ff4d4d; color:#fff; border-radius:50px; padding:1px 6px; font-size:0.7rem;">1</span></button>
-    <div class="chat-window" id="chatWindow">
-      <div class="chat-header">
-        <span id="chatWindowTitle" style="font-weight: bold; font-size: 0.9rem; color: var(--accent-cyan);">NOVA Live Help</span>
-        <button class="close-drawer" onclick="toggleLiveChat()" style="font-size: 1.2rem;">&times;</button>
-      </div>
-      <div class="chat-messages" id="chatMessages">
-        <div class="message incoming">Hello! Welcome to NOVA. How can our moderation team help you with your PC recovery package today?</div>
-      </div>
-      <div class="chat-input-area">
-        <input type="text" id="chatInput" placeholder="Type your message..." onkeypress="handleChatKeyPress(event)">
-        <button onclick="sendChatMessage()">Send</button>
-      </div>
-    </div>
-  </div>
-
   <script>
     let cart = [];
-    let currentUser = null;
-    let activeChatUser = null; 
-    const OWNER_EMAIL = "ejrosner333@gmail.com";
-    const OWNER_PASSWORD = "NovaBoss26!"; 
-
-    window.onload = function() {
-      const savedUser = localStorage.getItem('nova_user');
-      if (savedUser) {
-        currentUser = savedUser;
-        const authButtonText = document.getElementById('authButtonText');
-        const ownerPanel = document.getElementById('ownerPanel');
-        const testBotBanner = document.getElementById('testBotBanner');
-
-        if (currentUser === OWNER_EMAIL) {
-          authButtonText.innerHTML = `${currentUser.split('@')[0]} <span class="owner-badge">Owner</span>`;
-          ownerPanel.classList.add('active');
-          testBotBanner.classList.add('active');
-        } else {
-          authButtonText.innerText = currentUser.split('@')[0];
-          ownerPanel.classList.remove('active');
-          testBotBanner.classList.remove('active');
-        }
-      }
-      loadOrdersFromStorage();
-      loadChatHistory();
-    };
-
-    function closeAllDrawers() {
-      document.getElementById('cartModal').classList.remove('open');
-      document.getElementById('authModal').classList.remove('open');
-      document.getElementById('overlay').classList.remove('open');
-    }
 
     function toggleCart() {
       const cartModal = document.getElementById('cartModal');
       const overlay = document.getElementById('overlay');
       const isOpen = cartModal.classList.toggle('open');
-      if (isOpen) { document.getElementById('authModal').classList.remove('open'); overlay.classList.add('open'); } 
-      else { overlay.classList.remove('open'); }
+      if (isOpen) { 
+        overlay.classList.add('open'); 
+      } else { 
+        overlay.classList.remove('open'); 
+      }
     }
 
-    function toggleAuth() {
-      const authModal = document.getElementById('authModal');
-      const overlay = document.getElementById('overlay');
-      const isOpen = authModal.classList.toggle('open');
-      if (isOpen) { document.getElementById('cartModal').classList.remove('open'); overlay.classList.add('open'); } 
-      else { overlay.classList.remove('open'); }
-    }
-
-    function toggleLiveChat() {
-      document.getElementById('chatWindow').classList.toggle('open');
-      document.getElementById('chatBadge').style.display = 'none';
-    }
-
-    function handleAuthSubmit() {
-      const email = document.getElementById('authEmail').value.trim().toLowerCase();
-      const password = document.getElementById('authPassword').value;
-
-      if (!email || !password) {
-        alert('Please enter both email and password.');
-        return;
-      }
-
-      if (email === OWNER_EMAIL && password !== OWNER_PASSWORD) {
-        alert('🚨 Access Denied: Incorrect owner password.');
-        return;
-      }
-
-      currentUser = email;
-      localStorage.setItem('nova_user', currentUser);
-
-      const authButtonText = document.getElementById('authButtonText');
-      const ownerPanel = document.getElementById('ownerPanel');
-      const testBotBanner = document.getElementById('testBotBanner');
-
-      if (currentUser === OWNER_EMAIL) {
-        authButtonText.innerHTML = `${email.split('@')[0]} <span class="owner-badge">Owner</span>`;
-        ownerPanel.classList.add('active');
-        testBotBanner.classList.add('active');
-        alert('👑 Welcome back, Boss! Live Orders Dashboard & Test Bot Simulator unlocked.');
-      } else {
-        authButtonText.innerText = email.split('@')[0];
-        ownerPanel.classList.remove('active');
-        testBotBanner.classList.remove('active');
-        alert('Successfully logged in!');
-      }
-
-      toggleAuth();
-      loadChatHistory();
+    function closeCart() {
+      document.getElementById('cartModal').classList.remove('open');
+      document.getElementById('overlay').classList.remove('open');
     }
 
     function addToCart(name, price) {
@@ -1003,75 +567,6 @@
       totalEl.innerText = `$${total.toFixed(2)}`;
     }
 
-    function loadOrdersFromStorage() {
-      const orders = JSON.parse(localStorage.getItem('nova_orders') || '[]');
-      const adminTable = document.getElementById('adminOrdersList');
-      adminTable.innerHTML = '';
-      
-      orders.forEach(order => {
-        const newRow = document.createElement('tr');
-        newRow.innerHTML = `
-          <td>${order.id}</td>
-          <td>${order.email}</td>
-          <td>${order.items}</td>
-          <td>${order.method}</td>
-          <td>$${order.total.toFixed(2)}</td>
-          <td class="status-pending">${order.status}</td>
-          <td><button class="chat-user-btn" onclick="openChatWithCustomer('${order.email}')">💬 Chat</button></td>
-        `;
-        adminTable.appendChild(newRow);
-      });
-    }
-
-    function openChatWithCustomer(customerEmail) {
-      if (currentUser !== OWNER_EMAIL) return;
-      activeChatUser = customerEmail;
-      document.getElementById('chatWindowTitle').innerText = `Chat with: ${customerEmail}`;
-      document.getElementById('chatWindow').classList.add('open');
-      loadChatHistory();
-    }
-
-    // 🤖 Test Bot Simulator Function
-    function triggerTestBotPurchase() {
-      let testOrderId = '#NOV-TEST99';
-      let testBuyerEmail = 'alt_testbot_user@gmail.com';
-      let testItems = 'NOVA Max Boost (Test)';
-      let testMethod = 'CashApp';
-      let testTotal = 29.99;
-
-      const testOrder = {
-        id: testOrderId,
-        email: testBuyerEmail,
-        items: testItems,
-        method: testMethod,
-        total: testTotal,
-        status: 'Awaiting Verification (Test)'
-      };
-
-      // Save order
-      const orders = JSON.parse(localStorage.getItem('nova_orders') || '[]');
-      orders.unshift(testOrder);
-      localStorage.setItem('nova_orders', JSON.stringify(orders));
-      loadOrdersFromStorage();
-
-      // Send Discord Webhook
-      const webhookURL = "https://discord.com/api/webhooks/1536834974819549264/cIW1RkHIxDHPioonzzm6Y2-tKWtdA9mpPr2ghCVgKb7D5X-Kyn1r2bvPtlrLVz53HMn6";
-      const discordPayload = {
-        content: `🚨 **TEST BOT ORDER RECEIVED!** 🚨\n> **Order ID:** ${testOrderId}\n> **Customer:** ${testBuyerEmail}\n> **Items:** ${testItems}\n> **Payment:** ${testMethod}\n> **Total:** $${testTotal.toFixed(2)}\n*Simulated test order via Boss dashboard!*`
-      };
-
-      fetch(webhookURL, {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(discordPayload)
-      }).catch(error => console.error('Error sending test webhook:', error));
-
-      // Prime chat thread for test bot user
-      saveMessageToStorage(testBuyerEmail, 'incoming', 'Hey! I just placed a test order for NOVA Max Boost. Are you ready to inject my account?');
-
-      alert("🤖 Test Bot Purchase Simulated! Check your Discord channel, your dashboard table below, and click the 'Chat' button on the test row to text the simulated buyer.");
-    }
-
     function processPayment(method) {
       if (cart.length === 0) {
         alert("Your cart is empty!");
@@ -1081,25 +576,12 @@
       let total = cart.reduce((sum, item) => sum + item.price, 0);
       let itemsString = cart.map(i => i.name).join(", ");
       let randomOrderId = '#NOV-' + Math.floor(1000 + Math.random() * 9000);
-      let buyerEmail = currentUser && currentUser !== OWNER_EMAIL ? currentUser : 'guest_' + Math.floor(100 + Math.random() * 900) + '@email.com';
+      let buyerEmail = 'customer_' + Math.floor(100 + Math.random() * 900) + '@gmail.com';
 
-      const newOrder = {
-        id: randomOrderId,
-        email: buyerEmail,
-        items: itemsString,
-        method: method,
-        total: total,
-        status: 'Awaiting Verification'
-      };
-
-      const orders = JSON.parse(localStorage.getItem('nova_orders') || '[]');
-      orders.unshift(newOrder);
-      localStorage.setItem('nova_orders', JSON.stringify(orders));
-      loadOrdersFromStorage();
-
+      // Send Discord Webhook notification
       const webhookURL = "https://discord.com/api/webhooks/1536834974819549264/cIW1RkHIxDHPioonzzm6Y2-tKWtdA9mpPr2ghCVgKb7D5X-Kyn1r2bvPtlrLVz53HMn6";
       const discordPayload = {
-        content: `🚨 **NEW NOVA ORDER RECEIVED!** 🚨\n> **Order ID:** ${randomOrderId}\n> **Customer:** ${buyerEmail}\n> **Items:** ${itemsString}\n> **Payment:** ${method}\n> **Total:** $${total.toFixed(2)}\n*Check your website owner dashboard to verify!*`
+        content: `🚨 **NEW NOVA ORDER RECEIVED!** 🚨\n> **Order ID:** ${randomOrderId}\n> **Customer:** ${buyerEmail}\n> **Items:** ${itemsString}\n> **Payment:** ${method}\n> **Total:** $${total.toFixed(2)}\n\n*Head over to the Discord server to create a ticket and claim your order!*`
       };
 
       fetch(webhookURL, {
@@ -1108,81 +590,12 @@
         body: JSON.stringify(discordPayload)
       }).catch(error => console.error('Error sending to Discord:', error));
 
-      saveMessageToStorage(buyerEmail, 'incoming', `Order ${randomOrderId} placed via ${method}! A moderator will assist you shortly.`);
-
+      // Reset cart and prompt user
       toggleCart();
       cart = [];
       updateCartUI();
 
-      if (currentUser !== OWNER_EMAIL) {
-        activeChatUser = null;
-        document.getElementById('chatWindowTitle').innerText = 'NOVA Live Help';
-      }
-      loadChatHistory();
-      document.getElementById('chatWindow').classList.add('open');
-    }
-
-    function saveMessageToStorage(targetUser, sender, text) {
-      if (!targetUser) return;
-      let chatThreads = JSON.parse(localStorage.getItem('nova_chats') || '{}');
-      if (!chatThreads[targetUser]) chatThreads[targetUser] = [];
-      chatThreads[targetUser].push({ sender, text, time: Date.now() });
-      localStorage.setItem('nova_chats', JSON.stringify(chatThreads));
-    }
-
-    function loadChatHistory() {
-      const chatMessages = document.getElementById('chatMessages');
-      let targetThreadUser = currentUser === OWNER_EMAIL ? activeChatUser : currentUser;
-
-      if (!targetThreadUser) {
-        chatMessages.innerHTML = `<div class="message incoming">Hello! Welcome to NOVA. Please sign in or place an order to chat with support.</div>`;
-        return;
-      }
-
-      let chatThreads = JSON.parse(localStorage.getItem('nova_chats') || '{}');
-      let thread = chatThreads[targetThreadUser] || [];
-
-      if (thread.length === 0) {
-        chatMessages.innerHTML = `<div class="message incoming">Hello! How can we help you with your order today?</div>`;
-        return;
-      }
-
-      let html = '';
-      thread.forEach(msg => {
-        html += `<div class="message ${msg.sender}">${msg.text}</div>`;
-      });
-      chatMessages.innerHTML = html;
-      chatMessages.scrollTop = chatMessages.scrollHeight;
-    }
-
-    function handleChatKeyPress(e) {
-      if (e.key === 'Enter') {
-        sendChatMessage();
-      }
-    }
-
-    function sendChatMessage() {
-      const input = document.getElementById('chatInput');
-      const text = input.value.trim();
-      if (!text) return;
-
-      let targetThreadUser = currentUser === OWNER_EMAIL ? activeChatUser : currentUser;
-      if (!targetThreadUser) {
-        alert("Please log in or select a customer order from your dashboard first!");
-        return;
-      }
-
-      saveMessageToStorage(targetThreadUser, 'outgoing', text);
-      input.value = '';
-      loadChatHistory();
-
-      if (currentUser !== OWNER_EMAIL) {
-        setTimeout(() => {
-          saveMessageToStorage(currentUser, 'incoming', "Thanks for messaging! The owner/mod has received your note and will review it shortly.");
-          loadChatHistory();
-          document.getElementById('chatBadge').style.display = 'inline-block';
-        }, 1500);
-      }
+      alert(`Order ${randomOrderId} placed successfully! Please join our Discord server to open a ticket and claim your order.`);
     }
   </script>
 </body>
