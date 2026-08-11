@@ -141,11 +141,46 @@
       font-weight: 900;
     }
 
+    /* Owner Badge / Panel in Nav */
+    .owner-badge {
+      background: linear-gradient(135deg, #ff2a8d, #c084fc);
+      color: #fff;
+      font-size: 0.65rem;
+      padding: 2px 6px;
+      border-radius: 4px;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      margin-left: 5px;
+    }
+
+    /* Owner Dashboard Panel */
+    .owner-panel {
+      display: none;
+      background: rgba(255, 42, 141, 0.08);
+      border: 1px solid var(--accent-pink);
+      border-radius: 12px;
+      max-width: 1200px;
+      margin: 2rem auto 0;
+      padding: 1.5rem 2rem;
+      text-align: center;
+      backdrop-filter: blur(10px);
+    }
+
+    .owner-panel.active {
+      display: block;
+    }
+
+    .owner-panel h3 {
+      color: var(--accent-cyan);
+      margin-bottom: 0.5rem;
+    }
+
     /* Hero Section */
     .hero {
       position: relative;
       max-width: 1200px;
-      margin: 4rem auto 2rem;
+      margin: 3rem auto 2rem;
       padding: 0 2rem;
       text-align: center;
       z-index: 1;
@@ -639,6 +674,12 @@
     </div>
   </header>
 
+  <!-- Owner Dashboard Panel (Only shows when logged in as ejrosner333@gmail.com) -->
+  <div class="owner-panel" id="ownerPanel">
+    <h3>👑 Owner Control Panel</h3>
+    <p style="color: var(--text-muted); font-size: 0.9rem;">Welcome back, Boss! You are signed in with owner privileges (<code>ejrosner333@gmail.com</code>).</p>
+  </div>
+
   <!-- Hero Section -->
   <section class="hero">
     <div class="hero-tags-wrapper">
@@ -1008,6 +1049,8 @@
     let isLoginMode = false;
     let currentUser = null;
 
+    const OWNER_EMAIL = "ejrosner333@gmail.com";
+
     function closeAllDrawers() {
       document.getElementById('cartModal').classList.remove('open');
       document.getElementById('authModal').classList.remove('open');
@@ -1048,15 +1091,27 @@
     }
 
     function handleAuthSubmit() {
-      const email = document.getElementById('authEmail').value;
+      const email = document.getElementById('authEmail').value.trim().toLowerCase();
       if (!email) {
         alert('Please enter a valid email.');
         return;
       }
       currentUser = email;
-      document.getElementById('authButtonText').innerText = email.split('@')[0];
+      
+      const authButtonText = document.getElementById('authButtonText');
+      const ownerPanel = document.getElementById('ownerPanel');
+
+      if (currentUser === OWNER_EMAIL) {
+        authButtonText.innerHTML = `${email.split('@')[0]} <span class="owner-badge">Owner</span>`;
+        ownerPanel.classList.add('active');
+        alert('👑 Welcome back, Owner! Special host privileges activated.');
+      } else {
+        authButtonText.innerText = email.split('@')[0];
+        ownerPanel.classList.remove('active');
+        alert(isLoginMode ? 'Successfully logged in!' : 'Account successfully created!');
+      }
+
       toggleAuth();
-      alert(isLoginMode ? 'Successfully logged in!' : 'Account successfully created!');
     }
 
     function addToCart(name, price) {
@@ -1109,21 +1164,17 @@
         return;
       }
       
-      // Close cart and clear items
       toggleCart();
       cart = [];
       updateCartUI();
 
-      // Trigger smooth opening animation for automated message box
       const notification = document.getElementById('supportNotification');
       notification.classList.add('show');
 
-      // Automatically hide the message box after 6 seconds
       setTimeout(() => {
         notification.classList.remove('show');
       }, 6000);
 
-      // Redirect to Discord after a short delay so they see the message box slide up
       setTimeout(() => {
         window.location.href = "https://discord.gg/pMCPCcPtY";
       }, 2500);
