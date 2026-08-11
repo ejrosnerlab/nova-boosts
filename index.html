@@ -1,4 +1,3 @@
-```html
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -97,7 +96,7 @@
 
     .nav-links {
       display: flex;
-      gap: 2rem;
+      gap: 1.5rem;
       list-style: none;
       align-items: center;
     }
@@ -113,8 +112,8 @@
       color: var(--accent-pink);
     }
 
-    /* Cart Widget UI */
-    .cart-btn {
+    /* Action Buttons in Nav */
+    .nav-btn {
       background: rgba(255, 42, 141, 0.15);
       border: 1px solid var(--accent-pink);
       color: #fff;
@@ -128,7 +127,7 @@
       transition: all 0.3s;
     }
 
-    .cart-btn:hover {
+    .nav-btn:hover {
       background: var(--accent-pink);
       box-shadow: 0 0 20px rgba(255, 42, 141, 0.5);
     }
@@ -434,11 +433,27 @@
       opacity: 0.7;
     }
 
-    /* Cart Modal Styles */
-    .cart-modal {
+    /* Modal Drawers (Cart & Auth) */
+    .drawer-overlay {
       position: fixed;
       top: 0;
-      right: -400px;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      background: rgba(0,0,0,0.6);
+      backdrop-filter: blur(5px);
+      z-index: 999;
+      display: none;
+    }
+
+    .drawer-overlay.open {
+      display: block;
+    }
+
+    .cart-modal, .auth-modal {
+      position: fixed;
+      top: 0;
+      right: -420px;
       width: 380px;
       height: 100%;
       background: #0d0617;
@@ -451,20 +466,20 @@
       padding: 2rem;
     }
 
-    .cart-modal.open {
+    .cart-modal.open, .auth-modal.open {
       right: 0;
     }
 
-    .cart-header {
+    .drawer-header {
       display: flex;
       justify-content: space-between;
       align-items: center;
       border-bottom: 1px solid rgba(255,255,255,0.1);
       padding-bottom: 1rem;
-      margin-bottom: 1rem;
+      margin-bottom: 1.5rem;
     }
 
-    .close-cart {
+    .close-drawer {
       background: none;
       border: none;
       color: #fff;
@@ -495,7 +510,7 @@
       padding-top: 1rem;
     }
 
-    .checkout-btn {
+    .drawer-btn {
       width: 100%;
       padding: 1rem;
       background: linear-gradient(135deg, var(--accent-pink), var(--accent-purple));
@@ -507,6 +522,76 @@
       cursor: pointer;
       margin-top: 1rem;
       box-shadow: 0 0 15px rgba(255, 42, 141, 0.4);
+    }
+
+    /* Form styling for Auth */
+    .auth-form {
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+      flex: 1;
+    }
+
+    .form-group {
+      display: flex;
+      flex-direction: column;
+      gap: 0.4rem;
+    }
+
+    .form-group label {
+      font-size: 0.85rem;
+      color: var(--text-muted);
+      font-weight: 600;
+    }
+
+    .form-group input {
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      padding: 0.75rem;
+      border-radius: 8px;
+      color: #fff;
+      font-family: inherit;
+    }
+
+    .form-group input:focus {
+      outline: none;
+      border-color: var(--accent-pink);
+    }
+
+    /* Automated Live Chat Notification Box Animation */
+    .support-notification {
+      position: fixed;
+      bottom: -150px;
+      right: 30px;
+      background: linear-gradient(135deg, #180a2a, #0e051a);
+      border: 1px solid var(--accent-pink);
+      box-shadow: 0 10px 30px rgba(255, 42, 141, 0.3);
+      padding: 1.25rem;
+      border-radius: 12px;
+      width: 320px;
+      z-index: 1100;
+      transition: transform 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275), opacity 0.5s ease;
+      opacity: 0;
+    }
+
+    .support-notification.show {
+      transform: translateY(-170px);
+      opacity: 1;
+    }
+
+    .support-header {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      margin-bottom: 0.5rem;
+      font-weight: 700;
+      font-size: 0.9rem;
+      color: var(--accent-cyan);
+    }
+
+    .support-body {
+      font-size: 0.85rem;
+      color: var(--text-muted);
     }
 
     /* Footer */
@@ -530,6 +615,7 @@
 <body>
 
   <div class="galaxy-bg"></div>
+  <div class="drawer-overlay" id="overlay" onclick="closeAllDrawers()"></div>
 
   <!-- Header -->
   <header>
@@ -542,7 +628,10 @@
         <li><a href="#services">Packages</a></li>
         <li><a href="https://discord.gg/pMCPCcPtY" target="_blank">Discord</a></li>
         <li>
-          <button class="cart-btn" onclick="toggleCart()">
+          <button class="nav-btn" onclick="toggleAuth()">👤 <span id="authButtonText">Sign Up</span></button>
+        </li>
+        <li>
+          <button class="nav-btn" onclick="toggleCart()">
             🛒 Cart <span class="cart-count" id="cartCount">0</span>
           </button>
         </li>
@@ -767,7 +856,7 @@
         <p class="security-notice">Requires PC Account Credentials</p>
       </div>
 
-      <!-- NEW MODDED HEISTS SECTION -->
+      <!-- MODDED HEISTS -->
       <div class="card">
         <div class="card-header">
           <span class="card-tag">🛠️ Modded Heists</span>
@@ -857,9 +946,9 @@
 
   <!-- Cart Slide-out Drawer -->
   <div class="cart-modal" id="cartModal">
-    <div class="cart-header">
+    <div class="drawer-header">
       <h3>Your Cart</h3>
-      <button class="close-cart" onclick="toggleCart()">&times;</button>
+      <button class="close-drawer" onclick="toggleCart()">&times;</button>
     </div>
     <div class="cart-items" id="cartItemsContainer">
       <p style="color: var(--text-muted); font-size: 0.9rem; text-align: center; margin-top: 2rem;">Your cart is empty.</p>
@@ -869,7 +958,39 @@
         <span>Total:</span>
         <span id="cartTotal">$0.00</span>
       </div>
-      <button class="checkout-btn" onclick="checkoutDiscord()">Checkout via Discord</button>
+      <button class="drawer-btn" onclick="checkoutDiscord()">Checkout via Discord</button>
+    </div>
+  </div>
+
+  <!-- Sign Up / Account Drawer -->
+  <div class="auth-modal" id="authModal">
+    <div class="drawer-header">
+      <h3 id="authTitle">Create Account</h3>
+      <button class="close-drawer" onclick="toggleAuth()">&times;</button>
+    </div>
+    <div class="auth-form">
+      <div class="form-group">
+        <label>Email Address</label>
+        <input type="email" id="authEmail" placeholder="you@example.com">
+      </div>
+      <div class="form-group">
+        <label>Password</label>
+        <input type="password" id="authPassword" placeholder="••••••••">
+      </div>
+      <button class="drawer-btn" onclick="handleAuthSubmit()">Sign Up</button>
+      <p style="text-align: center; font-size: 0.8rem; color: var(--text-muted); margin-top: 1rem; cursor: pointer;" onclick="switchAuthMode()" id="authSwitchText">
+        Already have an account? Log in
+      </p>
+    </div>
+  </div>
+
+  <!-- Animated Live Support Message Box -->
+  <div class="support-notification" id="supportNotification">
+    <div class="support-header">
+      <span>💬 NOVA Automated System</span>
+    </div>
+    <div class="support-body">
+      Order placed successfully! Please wait a little bit until an employee messages you.
     </div>
   </div>
 
@@ -884,10 +1005,58 @@
 
   <script>
     let cart = [];
+    let isLoginMode = false;
+    let currentUser = null;
+
+    function closeAllDrawers() {
+      document.getElementById('cartModal').classList.remove('open');
+      document.getElementById('authModal').classList.remove('open');
+      document.getElementById('overlay').classList.remove('open');
+    }
 
     function toggleCart() {
-      const modal = document.getElementById('cartModal');
-      modal.classList.toggle('open');
+      const cartModal = document.getElementById('cartModal');
+      const overlay = document.getElementById('overlay');
+      const isOpen = cartModal.classList.toggle('open');
+      
+      if (isOpen) {
+        document.getElementById('authModal').classList.remove('open');
+        overlay.classList.add('open');
+      } else {
+        overlay.classList.remove('open');
+      }
+    }
+
+    function toggleAuth() {
+      const authModal = document.getElementById('authModal');
+      const overlay = document.getElementById('overlay');
+      const isOpen = authModal.classList.toggle('open');
+      
+      if (isOpen) {
+        document.getElementById('cartModal').classList.remove('open');
+        overlay.classList.add('open');
+      } else {
+        overlay.classList.remove('open');
+      }
+    }
+
+    function switchAuthMode() {
+      isLoginMode = !isLoginMode;
+      document.getElementById('authTitle').innerText = isLoginMode ? 'Log In' : 'Create Account';
+      document.querySelector('.auth-form .drawer-btn').innerText = isLoginMode ? 'Log In' : 'Sign Up';
+      document.getElementById('authSwitchText').innerText = isLoginMode ? "Don't have an account? Sign up" : 'Already have an account? Log in';
+    }
+
+    function handleAuthSubmit() {
+      const email = document.getElementById('authEmail').value;
+      if (!email) {
+        alert('Please enter a valid email.');
+        return;
+      }
+      currentUser = email;
+      document.getElementById('authButtonText').innerText = email.split('@')[0];
+      toggleAuth();
+      alert(isLoginMode ? 'Successfully logged in!' : 'Account successfully created!');
     }
 
     function addToCart(name, price) {
@@ -939,10 +1108,26 @@
         alert("Your cart is empty!");
         return;
       }
-      window.location.href = "https://discord.gg/pMCPCcPtY";
+      
+      // Close cart and clear items
+      toggleCart();
+      cart = [];
+      updateCartUI();
+
+      // Trigger smooth opening animation for automated message box
+      const notification = document.getElementById('supportNotification');
+      notification.classList.add('show');
+
+      // Automatically hide the message box after 6 seconds
+      setTimeout(() => {
+        notification.classList.remove('show');
+      }, 6000);
+
+      // Redirect to Discord after a short delay so they see the message box slide up
+      setTimeout(() => {
+        window.location.href = "https://discord.gg/pMCPCcPtY";
+      }, 2500);
     }
   </script>
 </body>
 </html>
-
-```
