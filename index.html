@@ -186,7 +186,7 @@
       padding: 0 2rem;
       display: flex;
       justify-content: center;
-      gap: 1rem;
+      gap: 0.75rem;
       flex-wrap: wrap;
     }
 
@@ -194,14 +194,14 @@
       background: rgba(255, 255, 255, 0.05);
       border: 1px solid rgba(255, 255, 255, 0.15);
       color: var(--text-muted);
-      padding: 0.6rem 1.5rem;
+      padding: 0.5rem 1.2rem;
       border-radius: 50px;
       font-weight: 700;
       cursor: pointer;
       transition: all 0.3s;
       text-transform: uppercase;
       letter-spacing: 1px;
-      font-size: 0.9rem;
+      font-size: 0.85rem;
     }
 
     .cat-btn:hover, .cat-btn.active {
@@ -418,6 +418,7 @@
       transition: opacity 0.2s;
     }
     .pay-btn:hover { opacity: 0.85; }
+    .btn-stripe { background: #635bff; border: none; }
     .btn-cashapp { background: #00D632; color: #000; border: none; }
     .btn-venmo { background: #008CFF; border: none; }
     .btn-paypal { background: #003087; border: none; }
@@ -458,8 +459,10 @@
   <!-- Categories Filter Bar -->
   <div class="categories-bar">
     <button class="cat-btn active" onclick="filterCategory('all', this)">All Products</button>
-    <button class="cat-btn" onclick="filterCategory('modding', this)">Modding Services</button>
-    <button class="cat-btn" onclick="filterCategory('heists', this)">Heists</button>
+    <button class="cat-btn" onclick="filterCategory('boosting', this)">Account Boosting</button>
+    <button class="cat-btn" onclick="filterCategory('money', this)">Money & Cash</button>
+    <button class="cat-btn" onclick="filterCategory('unlocks', this)">Unlocks & Ranks</button>
+    <button class="cat-btn" onclick="filterCategory('heists', this)">Modded Heists</button>
   </div>
 
   <!-- Products Section -->
@@ -483,6 +486,7 @@
       </div>
       <p style="font-size: 0.8rem; color: var(--text-muted); margin-bottom: 0.5rem;">Select your secure payment method:</p>
       <div class="payment-buttons-grid">
+        <button class="pay-btn btn-stripe" onclick="processPayment('Stripe / Credit Card')">💳 Pay with Stripe</button>
         <button class="pay-btn btn-cashapp" onclick="processPayment('CashApp')">Pay with CashApp</button>
         <button class="pay-btn btn-venmo" onclick="processPayment('Venmo')">Pay with Venmo</button>
         <button class="pay-btn btn-paypal" onclick="processPayment('PayPal')">Pay with PayPal</button>
@@ -494,15 +498,28 @@
     let cart = [];
 
     const products = [
-      { category: 'modding', name: 'NOVA Max Boost', tag: 'Full Service Package', price: 29.99, oldPrice: 59.99, featured: true },
-      { category: 'modding', name: 'Standard Boost', tag: 'Mid-Tier Boost', price: 19.99, oldPrice: 39.99, featured: false },
-      { category: 'modding', name: 'Starter Top-Up', tag: 'Entry Level', price: 11.99, oldPrice: 24.99, featured: false },
-      { category: 'modding', name: 'Max Cargo & Unlocks', tag: 'Property Focus', price: 14.99, oldPrice: 29.99, featured: false },
-      { category: 'modding', name: 'Level 4000 Express', tag: 'Rank Injection', price: 12.99, oldPrice: 22.99, featured: false },
-      { category: 'modding', name: 'Custom 65M Injection', tag: 'Cash Only', price: 22.99, oldPrice: 44.99, featured: false },
+      // Account Boosting
+      { category: 'boosting', name: 'NOVA Max Boost', tag: 'Full Service Package', price: 29.99, oldPrice: 59.99, featured: true },
+      { category: 'boosting', name: 'Standard Boost', tag: 'Mid-Tier Boost', price: 19.99, oldPrice: 39.99, featured: false },
+      { category: 'boosting', name: 'Starter Top-Up', tag: 'Entry Level', price: 11.99, oldPrice: 24.99, featured: false },
+      { category: 'boosting', name: 'Ultimate VIP Bundle', tag: 'Complete Package', price: 44.99, oldPrice: 89.99, featured: true },
+
+      // Money & Cash
+      { category: 'money', name: 'Custom 65M Injection', tag: 'Cash Only', price: 22.99, oldPrice: 44.99, featured: false },
+      { category: 'money', name: '150M Mega Cash Stack', tag: 'High Volume Cash', price: 34.99, oldPrice: 69.99, featured: false },
+      { category: 'money', name: '300M Billionaire Vault', tag: 'Max Cash Limit', price: 54.99, oldPrice: 109.99, featured: true },
+
+      // Unlocks & Ranks
+      { category: 'unlocks', name: 'Level 4000 Express', tag: 'Rank Injection', price: 12.99, oldPrice: 22.99, featured: false },
+      { category: 'unlocks', name: 'Max Cargo & Unlocks', tag: 'Property Focus', price: 14.99, oldPrice: 29.99, featured: false },
+      { category: 'unlocks', name: 'All LSC Unlocks & Stats', tag: 'Full Character Stat', price: 16.99, oldPrice: 32.99, featured: false },
+      { category: 'unlocks', name: 'Exclusive Drip-Feed Unlocks', tag: 'Rare Items', price: 9.99, oldPrice: 19.99, featured: false },
+
+      // Modded Heists
       { category: 'heists', name: 'Diamond Casino Heist', tag: '🛠️ Modded Heists', price: 4.99, oldPrice: 10.00, featured: false },
       { category: 'heists', name: 'Cayo Perico Heist', tag: '🛠️ Modded Heists', price: 4.99, oldPrice: 10.00, featured: false },
-      { category: 'heists', name: 'Doomsday Heist', tag: '🛠️ Modded Heists', price: 4.99, oldPrice: 10.00, featured: false }
+      { category: 'heists', name: 'Doomsday Heist', tag: '🛠️ Modded Heists', price: 4.99, oldPrice: 10.00, featured: false },
+      { category: 'heists', name: 'All Heist Finale Bundle', tag: '🛠️ Modded Heists', price: 14.99, oldPrice: 29.99, featured: false }
     ];
 
     window.onload = function() {
@@ -629,7 +646,7 @@
       cart = [];
       updateCartUI();
 
-      alert(`Order ${randomOrderId} placed successfully! Please join our Discord server to open a ticket and claim your order.`);
+      alert(`Order ${randomOrderId} placed successfully via ${method}! Please join our Discord server to open a ticket and claim your order.`);
     }
   </script>
 </body>
