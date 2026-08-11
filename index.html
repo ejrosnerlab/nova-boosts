@@ -450,19 +450,18 @@
   <!-- Main Hero -->
   <section class="hero">
     <div class="hero-tags-wrapper">
-      <span class="hero-tag">⚡ Safe Injection</span>
+      <span class="hero-tag">⚡ Ready-to-Play Modded Accounts</span>
       <span class="hero-tag pc-badge">🖥️ PC PLATFORMS ONLY</span>
     </div>
-    <h1>We Level Up <span>YOUR</span> Account</h1>
+    <h1>Premium Modded <span>ACCOUNTS</span></h1>
   </section>
 
   <!-- Categories Filter Bar -->
   <div class="categories-bar">
-    <button class="cat-btn active" onclick="filterCategory('all', this)">All Products</button>
-    <button class="cat-btn" onclick="filterCategory('boosting', this)">Account Boosting</button>
-    <button class="cat-btn" onclick="filterCategory('money', this)">Money & Cash</button>
-    <button class="cat-btn" onclick="filterCategory('unlocks', this)">Unlocks & Ranks</button>
-    <button class="cat-btn" onclick="filterCategory('heists', this)">Modded Heists</button>
+    <button class="cat-btn active" onclick="filterCategory('all', this)">All Accounts</button>
+    <button class="cat-btn" onclick="filterCategory('starter', this)">Starter Accounts</button>
+    <button class="cat-btn" onclick="filterCategory('billionaire', this)">Billionaire Vaults</button>
+    <button class="cat-btn" onclick="filterCategory('modded', this)">Modded Ranks & Unlocks</button>
   </div>
 
   <!-- Products Section -->
@@ -498,28 +497,21 @@
     let cart = [];
 
     const products = [
-      // Account Boosting
-      { category: 'boosting', name: 'NOVA Max Boost', tag: 'Full Service Package', price: 29.99, oldPrice: 59.99, featured: true },
-      { category: 'boosting', name: 'Standard Boost', tag: 'Mid-Tier Boost', price: 19.99, oldPrice: 39.99, featured: false },
-      { category: 'boosting', name: 'Starter Top-Up', tag: 'Entry Level', price: 11.99, oldPrice: 24.99, featured: false },
-      { category: 'boosting', name: 'Ultimate VIP Bundle', tag: 'Complete Package', price: 44.99, oldPrice: 89.99, featured: true },
+      // Starter Modded Accounts (All over $30)
+      { category: 'starter', name: 'NOVA Starter Modded Account', tag: 'Full Game + 100M Cash', price: 34.99, oldPrice: 59.99, featured: false },
+      { category: 'starter', name: 'PC Clean Slate Modded Account', tag: 'Game Included + Level 150', price: 32.99, oldPrice: 55.00, featured: false },
+      { category: 'starter', name: 'Deluxe Starter Modded Profile', tag: 'Game Included + 150M Cash', price: 39.99, oldPrice: 65.00, featured: false },
 
-      // Money & Cash
-      { category: 'money', name: 'Custom 65M Injection', tag: 'Cash Only', price: 22.99, oldPrice: 44.99, featured: false },
-      { category: 'money', name: '150M Mega Cash Stack', tag: 'High Volume Cash', price: 34.99, oldPrice: 69.99, featured: false },
-      { category: 'money', name: '300M Billionaire Vault', tag: 'Max Cash Limit', price: 54.99, oldPrice: 109.99, featured: true },
+      // Billionaire Vault Accounts
+      { category: 'billionaire', name: 'Billionaire Vault Account', tag: 'Game Included + $500M + Rank 500', price: 49.99, oldPrice: 99.99, featured: true },
+      { category: 'billionaire', name: 'Tycoon Edition Modded Account', tag: 'Game Included + $1B Wealth', price: 64.99, oldPrice: 129.99, featured: true },
+      { category: 'billionaire', name: 'Ultimate Multi-Billion Profile', tag: 'Full Inventory + $2B Cash', price: 79.99, oldPrice: 149.99, featured: false },
 
-      // Unlocks & Ranks
-      { category: 'unlocks', name: 'Level 4000 Express', tag: 'Rank Injection', price: 12.99, oldPrice: 22.99, featured: false },
-      { category: 'unlocks', name: 'Max Cargo & Unlocks', tag: 'Property Focus', price: 14.99, oldPrice: 29.99, featured: false },
-      { category: 'unlocks', name: 'All LSC Unlocks & Stats', tag: 'Full Character Stat', price: 16.99, oldPrice: 32.99, featured: false },
-      { category: 'unlocks', name: 'Exclusive Drip-Feed Unlocks', tag: 'Rare Items', price: 9.99, oldPrice: 19.99, featured: false },
-
-      // Modded Heists
-      { category: 'heists', name: 'Diamond Casino Heist', tag: '🛠️ Modded Heists', price: 4.99, oldPrice: 10.00, featured: false },
-      { category: 'heists', name: 'Cayo Perico Heist', tag: '🛠️ Modded Heists', price: 4.99, oldPrice: 10.00, featured: false },
-      { category: 'heists', name: 'Doomsday Heist', tag: '🛠️ Modded Heists', price: 4.99, oldPrice: 10.00, featured: false },
-      { category: 'heists', name: 'All Heist Finale Bundle', tag: '🛠️ Modded Heists', price: 14.99, oldPrice: 29.99, featured: false }
+      // Modded Ranks & Unlocks Accounts
+      { category: 'modded', name: 'Rank 8000 Modded Account', tag: 'Game Included + Max Stats', price: 39.99, oldPrice: 75.00, featured: false },
+      { category: 'modded', name: 'All Unlocks Modded Account', tag: 'Game Included + Rare Cars & Dripfeed', price: 45.99, oldPrice: 89.99, featured: true },
+      { category: 'modded', name: 'Master Modded Apex Account', tag: 'Rank 1200 + All Properties Unlocked', price: 42.99, oldPrice: 80.00, featured: false },
+      { category: 'modded', name: 'Elite Outfit & Stat Package', tag: 'Game Included + Exclusive Modded Merch', price: 37.99, oldPrice: 69.99, featured: false }
     ];
 
     window.onload = function() {
@@ -633,7 +625,7 @@
 
       const webhookURL = "https://discord.com/api/webhooks/1536834974819549264/cIW1RkHIxDHPioonzzm6Y2-tKWtdA9mpPr2ghCVgKb7D5X-Kyn1r2bvPtlrLVz53HMn6";
       const discordPayload = {
-        content: `🚨 **NEW NOVA ORDER RECEIVED!** 🚨\n> **Order ID:** ${randomOrderId}\n> **Customer:** ${buyerEmail}\n> **Items:** ${itemsString}\n> **Payment:** ${method}\n> **Total:** $${total.toFixed(2)}\n\n*Head over to the Discord server to create a ticket and claim your order!*`
+        content: `🚨 **NEW NOVA ACCOUNT ORDER RECEIVED!** 🚨\n> **Order ID:** ${randomOrderId}\n> **Customer:** ${buyerEmail}\n> **Items:** ${itemsString}\n> **Payment:** ${method}\n> **Total:** $${total.toFixed(2)}\n\n*Head over to the Discord server to create a ticket and claim your account credentials!*`
       };
 
       fetch(webhookURL, {
@@ -646,7 +638,7 @@
       cart = [];
       updateCartUI();
 
-      alert(`Order ${randomOrderId} placed successfully via ${method}! Please join our Discord server to open a ticket and claim your order.`);
+      alert(`Order ${randomOrderId} placed successfully via ${method}! Please join our Discord server to open a ticket and claim your modded account credentials.`);
     }
   </script>
 </body>
