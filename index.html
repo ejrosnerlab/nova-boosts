@@ -1,0 +1,731 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>NOVA | PC Exclusive GTA V Account Boosting</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;600;800;900&family=Space+Grotesk:wght@500;700&display=swap" rel="stylesheet">
+  
+  <style>
+    :root {
+      --bg-main: #07080c;
+      --bg-card: #0f121d;
+      --bg-card-hover: #161b2b;
+      --accent-cyan: #00f2fe;
+      --accent-purple: #9d4edd;
+      --accent-pink: #ff007f;
+      --text-main: #f8fafc;
+      --text-muted: #94a3b8;
+      --border-glow: rgba(0, 242, 254, 0.25);
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      background-color: var(--bg-main);
+      color: var(--text-main);
+      font-family: 'Outfit', sans-serif;
+      line-height: 1.6;
+      overflow-x: hidden;
+    }
+
+    /* Ambient Glow Background */
+    .glow-bg {
+      position: fixed;
+      width: 600px;
+      height: 600px;
+      background: radial-gradient(circle, rgba(157, 78, 221, 0.15) 0%, rgba(0, 0, 0, 0) 70%);
+      top: -150px;
+      left: 50%;
+      transform: translateX(-50%);
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    /* Header / Navbar */
+    header {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: rgba(7, 8, 12, 0.85);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+    }
+
+    .nav-container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 1.2rem 2rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .logo {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 2rem;
+      font-weight: 900;
+      letter-spacing: 3px;
+      background: linear-gradient(135deg, var(--accent-cyan), var(--accent-purple));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      text-shadow: 0 0 25px rgba(0, 242, 254, 0.3);
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .logo-badge {
+      font-size: 0.65rem;
+      background: rgba(0, 242, 254, 0.1);
+      border: 1px solid var(--accent-cyan);
+      color: var(--accent-cyan);
+      padding: 2px 6px;
+      border-radius: 4px;
+      letter-spacing: 1px;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 2rem;
+      list-style: none;
+    }
+
+    .nav-links a {
+      color: var(--text-muted);
+      text-decoration: none;
+      font-weight: 600;
+      transition: color 0.3s;
+    }
+
+    .nav-links a:hover {
+      color: var(--accent-cyan);
+    }
+
+    .btn-primary {
+      background: linear-gradient(135deg, var(--accent-cyan), var(--accent-purple));
+      color: #000;
+      font-weight: 800;
+      padding: 0.75rem 1.75rem;
+      border-radius: 8px;
+      text-decoration: none;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      border: none;
+      cursor: pointer;
+      box-shadow: 0 0 20px rgba(0, 242, 254, 0.3);
+      transition: all 0.3s ease;
+    }
+
+    .btn-primary:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 0 30px rgba(0, 242, 254, 0.5);
+    }
+
+    /* Hero Section */
+    .hero {
+      position: relative;
+      max-width: 1200px;
+      margin: 4rem auto 2rem;
+      padding: 0 2rem;
+      text-align: center;
+      z-index: 1;
+    }
+
+    .hero-tags-wrapper {
+      display: flex;
+      justify-content: center;
+      gap: 1rem;
+      flex-wrap: wrap;
+      margin-bottom: 1.5rem;
+    }
+
+    .hero-tag {
+      display: inline-block;
+      background: rgba(157, 78, 221, 0.15);
+      border: 1px solid var(--accent-purple);
+      color: #d8b4fe;
+      padding: 0.4rem 1.2rem;
+      border-radius: 50px;
+      font-size: 0.85rem;
+      font-weight: 700;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+    }
+
+    .hero-tag.pc-badge {
+      background: rgba(255, 0, 127, 0.15);
+      border-color: var(--accent-pink);
+      color: var(--accent-pink);
+    }
+
+    .hero h1 {
+      font-size: 3.5rem;
+      font-weight: 900;
+      line-height: 1.1;
+      margin-bottom: 1rem;
+      text-transform: uppercase;
+    }
+
+    .hero h1 span {
+      background: linear-gradient(135deg, #ffffff, var(--accent-cyan));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    .hero p {
+      color: var(--text-muted);
+      font-size: 1.2rem;
+      max-width: 700px;
+      margin: 0 auto 2.5rem;
+    }
+
+    /* Safety Banner */
+    .safety-banner {
+      background: rgba(0, 242, 254, 0.05);
+      border: 1px solid rgba(0, 242, 254, 0.2);
+      border-radius: 8px;
+      padding: 0.75rem 1.5rem;
+      max-width: 750px;
+      margin: 0 auto 3rem;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 0.5rem;
+      color: var(--accent-cyan);
+      font-weight: 600;
+      font-size: 0.95rem;
+    }
+    
+    .safety-banner .warning {
+      color: var(--accent-pink);
+      font-size: 0.85rem;
+    }
+
+    /* How It Works Section */
+    .steps-container {
+      display: flex;
+      justify-content: center;
+      gap: 1.5rem;
+      padding: 1.5rem;
+      background: rgba(255, 255, 255, 0.02);
+      border: 1px solid rgba(255, 255, 255, 0.05);
+      border-radius: 12px;
+      max-width: 1000px;
+      margin: 0 auto 4rem;
+    }
+
+    .step {
+      flex: 1;
+      text-align: center;
+      padding: 0.5rem;
+    }
+
+    .step-number {
+      width: 36px;
+      height: 36px;
+      background: linear-gradient(135deg, var(--accent-cyan), var(--accent-purple));
+      color: #000;
+      font-weight: 900;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0 auto 0.75rem;
+      font-size: 1rem;
+    }
+
+    .step h4 {
+      color: #fff;
+      font-size: 1rem;
+      margin-bottom: 0.25rem;
+    }
+
+    .step p {
+      font-size: 0.8rem;
+      color: var(--text-muted);
+      margin: 0;
+    }
+
+    /* Products Section */
+    .products-section {
+      max-width: 1200px;
+      margin: 2rem auto 6rem;
+      padding: 0 2rem;
+    }
+
+    .section-title {
+      text-align: center;
+      margin-bottom: 3rem;
+    }
+
+    .section-title h2 {
+      font-size: 2.5rem;
+      font-weight: 800;
+      letter-spacing: 1px;
+    }
+
+    .section-title p {
+      color: var(--text-muted);
+    }
+
+    .product-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+      gap: 2rem;
+    }
+
+    /* Product Cards */
+    .card {
+      background: var(--bg-card);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      border-radius: 16px;
+      padding: 1.75rem;
+      position: relative;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      transition: all 0.3s ease;
+    }
+
+    .card:hover {
+      background: var(--bg-card-hover);
+      transform: translateY(-5px);
+      border-color: var(--border-glow);
+      box-shadow: 0 10px 30px rgba(0, 242, 254, 0.15);
+    }
+
+    .card.featured {
+      border: 2px solid var(--accent-cyan);
+      box-shadow: 0 0 25px rgba(0, 242, 254, 0.25);
+    }
+
+    .badge-featured {
+      position: absolute;
+      top: -12px;
+      right: 20px;
+      background: linear-gradient(135deg, var(--accent-cyan), var(--accent-purple));
+      color: #000;
+      font-weight: 900;
+      font-size: 0.75rem;
+      padding: 4px 12px;
+      border-radius: 20px;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+    }
+
+    .card-header {
+      margin-bottom: 1.25rem;
+    }
+
+    .card-tag {
+      font-size: 0.75rem;
+      text-transform: uppercase;
+      color: var(--accent-cyan);
+      font-weight: 700;
+      letter-spacing: 1px;
+      margin-bottom: 0.25rem;
+      display: block;
+    }
+
+    .card-title {
+      font-size: 1.6rem;
+      font-weight: 800;
+      margin-bottom: 0.5rem;
+    }
+
+    .price {
+      font-size: 2.25rem;
+      font-weight: 900;
+      color: #fff;
+      display: flex;
+      align-items: baseline;
+      gap: 0.5rem;
+    }
+
+    .price span {
+      font-size: 0.9rem;
+      color: var(--text-muted);
+      text-decoration: line-through;
+    }
+
+    /* Custom CSS Graphical Badges (No Image Files) */
+    .stat-badge-list {
+      display: flex;
+      flex-direction: column;
+      gap: 0.65rem;
+      margin: 1.2rem 0;
+      background: rgba(0, 0, 0, 0.25);
+      padding: 1rem;
+      border-radius: 10px;
+      border: 1px solid rgba(255, 255, 255, 0.05);
+    }
+
+    .badge-item {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      font-weight: 600;
+      font-size: 0.9rem;
+    }
+
+    .badge-icon {
+      width: 26px;
+      height: 26px;
+      border-radius: 6px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.8rem;
+      font-weight: 800;
+      flex-shrink: 0;
+    }
+
+    .icon-cash { background: rgba(0, 255, 136, 0.15); color: #00ff88; border: 1px solid #00ff88; }
+    .icon-cargo { background: rgba(0, 242, 254, 0.15); color: var(--accent-cyan); border: 1px solid var(--accent-cyan); }
+    .icon-level { background: rgba(157, 78, 221, 0.15); color: #d8b4fe; border: 1px solid var(--accent-purple); }
+    .icon-shield { background: rgba(255, 0, 127, 0.15); color: var(--accent-pink); border: 1px solid var(--accent-pink); }
+
+    .card-features {
+      list-style: none;
+      margin-bottom: 1.5rem;
+    }
+
+    .card-features li {
+      color: var(--text-muted);
+      font-size: 0.85rem;
+      margin-bottom: 0.4rem;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .card-features li::before {
+      content: "✓";
+      color: var(--accent-cyan);
+      font-weight: bold;
+    }
+
+    .btn-card {
+      width: 100%;
+      padding: 0.85rem;
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      color: #fff;
+      font-weight: 700;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: all 0.3s;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+    }
+
+    .card:hover .btn-card {
+      background: linear-gradient(135deg, var(--accent-cyan), var(--accent-purple));
+      color: #000;
+      border-color: transparent;
+      box-shadow: 0 0 15px rgba(0, 242, 254, 0.4);
+    }
+
+    .security-notice {
+      color: var(--accent-pink);
+      font-weight: bold;
+      font-size: 0.8rem;
+      margin-top: 0.75rem;
+      text-align: center;
+    }
+
+    /* Footer */
+    footer {
+      border-top: 1px solid rgba(255, 255, 255, 0.08);
+      padding: 3rem 2rem;
+      text-align: center;
+      color: var(--text-muted);
+      font-size: 0.9rem;
+      margin-top: 6rem;
+    }
+
+    footer p {
+      margin-top: 0.5rem;
+      font-size: 0.8rem;
+      opacity: 0.6;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="glow-bg"></div>
+
+  <!-- Header -->
+  <header>
+    <div class="nav-container">
+      <div class="logo">
+        NOVA
+        <span class="logo-badge">PC BOOSTS</span>
+      </div>
+      <ul class="nav-links">
+        <li><a href="#services">Packages</a></li>
+        <li><a href="#how-it-works">How It Works</a></li>
+        <li><a href="#safety">Safety Info</a></li>
+      </ul>
+      <a href="#services" class="btn-primary">View Packages</a>
+    </div>
+  </header>
+
+  <!-- Hero Section -->
+  <section class="hero">
+    <div class="hero-tags-wrapper">
+      <span class="hero-tag">⚡ Safe Injection • Direct To Your Account</span>
+      <span class="hero-tag pc-badge">🖥️ PC PLATFORMS ONLY</span>
+    </div>
+    
+    <h1>We Level Up <span>YOUR</span> Account</h1>
+    <p>Provide your existing GTA V account login and our team will securely inject cash, ranks, and unlocked cargo storage directly into your profile. Currently servicing PC platforms exclusively.</p>
+
+    <div class="safety-banner" id="safety">
+      <span>🛡️ <strong>Safety Guarantee:</strong> All cash injections are strictly capped at <strong>$65,000,000</strong> to guarantee 100% anti-ban protection.</span>
+      <span class="warning">⚠️ Notice: We do not support Xbox or PlayStation accounts at this time.</span>
+    </div>
+
+    <div class="steps-container" id="how-it-works">
+      <div class="step">
+        <div class="step-number">1</div>
+        <h4>Choose Service</h4>
+        <p>Select your desired cash, rank, or cargo package.</p>
+      </div>
+      <div class="step">
+        <div class="step-number">2</div>
+        <h4>Submit Details</h4>
+        <p>Provide your PC account login (Steam, Epic Games, or Rockstar Social Club).</p>
+      </div>
+      <div class="step">
+        <div class="step-number">3</div>
+        <h4>Injection Process</h4>
+        <p>Our team logs in safely and applies your requested mods directly.</p>
+      </div>
+      <div class="step">
+        <div class="step-number">4</div>
+        <h4>Ready To Play</h4>
+        <p>Log back in and enjoy your maxed out PC profile!</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Products Showcase -->
+  <section class="products-section" id="services">
+    <div class="section-title">
+      <h2>PC Boosting & Recovery Packages</h2>
+      <p>Select a package to upgrade your existing PC character.</p>
+    </div>
+
+    <div class="product-grid">
+
+      <!-- PACKAGE 1: MAIN TARGET FEATURED ITEM -->
+      <div class="card featured">
+        <span class="badge-featured">Ultimate Value</span>
+        <div class="card-header">
+          <span class="card-tag">Full Service Package</span>
+          <h3 class="card-title">NOVA Max Boost</h3>
+          <div class="price">$29.99 <span>$59.99</span></div>
+        </div>
+
+        <div class="stat-badge-list">
+          <div class="badge-item">
+            <div class="badge-icon icon-cash">$</div>
+            <span>$65,000,000 Cash (Max Safe Limit)</span>
+          </div>
+          <div class="badge-item">
+            <div class="badge-icon icon-cargo">📦</div>
+            <span>Max Cargo Storage & Warehouses</span>
+          </div>
+          <div class="badge-item">
+            <div class="badge-icon icon-level">⭐</div>
+            <span>Level 4000 Rank Boost</span>
+          </div>
+          <div class="badge-item">
+            <div class="badge-icon icon-shield">🛡️</div>
+            <span>Anti-Ban Guarantee</span>
+          </div>
+        </div>
+
+        <ul class="card-features">
+          <li>PC Only (Steam / Epic / Rockstar)</li>
+          <li>All Heist Unlocks & Achievements</li>
+          <li>Max Character Stats (Shooting, Flying)</li>
+          <li>Fast Run & Modded Outfits Unlocked</li>
+        </ul>
+
+        <button class="btn-card">Purchase Max Boost</button>
+        <p class="security-notice">Requires PC Account Credentials</p>
+      </div>
+
+      <!-- PACKAGE 2: STANDARD BOOST -->
+      <div class="card">
+        <div class="card-header">
+          <span class="card-tag">Mid-Tier Boost</span>
+          <h3 class="card-title">Standard Boost</h3>
+          <div class="price">$19.99 <span>$39.99</span></div>
+        </div>
+
+        <div class="stat-badge-list">
+          <div class="badge-item">
+            <div class="badge-icon icon-cash">$</div>
+            <span>$35,000,000 Cash</span>
+          </div>
+          <div class="badge-item">
+            <div class="badge-icon icon-level">⭐</div>
+            <span>Level 500 Rank</span>
+          </div>
+          <div class="badge-item">
+            <div class="badge-icon icon-shield">🛡️</div>
+            <span>Safe PC Injection</span>
+          </div>
+        </div>
+
+        <ul class="card-features">
+          <li>PC Only (Steam / Epic / Rockstar)</li>
+          <li>Max Character Stats</li>
+          <li>Basic Outfits & Unlocks</li>
+        </ul>
+
+        <button class="btn-card">Purchase Standard</button>
+        <p class="security-notice">Requires PC Account Credentials</p>
+      </div>
+
+      <!-- PACKAGE 3: STARTER BOOST -->
+      <div class="card">
+        <div class="card-header">
+          <span class="card-tag">Entry Level</span>
+          <h3 class="card-title">Starter Top-Up</h3>
+          <div class="price">$11.99 <span>$24.99</span></div>
+        </div>
+
+        <div class="stat-badge-list">
+          <div class="badge-item">
+            <div class="badge-icon icon-cash">$</div>
+            <span>$15,000,000 Cash</span>
+          </div>
+          <div class="badge-item">
+            <div class="badge-icon icon-level">⭐</div>
+            <span>Level 120 Rank (All Unlocks)</span>
+          </div>
+        </div>
+
+        <ul class="card-features">
+          <li>PC Only (Steam / Epic / Rockstar)</li>
+          <li>Standard Weapon Unlocks</li>
+          <li>Fast 30-Minute Turnaround</li>
+        </ul>
+
+        <button class="btn-card">Purchase Starter</button>
+        <p class="security-notice">Requires PC Account Credentials</p>
+      </div>
+
+      <!-- PACKAGE 4: CARGO & UNLOCK SPECIALIST -->
+      <div class="card">
+        <div class="card-header">
+          <span class="card-tag">Property Focus</span>
+          <h3 class="card-title">Max Cargo & Unlocks</h3>
+          <div class="price">$14.99 <span>$29.99</span></div>
+        </div>
+
+        <div class="stat-badge-list">
+          <div class="badge-item">
+            <div class="badge-icon icon-cargo">📦</div>
+            <span>Full Cargo & Warehouse Unlocks</span>
+          </div>
+          <div class="badge-item">
+            <div class="badge-icon icon-shield">🛡️</div>
+            <span>Full LSC Vehicle Modifications</span>
+          </div>
+        </div>
+
+        <ul class="card-features">
+          <li>PC Only (Steam / Epic / Rockstar)</li>
+          <li>Max CEO Warehouses Filled</li>
+          <li>All Bunker & Nightclub Research</li>
+        </ul>
+
+        <button class="btn-card">Purchase Unlocks</button>
+        <p class="security-notice">Requires PC Account Credentials</p>
+      </div>
+
+      <!-- PACKAGE 5: RANK ONLY BOOST -->
+      <div class="card">
+        <div class="card-header">
+          <span class="card-tag">Rank Injection</span>
+          <h3 class="card-title">Level 4000 Express</h3>
+          <div class="price">$12.99 <span>$22.99</span></div>
+        </div>
+
+        <div class="stat-badge-list">
+          <div class="badge-item">
+            <div class="badge-icon icon-level">⭐</div>
+            <span>Level 4000 Rank Boost</span>
+          </div>
+          <div class="badge-item">
+            <div class="badge-icon icon-shield">🛡️</div>
+            <span>Max Player Stats Included</span>
+          </div>
+        </div>
+
+        <ul class="card-features">
+          <li>PC Only (Steam / Epic / Rockstar)</li>
+          <li>Increases existing level up to 4000</li>
+          <li>Ultra-Fast Delivery</li>
+        </ul>
+
+        <button class="btn-card">Purchase Level Boost</button>
+        <p class="security-notice">Requires PC Account Credentials</p>
+      </div>
+
+      <!-- PACKAGE 6: CUSTOM CASH ONLY INJECTION -->
+      <div class="card">
+        <div class="card-header">
+          <span class="card-tag">Cash Only</span>
+          <h3 class="card-title">Custom 65M Injection</h3>
+          <div class="price">$22.99 <span>$44.99</span></div>
+        </div>
+
+        <div class="stat-badge-list">
+          <div class="badge-item">
+            <div class="badge-icon icon-cash">$</div>
+            <span>$65,000,000 Direct Cash</span>
+          </div>
+          <div class="badge-item">
+            <div class="badge-icon icon-shield">🛡️</div>
+            <span>Safely Deposited in Bank</span>
+          </div>
+        </div>
+
+        <ul class="card-features">
+          <li>PC Only (Steam / Epic / Rockstar)</li>
+          <li>Pure Cash Injection (No Unlocks)</li>
+          <li>Keeps Existing Character Stats</li>
+        </ul>
+
+        <button class="btn-card">Purchase Cash Only</button>
+        <p class="security-notice">Requires PC Account Credentials</p>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer>
+    <div class="logo" style="justify-content: center; margin-bottom: 1rem;">
+      NOVA <span class="logo-badge">PC BOOSTS</span>
+    </div>
+    <p>&copy; 2026 NOVA Gaming Services. All rights reserved.</p>
+    <p>Grand Theft Auto V and GTA Online are registered trademarks of Rockstar Games. We are not affiliated with Rockstar Games. Console platforms are strictly not supported.</p>
+  </footer>
+
+</body>
+</html>
