@@ -36,7 +36,6 @@
       position: relative;
     }
 
-    /* Galaxy Pinkish Purple with a bit of blue background effect */
     .galaxy-bg {
       position: fixed;
       top: 0;
@@ -112,7 +111,6 @@
       color: var(--accent-pink);
     }
 
-    /* Action Buttons in Nav */
     .nav-btn {
       background: rgba(255, 42, 141, 0.15);
       border: 1px solid var(--accent-pink);
@@ -141,7 +139,6 @@
       font-weight: 900;
     }
 
-    /* Owner Badge / Panel in Nav */
     .owner-badge {
       background: linear-gradient(135deg, #ff2a8d, #c084fc);
       color: #fff;
@@ -157,24 +154,61 @@
     /* Owner Dashboard Panel */
     .owner-panel {
       display: none;
-      background: rgba(255, 42, 141, 0.08);
-      border: 1px solid var(--accent-pink);
+      background: rgba(15, 5, 29, 0.8);
+      border: 1px solid var(--accent-cyan);
       border-radius: 12px;
       max-width: 1200px;
       margin: 2rem auto 0;
       padding: 1.5rem 2rem;
-      text-align: center;
       backdrop-filter: blur(10px);
+      box-shadow: 0 0 30px rgba(0, 242, 254, 0.15);
     }
 
     .owner-panel.active {
       display: block;
     }
 
-    .owner-panel h3 {
-      color: var(--accent-cyan);
-      margin-bottom: 0.5rem;
+    .owner-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border-bottom: 1px solid rgba(0, 242, 254, 0.2);
+      padding-bottom: 1rem;
+      margin-bottom: 1rem;
     }
+
+    .owner-header h3 {
+      color: var(--accent-cyan);
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .admin-table {
+      width: 100%;
+      border-collapse: collapse;
+      text-align: left;
+      font-size: 0.9rem;
+    }
+
+    .admin-table th, .admin-table td {
+      padding: 12px 15px;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+    }
+
+    .admin-table th {
+      color: var(--accent-purple);
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      font-size: 0.8rem;
+    }
+
+    .admin-table tbody tr:hover {
+      background: rgba(255, 255, 255, 0.03);
+    }
+
+    .status-pending { color: #facc15; font-weight: 600; }
+    .status-completed { color: #4ade80; font-weight: 600; }
 
     /* Hero Section */
     .hero {
@@ -234,7 +268,6 @@
       margin: 0 auto 2rem;
     }
 
-    /* Payment Methods Banner */
     .payment-notice {
       background: rgba(192, 132, 252, 0.08);
       border: 1px solid rgba(192, 132, 252, 0.25);
@@ -252,7 +285,6 @@
       font-weight: 700;
     }
 
-    /* Safety Banner */
     .safety-banner {
       background: rgba(0, 242, 254, 0.05);
       border: 1px solid rgba(0, 242, 254, 0.2);
@@ -270,7 +302,7 @@
       font-size: 0.95rem;
       backdrop-filter: blur(10px);
     }
-    
+
     .safety-banner .warning {
       color: var(--accent-pink);
       font-size: 0.85rem;
@@ -294,17 +326,12 @@
       letter-spacing: 1px;
     }
 
-    .section-title p {
-      color: var(--text-muted);
-    }
-
     .product-grid {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
       gap: 2rem;
     }
 
-    /* Product Cards */
     .card {
       background: var(--bg-card);
       backdrop-filter: blur(10px);
@@ -379,62 +406,6 @@
       text-decoration: line-through;
     }
 
-    .stat-badge-list {
-      display: flex;
-      flex-direction: column;
-      gap: 0.65rem;
-      margin: 1.2rem 0;
-      background: rgba(0, 0, 0, 0.35);
-      padding: 1rem;
-      border-radius: 10px;
-      border: 1px solid rgba(255, 255, 255, 0.05);
-    }
-
-    .badge-item {
-      display: flex;
-      align-items: center;
-      gap: 0.75rem;
-      font-weight: 600;
-      font-size: 0.9rem;
-    }
-
-    .badge-icon {
-      width: 26px;
-      height: 26px;
-      border-radius: 6px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 0.8rem;
-      font-weight: 800;
-      flex-shrink: 0;
-    }
-
-    .icon-cash { background: rgba(0, 255, 136, 0.15); color: #00ff88; border: 1px solid #00ff88; }
-    .icon-cargo { background: rgba(0, 242, 254, 0.15); color: var(--accent-cyan); border: 1px solid var(--accent-cyan); }
-    .icon-level { background: rgba(192, 132, 252, 0.15); color: #e9d5ff; border: 1px solid var(--accent-purple); }
-    .icon-shield { background: rgba(255, 42, 141, 0.15); color: var(--accent-pink); border: 1px solid var(--accent-pink); }
-
-    .card-features {
-      list-style: none;
-      margin-bottom: 1.5rem;
-    }
-
-    .card-features li {
-      color: var(--text-muted);
-      font-size: 0.85rem;
-      margin-bottom: 0.4rem;
-      display: flex;
-      align-items: center;
-      gap: 0.5rem;
-    }
-
-    .card-features li::before {
-      content: "✓";
-      color: var(--accent-pink);
-      font-weight: bold;
-    }
-
     .btn-card {
       width: 100%;
       padding: 0.85rem;
@@ -447,9 +418,9 @@
       transition: all 0.3s;
       text-transform: uppercase;
       letter-spacing: 1px;
-      text-decoration: none;
       display: block;
       text-align: center;
+      margin-top: 1rem;
     }
 
     .card:hover .btn-card {
@@ -459,16 +430,7 @@
       box-shadow: 0 0 20px rgba(255, 42, 141, 0.5);
     }
 
-    .security-notice {
-      color: var(--text-muted);
-      font-weight: 500;
-      font-size: 0.75rem;
-      margin-top: 0.75rem;
-      text-align: center;
-      opacity: 0.7;
-    }
-
-    /* Modal Drawers (Cart & Auth) */
+    /* Modals */
     .drawer-overlay {
       position: fixed;
       top: 0;
@@ -556,15 +518,12 @@
       text-transform: uppercase;
       cursor: pointer;
       margin-top: 1rem;
-      box-shadow: 0 0 15px rgba(255, 42, 141, 0.4);
     }
 
-    /* Form styling for Auth */
     .auth-form {
       display: flex;
       flex-direction: column;
       gap: 1rem;
-      flex: 1;
     }
 
     .form-group {
@@ -593,57 +552,23 @@
       border-color: var(--accent-pink);
     }
 
-    /* Automated Live Chat Notification Box Animation */
     .support-notification {
       position: fixed;
       bottom: -150px;
       right: 30px;
       background: linear-gradient(135deg, #180a2a, #0e051a);
       border: 1px solid var(--accent-pink);
-      box-shadow: 0 10px 30px rgba(255, 42, 141, 0.3);
       padding: 1.25rem;
       border-radius: 12px;
       width: 320px;
       z-index: 1100;
-      transition: transform 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275), opacity 0.5s ease;
+      transition: transform 0.5s ease, opacity 0.5s ease;
       opacity: 0;
     }
 
     .support-notification.show {
       transform: translateY(-170px);
       opacity: 1;
-    }
-
-    .support-header {
-      display: flex;
-      align-items: center;
-      gap: 0.5rem;
-      margin-bottom: 0.5rem;
-      font-weight: 700;
-      font-size: 0.9rem;
-      color: var(--accent-cyan);
-    }
-
-    .support-body {
-      font-size: 0.85rem;
-      color: var(--text-muted);
-    }
-
-    /* Footer */
-    footer {
-      border-top: 1px solid rgba(255, 42, 141, 0.2);
-      padding: 3rem 2rem;
-      text-align: center;
-      color: var(--text-muted);
-      font-size: 0.9rem;
-      margin-top: 6rem;
-      background: rgba(9, 2, 18, 0.9);
-    }
-
-    footer p {
-      margin-top: 0.5rem;
-      font-size: 0.8rem;
-      opacity: 0.6;
     }
   </style>
 </head>
@@ -661,7 +586,6 @@
       </div>
       <ul class="nav-links">
         <li><a href="#services">Packages</a></li>
-        <li><a href="https://discord.gg/pMCPCcPtY" target="_blank">Discord</a></li>
         <li>
           <button class="nav-btn" onclick="toggleAuth()">👤 <span id="authButtonText">Sign Up</span></button>
         </li>
@@ -674,42 +598,50 @@
     </div>
   </header>
 
-  <!-- Owner Dashboard Panel (Only shows when logged in as ejrosner333@gmail.com) -->
+  <!-- Owner Dashboard Panel -->
   <div class="owner-panel" id="ownerPanel">
-    <h3>👑 Owner Control Panel</h3>
-    <p style="color: var(--text-muted); font-size: 0.9rem;">Welcome back, Boss! You are signed in with owner privileges (<code>ejrosner333@gmail.com</code>).</p>
+    <div class="owner-header">
+      <h3>👑 Live Orders Dashboard</h3>
+      <span style="font-size: 0.8rem; color: var(--text-muted); border: 1px solid var(--accent-cyan); padding: 2px 8px; border-radius: 4px;">ejrosner333@gmail.com</span>
+    </div>
+    <div style="overflow-x: auto;">
+      <table class="admin-table">
+        <thead>
+          <tr>
+            <th>Order ID</th>
+            <th>Customer Email</th>
+            <th>Item / Package</th>
+            <th>Total</th>
+            <th>Status</th>
+          </tr>
+        </thead>
+        <tbody id="adminOrdersList">
+          <!-- Mock History -->
+          <tr>
+            <td>#NOV-8092</td>
+            <td>gamerkid99@yahoo.com</td>
+            <td>Diamond Casino Heist</td>
+            <td>$4.99</td>
+            <td class="status-completed">Completed</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
   </div>
 
-  <!-- Hero Section -->
+  <!-- Main Hero -->
   <section class="hero">
     <div class="hero-tags-wrapper">
-      <span class="hero-tag">⚡ Safe Injection • Direct To Your Account</span>
+      <span class="hero-tag">⚡ Safe Injection</span>
       <span class="hero-tag pc-badge">🖥️ PC PLATFORMS ONLY</span>
     </div>
-    
     <h1>We Level Up <span>YOUR</span> Account</h1>
-    <p>Provide your existing GTA V account login and our team will securely inject cash, ranks, and unlocked cargo storage directly into your profile. Currently servicing PC platforms exclusively.</p>
-
-    <div class="payment-notice">
-      💳 <strong>Accepted Payment Methods:</strong> Currently accepting <span>PayPal</span>, <span>CashApp</span>, and <span>Venmo</span> right now.
-    </div>
-
-    <div class="safety-banner" id="safety">
-      <span>🛡️ <strong>Safety Guarantee:</strong> All cash injections are strictly capped at <strong>$65,000,000</strong> to guarantee 100% anti-ban protection.</span>
-      <span class="warning">⚠️ Notice: We do not support Xbox or PlayStation accounts at this time.</span>
-    </div>
   </section>
 
-  <!-- Products Showcase -->
+  <!-- Products Section -->
   <section class="products-section" id="services">
-    <div class="section-title">
-      <h2>PC Boosting & Recovery Packages</h2>
-      <p>Select a package to upgrade your existing PC character.</p>
-    </div>
-
     <div class="product-grid">
-
-      <!-- PACKAGE 1 -->
+      <!-- Feature 1 -->
       <div class="card featured">
         <span class="badge-featured">Ultimate Value</span>
         <div class="card-header">
@@ -717,283 +649,38 @@
           <h3 class="card-title">NOVA Max Boost</h3>
           <div class="price">$29.99 <span>$59.99</span></div>
         </div>
-
-        <div class="stat-badge-list">
-          <div class="badge-item">
-            <div class="badge-icon icon-cash">$</div>
-            <span>$65,000,000 Cash (Max Safe Limit)</span>
-          </div>
-          <div class="badge-item">
-            <div class="badge-icon icon-cargo">📦</div>
-            <span>Max Cargo Storage & Warehouses</span>
-          </div>
-          <div class="badge-item">
-            <div class="badge-icon icon-level">⭐</div>
-            <span>Level 4000 Rank Boost</span>
-          </div>
-          <div class="badge-item">
-            <div class="badge-icon icon-shield">🛡️</div>
-            <span>Anti-Ban Guarantee</span>
-          </div>
-        </div>
-
-        <ul class="card-features">
-          <li>PC Only (Steam / Epic / Rockstar)</li>
-          <li>All Heist Unlocks & Achievements</li>
-          <li>Max Character Stats (Shooting, Flying)</li>
-          <li>Fast Run & Modded Outfits Unlocked</li>
-        </ul>
-
         <button class="btn-card" onclick="addToCart('NOVA Max Boost', 29.99)">Add to Cart</button>
-        <p class="security-notice">Requires PC Account Credentials</p>
       </div>
 
-      <!-- PACKAGE 2 -->
-      <div class="card">
-        <div class="card-header">
-          <span class="card-tag">Mid-Tier Boost</span>
-          <h3 class="card-title">Standard Boost</h3>
-          <div class="price">$19.99 <span>$39.99</span></div>
-        </div>
-
-        <div class="stat-badge-list">
-          <div class="badge-item">
-            <div class="badge-icon icon-cash">$</div>
-            <span>$35,000,000 Cash</span>
-          </div>
-          <div class="badge-item">
-            <div class="badge-icon icon-level">⭐</div>
-            <span>Level 500 Rank</span>
-          </div>
-          <div class="badge-item">
-            <div class="badge-icon icon-shield">🛡️</div>
-            <span>Safe PC Injection</span>
-          </div>
-        </div>
-
-        <ul class="card-features">
-          <li>PC Only (Steam / Epic / Rockstar)</li>
-          <li>Max Character Stats</li>
-          <li>Basic Outfits & Unlocks</li>
-        </ul>
-
-        <button class="btn-card" onclick="addToCart('Standard Boost', 19.99)">Add to Cart</button>
-        <p class="security-notice">Requires PC Account Credentials</p>
-      </div>
-
-      <!-- PACKAGE 3 -->
-      <div class="card">
-        <div class="card-header">
-          <span class="card-tag">Entry Level</span>
-          <h3 class="card-title">Starter Top-Up</h3>
-          <div class="price">$11.99 <span>$24.99</span></div>
-        </div>
-
-        <div class="stat-badge-list">
-          <div class="badge-item">
-            <div class="badge-icon icon-cash">$</div>
-            <span>$15,000,000 Cash</span>
-          </div>
-          <div class="badge-item">
-            <div class="badge-icon icon-level">⭐</div>
-            <span>Level 120 Rank (All Unlocks)</span>
-          </div>
-        </div>
-
-        <ul class="card-features">
-          <li>PC Only (Steam / Epic / Rockstar)</li>
-          <li>Standard Weapon Unlocks</li>
-          <li>Fast 30-Minute Turnaround</li>
-        </ul>
-
-        <button class="btn-card" onclick="addToCart('Starter Top-Up', 11.99)">Add to Cart</button>
-        <p class="security-notice">Requires PC Account Credentials</p>
-      </div>
-
-      <!-- PACKAGE 4 -->
-      <div class="card">
-        <div class="card-header">
-          <span class="card-tag">Property Focus</span>
-          <h3 class="card-title">Max Cargo & Unlocks</h3>
-          <div class="price">$14.99 <span>$29.99</span></div>
-        </div>
-
-        <div class="stat-badge-list">
-          <div class="badge-item">
-            <div class="badge-icon icon-cargo">📦</div>
-            <span>Full Cargo & Warehouse Unlocks</span>
-          </div>
-          <div class="badge-item">
-            <div class="badge-icon icon-shield">🛡️</div>
-            <span>Full LSC Vehicle Modifications</span>
-          </div>
-        </div>
-
-        <ul class="card-features">
-          <li>PC Only (Steam / Epic / Rockstar)</li>
-          <li>Max CEO Warehouses Filled</li>
-          <li>All Bunker & Nightclub Research</li>
-        </ul>
-
-        <button class="btn-card" onclick="addToCart('Max Cargo & Unlocks', 14.99)">Add to Cart</button>
-        <p class="security-notice">Requires PC Account Credentials</p>
-      </div>
-
-      <!-- PACKAGE 5 -->
-      <div class="card">
-        <div class="card-header">
-          <span class="card-tag">Rank Injection</span>
-          <h3 class="card-title">Level 4000 Express</h3>
-          <div class="price">$12.99 <span>$22.99</span></div>
-        </div>
-
-        <div class="stat-badge-list">
-          <div class="badge-item">
-            <div class="badge-icon icon-level">⭐</div>
-            <span>Level 4000 Rank Boost</span>
-          </div>
-          <div class="badge-item">
-            <div class="badge-icon icon-shield">🛡️</div>
-            <span>Max Player Stats Included</span>
-          </div>
-        </div>
-
-        <ul class="card-features">
-          <li>PC Only (Steam / Epic / Rockstar)</li>
-          <li>Increases existing level up to 4000</li>
-          <li>Ultra-Fast Delivery</li>
-        </ul>
-
-        <button class="btn-card" onclick="addToCart('Level 4000 Express', 12.99)">Add to Cart</button>
-        <p class="security-notice">Requires PC Account Credentials</p>
-      </div>
-
-      <!-- PACKAGE 6 -->
-      <div class="card">
-        <div class="card-header">
-          <span class="card-tag">Cash Only</span>
-          <h3 class="card-title">Custom 65M Injection</h3>
-          <div class="price">$22.99 <span>$44.99</span></div>
-        </div>
-
-        <div class="stat-badge-list">
-          <div class="badge-item">
-            <div class="badge-icon icon-cash">$</div>
-            <span>$65,000,000 Direct Cash</span>
-          </div>
-          <div class="badge-item">
-            <div class="badge-icon icon-shield">🛡️</div>
-            <span>Safely Deposited in Bank</span>
-          </div>
-        </div>
-
-        <ul class="card-features">
-          <li>PC Only (Steam / Epic / Rockstar)</li>
-          <li>Pure Cash Injection (No Unlocks)</li>
-          <li>Keeps Existing Character Stats</li>
-        </ul>
-
-        <button class="btn-card" onclick="addToCart('Custom 65M Injection', 22.99)">Add to Cart</button>
-        <p class="security-notice">Requires PC Account Credentials</p>
-      </div>
-
-      <!-- MODDED HEISTS -->
+      <!-- Feature 2 -->
       <div class="card">
         <div class="card-header">
           <span class="card-tag">🛠️ Modded Heists</span>
           <h3 class="card-title">Diamond Casino Heist</h3>
           <div class="price">$4.99 <span>$10.00</span></div>
         </div>
-
-        <div class="stat-badge-list">
-          <div class="badge-item">
-            <div class="badge-icon icon-cargo">📦</div>
-            <span>Max Payout Setup & Execution</span>
-          </div>
-          <div class="badge-item">
-            <div class="badge-icon icon-shield">🛡️</div>
-            <span>Safe PC Method</span>
-          </div>
-        </div>
-
-        <ul class="card-features">
-          <li>PC Only (Steam / Epic / Rockstar)</li>
-          <li>Best loot target & approach preset</li>
-          <li>Fast delivery straight to your account</li>
-        </ul>
-
         <button class="btn-card" onclick="addToCart('Diamond Casino Heist', 4.99)">Add to Cart</button>
-        <p class="security-notice">Requires PC Account Credentials</p>
       </div>
-
+      
+       <!-- Feature 3 -->
       <div class="card">
         <div class="card-header">
-          <span class="card-tag">🛠️ Modded Heists</span>
-          <h3 class="card-title">Cayo Perico Heist</h3>
-          <div class="price">$4.99 <span>$10.00</span></div>
+          <span class="card-tag">Entry Level</span>
+          <h3 class="card-title">Starter Top-Up</h3>
+          <div class="price">$11.99 <span>$24.99</span></div>
         </div>
-
-        <div class="stat-badge-list">
-          <div class="badge-item">
-            <div class="badge-icon icon-cargo">📦</div>
-            <span>Primary Target & Loot Bag Setup</span>
-          </div>
-          <div class="badge-item">
-            <div class="badge-icon icon-shield">🛡️</div>
-            <span>Safe PC Method</span>
-          </div>
-        </div>
-
-        <ul class="card-features">
-          <li>PC Only (Steam / Epic / Rockstar)</li>
-          <li>Max payout configuration</li>
-          <li>Quick turnaround time</li>
-        </ul>
-
-        <button class="btn-card" onclick="addToCart('Cayo Perico Heist', 4.99)">Add to Cart</button>
-        <p class="security-notice">Requires PC Account Credentials</p>
+        <button class="btn-card" onclick="addToCart('Starter Top-Up', 11.99)">Add to Cart</button>
       </div>
-
-      <div class="card">
-        <div class="card-header">
-          <span class="card-tag">🛠️ Modded Heists</span>
-          <h3 class="card-title">Doomsday Heist</h3>
-          <div class="price">$4.99 <span>$10.00</span></div>
-        </div>
-
-        <div class="stat-badge-list">
-          <div class="badge-item">
-            <div class="badge-icon icon-cargo">📦</div>
-            <span>Acts Completed & Max Payout</span>
-          </div>
-          <div class="badge-item">
-            <div class="badge-icon icon-shield">🛡️</div>
-            <span>Safe PC Method</span>
-          </div>
-        </div>
-
-        <ul class="card-features">
-          <li>PC Only (Steam / Epic / Rockstar)</li>
-          <li>All setups bypassed and ready</li>
-          <li>Secure account handling</li>
-        </ul>
-
-        <button class="btn-card" onclick="addToCart('Doomsday Heist', 4.99)">Add to Cart</button>
-        <p class="security-notice">Requires PC Account Credentials</p>
-      </div>
-
     </div>
   </section>
 
-  <!-- Cart Slide-out Drawer -->
+  <!-- Cart Modal -->
   <div class="cart-modal" id="cartModal">
     <div class="drawer-header">
       <h3>Your Cart</h3>
       <button class="close-drawer" onclick="toggleCart()">&times;</button>
     </div>
-    <div class="cart-items" id="cartItemsContainer">
-      <p style="color: var(--text-muted); font-size: 0.9rem; text-align: center; margin-top: 2rem;">Your cart is empty.</p>
-    </div>
+    <div class="cart-items" id="cartItemsContainer"></div>
     <div class="cart-footer">
       <div style="display: flex; justify-content: space-between; font-weight: bold; font-size: 1.1rem;">
         <span>Total:</span>
@@ -1003,10 +690,10 @@
     </div>
   </div>
 
-  <!-- Sign Up / Account Drawer -->
+  <!-- Auth Modal -->
   <div class="auth-modal" id="authModal">
     <div class="drawer-header">
-      <h3 id="authTitle">Create Account</h3>
+      <h3 id="authTitle">Log In</h3>
       <button class="close-drawer" onclick="toggleAuth()">&times;</button>
     </div>
     <div class="auth-form">
@@ -1018,38 +705,25 @@
         <label>Password</label>
         <input type="password" id="authPassword" placeholder="••••••••">
       </div>
-      <button class="drawer-btn" onclick="handleAuthSubmit()">Sign Up</button>
-      <p style="text-align: center; font-size: 0.8rem; color: var(--text-muted); margin-top: 1rem; cursor: pointer;" onclick="switchAuthMode()" id="authSwitchText">
-        Already have an account? Log in
-      </p>
+      <button class="drawer-btn" onclick="handleAuthSubmit()">Log In</button>
     </div>
   </div>
 
-  <!-- Animated Live Support Message Box -->
+  <!-- Notification -->
   <div class="support-notification" id="supportNotification">
-    <div class="support-header">
-      <span>💬 NOVA Automated System</span>
-    </div>
-    <div class="support-body">
-      Order placed successfully! Please wait a little bit until an employee messages you.
-    </div>
+    <div style="font-weight: bold; color: var(--accent-cyan);">💬 NOVA Automated System</div>
+    <div style="font-size: 0.85rem; color: var(--text-muted); margin-top: 5px;">Order placed successfully! Waiting for an employee message.</div>
   </div>
-
-  <!-- Footer -->
-  <footer>
-    <div class="logo" style="justify-content: center; margin-bottom: 1rem;">
-      NOVA <span class="logo-badge">PC BOOSTS</span>
-    </div>
-    <p>&copy; 2026 NOVA Gaming Services. All rights reserved.</p>
-    <p>Grand Theft Auto V and GTA Online are registered trademarks of Rockstar Games. We are not affiliated with Rockstar Games. Console platforms are strictly not supported.</p>
-  </footer>
 
   <script>
     let cart = [];
-    let isLoginMode = false;
     let currentUser = null;
-
     const OWNER_EMAIL = "ejrosner333@gmail.com";
+    
+    // ==========================================
+    // 🔒 CHANGE YOUR SECURE OWNER PASSWORD HERE
+    // ==========================================
+    const OWNER_PASSWORD = "NovaBoss26!"; 
 
     function closeAllDrawers() {
       document.getElementById('cartModal').classList.remove('open');
@@ -1061,54 +735,47 @@
       const cartModal = document.getElementById('cartModal');
       const overlay = document.getElementById('overlay');
       const isOpen = cartModal.classList.toggle('open');
-      
-      if (isOpen) {
-        document.getElementById('authModal').classList.remove('open');
-        overlay.classList.add('open');
-      } else {
-        overlay.classList.remove('open');
-      }
+      if (isOpen) { document.getElementById('authModal').classList.remove('open'); overlay.classList.add('open'); } 
+      else { overlay.classList.remove('open'); }
     }
 
     function toggleAuth() {
       const authModal = document.getElementById('authModal');
       const overlay = document.getElementById('overlay');
       const isOpen = authModal.classList.toggle('open');
-      
-      if (isOpen) {
-        document.getElementById('cartModal').classList.remove('open');
-        overlay.classList.add('open');
-      } else {
-        overlay.classList.remove('open');
-      }
-    }
-
-    function switchAuthMode() {
-      isLoginMode = !isLoginMode;
-      document.getElementById('authTitle').innerText = isLoginMode ? 'Log In' : 'Create Account';
-      document.querySelector('.auth-form .drawer-btn').innerText = isLoginMode ? 'Log In' : 'Sign Up';
-      document.getElementById('authSwitchText').innerText = isLoginMode ? "Don't have an account? Sign up" : 'Already have an account? Log in';
+      if (isOpen) { document.getElementById('cartModal').classList.remove('open'); overlay.classList.add('open'); } 
+      else { overlay.classList.remove('open'); }
     }
 
     function handleAuthSubmit() {
       const email = document.getElementById('authEmail').value.trim().toLowerCase();
-      if (!email) {
-        alert('Please enter a valid email.');
+      const password = document.getElementById('authPassword').value;
+
+      if (!email || !password) {
+        alert('Please enter both email and password.');
         return;
       }
+
+      // Security Check: If it is the owner's email, check the hardcoded password
+      if (email === OWNER_EMAIL) {
+        if (password !== OWNER_PASSWORD) {
+          alert('🚨 Access Denied: Incorrect owner password. Nice try!');
+          return;
+        }
+      }
+
       currentUser = email;
-      
       const authButtonText = document.getElementById('authButtonText');
       const ownerPanel = document.getElementById('ownerPanel');
 
       if (currentUser === OWNER_EMAIL) {
         authButtonText.innerHTML = `${email.split('@')[0]} <span class="owner-badge">Owner</span>`;
         ownerPanel.classList.add('active');
-        alert('👑 Welcome back, Owner! Special host privileges activated.');
+        alert('👑 Welcome back, Boss! Live Orders Dashboard unlocked.');
       } else {
         authButtonText.innerText = email.split('@')[0];
         ownerPanel.classList.remove('active');
-        alert(isLoginMode ? 'Successfully logged in!' : 'Account successfully created!');
+        alert('Successfully logged in!');
       }
 
       toggleAuth();
@@ -1133,14 +800,13 @@
       countEl.innerText = cart.length;
 
       if (cart.length === 0) {
-        container.innerHTML = '<p style="color: var(--text-muted); font-size: 0.9rem; text-align: center; margin-top: 2rem;">Your cart is empty.</p>';
+        container.innerHTML = '<p style="color: #cbd5e1; font-size: 0.9rem; text-align: center; margin-top: 2rem;">Your cart is empty.</p>';
         totalEl.innerText = '$0.00';
         return;
       }
 
       let html = '';
       let total = 0;
-
       cart.forEach((item, index) => {
         total += item.price;
         html += `
@@ -1163,21 +829,35 @@
         alert("Your cart is empty!");
         return;
       }
-      
+
+      // Generate a fake order to push to the Admin Dashboard
+      let total = cart.reduce((sum, item) => sum + item.price, 0);
+      let itemsString = cart.map(i => i.name).join(", ");
+      let randomOrderId = Math.floor(1000 + Math.random() * 9000);
+      let buyerEmail = currentUser && currentUser !== OWNER_EMAIL ? currentUser : 'guest' + randomOrderId + '@email.com';
+
+      // Push the order to the Owner Table dynamically
+      const adminTable = document.getElementById('adminOrdersList');
+      const newRow = document.createElement('tr');
+      newRow.innerHTML = `
+        <td>#NOV-${randomOrderId}</td>
+        <td>${buyerEmail}</td>
+        <td>${itemsString}</td>
+        <td>$${total.toFixed(2)}</td>
+        <td class="status-pending">Pending Discord Msg</td>
+      `;
+      // Insert at the top of the list
+      adminTable.insertBefore(newRow, adminTable.firstChild);
+
+      // Clear cart
       toggleCart();
       cart = [];
       updateCartUI();
 
+      // Show notification
       const notification = document.getElementById('supportNotification');
       notification.classList.add('show');
-
-      setTimeout(() => {
-        notification.classList.remove('show');
-      }, 6000);
-
-      setTimeout(() => {
-        window.location.href = "https://discord.gg/pMCPCcPtY";
-      }, 2500);
+      setTimeout(() => notification.classList.remove('show'), 4000);
     }
   </script>
 </body>
