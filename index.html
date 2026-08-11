@@ -179,10 +179,42 @@
       -webkit-text-fill-color: transparent;
     }
 
+    /* Category Filter Bar */
+    .categories-bar {
+      max-width: 1200px;
+      margin: 0 auto 2rem;
+      padding: 0 2rem;
+      display: flex;
+      justify-content: center;
+      gap: 1rem;
+      flex-wrap: wrap;
+    }
+
+    .cat-btn {
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid rgba(255, 255, 255, 0.15);
+      color: var(--text-muted);
+      padding: 0.6rem 1.5rem;
+      border-radius: 50px;
+      font-weight: 700;
+      cursor: pointer;
+      transition: all 0.3s;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      font-size: 0.9rem;
+    }
+
+    .cat-btn:hover, .cat-btn.active {
+      background: linear-gradient(135deg, var(--accent-pink), var(--accent-purple));
+      color: #fff;
+      border-color: transparent;
+      box-shadow: 0 0 20px rgba(255, 42, 141, 0.4);
+    }
+
     /* Products Section */
     .products-section {
       max-width: 1200px;
-      margin: 2rem auto 6rem;
+      margin: 0 auto 6rem;
       padding: 0 2rem;
     }
 
@@ -404,7 +436,6 @@
         <span class="logo-badge">PC BOOSTS</span>
       </div>
       <ul class="nav-links">
-        <li><a href="#services" style="color:var(--text-muted); text-decoration:none; font-weight:600;">Packages</a></li>
         <li><a href="https://discord.gg/YOUR_INVITE_LINK" target="_blank" class="nav-btn">💬 Join Discord</a></li>
         <li>
           <button class="nav-btn" onclick="toggleCart()">
@@ -424,65 +455,17 @@
     <h1>We Level Up <span>YOUR</span> Account</h1>
   </section>
 
+  <!-- Categories Filter Bar -->
+  <div class="categories-bar">
+    <button class="cat-btn active" onclick="filterCategory('all', this)">All Products</button>
+    <button class="cat-btn" onclick="filterCategory('modding', this)">Modding Services</button>
+    <button class="cat-btn" onclick="filterCategory('heists', this)">Heists</button>
+  </div>
+
   <!-- Products Section -->
   <section class="products-section" id="services">
-    <div class="product-grid">
-
-      <div class="card featured">
-        <span class="badge-featured">Ultimate Value</span>
-        <div class="card-header">
-          <span class="card-tag">Full Service Package</span>
-          <h3 class="card-title">NOVA Max Boost</h3>
-          <div class="price">$29.99 <span>$59.99</span></div>
-        </div>
-        <button class="btn-card" onclick="addToCart('NOVA Max Boost', 29.99)">Add to Cart</button>
-      </div>
-
-      <div class="card">
-        <div class="card-header">
-          <span class="card-tag">Mid-Tier Boost</span>
-          <h3 class="card-title">Standard Boost</h3>
-          <div class="price">$19.99 <span>$39.99</span></div>
-        </div>
-        <button class="btn-card" onclick="addToCart('Standard Boost', 19.99)">Add to Cart</button>
-      </div>
-
-      <div class="card">
-        <div class="card-header">
-          <span class="card-tag">Entry Level</span>
-          <h3 class="card-title">Starter Top-Up</h3>
-          <div class="price">$11.99 <span>$24.99</span></div>
-        </div>
-        <button class="btn-card" onclick="addToCart('Starter Top-Up', 11.99)">Add to Cart</button>
-      </div>
-
-      <div class="card">
-        <div class="card-header">
-          <span class="card-tag">Property Focus</span>
-          <h3 class="card-title">Max Cargo & Unlocks</h3>
-          <div class="price">$14.99 <span>$29.99</span></div>
-        </div>
-        <button class="btn-card" onclick="addToCart('Max Cargo & Unlocks', 14.99)">Add to Cart</button>
-      </div>
-
-      <div class="card">
-        <div class="card-header">
-          <span class="card-tag">Rank Injection</span>
-          <h3 class="card-title">Level 4000 Express</h3>
-          <div class="price">$12.99 <span>$22.99</span></div>
-        </div>
-        <button class="btn-card" onclick="addToCart('Level 4000 Express', 12.99)">Add to Cart</button>
-      </div>
-
-      <div class="card">
-        <div class="card-header">
-          <span class="card-tag">Cash Only</span>
-          <h3 class="card-title">Custom 65M Injection</h3>
-          <div class="price">$22.99 <span>$44.99</span></div>
-        </div>
-        <button class="btn-card" onclick="addToCart('Custom 65M Injection', 22.99)">Add to Cart</button>
-      </div>
-
+    <div class="product-grid" id="productGrid">
+      <!-- Products populated via JavaScript -->
     </div>
   </section>
 
@@ -509,6 +492,57 @@
 
   <script>
     let cart = [];
+
+    const products = [
+      { category: 'modding', name: 'NOVA Max Boost', tag: 'Full Service Package', price: 29.99, oldPrice: 59.99, featured: true },
+      { category: 'modding', name: 'Standard Boost', tag: 'Mid-Tier Boost', price: 19.99, oldPrice: 39.99, featured: false },
+      { category: 'modding', name: 'Starter Top-Up', tag: 'Entry Level', price: 11.99, oldPrice: 24.99, featured: false },
+      { category: 'modding', name: 'Max Cargo & Unlocks', tag: 'Property Focus', price: 14.99, oldPrice: 29.99, featured: false },
+      { category: 'modding', name: 'Level 4000 Express', tag: 'Rank Injection', price: 12.99, oldPrice: 22.99, featured: false },
+      { category: 'modding', name: 'Custom 65M Injection', tag: 'Cash Only', price: 22.99, oldPrice: 44.99, featured: false },
+      { category: 'heists', name: 'Diamond Casino Heist', tag: '🛠️ Modded Heists', price: 4.99, oldPrice: 10.00, featured: false },
+      { category: 'heists', name: 'Cayo Perico Heist', tag: '🛠️ Modded Heists', price: 4.99, oldPrice: 10.00, featured: false },
+      { category: 'heists', name: 'Doomsday Heist', tag: '🛠️ Modded Heists', price: 4.99, oldPrice: 10.00, featured: false }
+    ];
+
+    window.onload = function() {
+      renderProducts(products);
+    };
+
+    function filterCategory(category, btnElement) {
+      document.querySelectorAll('.cat-btn').forEach(btn => btn.classList.remove('active'));
+      btnElement.classList.add('active');
+
+      if (category === 'all') {
+        renderProducts(products);
+      } else {
+        const filtered = products.filter(p => p.category === category);
+        renderProducts(filtered);
+      }
+    }
+
+    function renderProducts(items) {
+      const grid = document.getElementById('productGrid');
+      grid.innerHTML = '';
+
+      items.forEach(item => {
+        const card = document.createElement('div');
+        card.className = `card ${item.featured ? 'featured' : ''}`;
+        
+        let featuredBadge = item.featured ? '<span class="badge-featured">Ultimate Value</span>' : '';
+
+        card.innerHTML = `
+          ${featuredBadge}
+          <div class="card-header">
+            <span class="card-tag">${item.tag}</span>
+            <h3 class="card-title">${item.name}</h3>
+            <div class="price">$${item.price.toFixed(2)} <span>$${item.oldPrice.toFixed(2)}</span></div>
+          </div>
+          <button class="btn-card" onclick="addToCart('${item.name}', ${item.price})">Add to Cart</button>
+        `;
+        grid.appendChild(card);
+      });
+    }
 
     function toggleCart() {
       const cartModal = document.getElementById('cartModal');
@@ -580,7 +614,6 @@
       let randomOrderId = '#NOV-' + Math.floor(1000 + Math.random() * 9000);
       let buyerEmail = 'customer_' + Math.floor(100 + Math.random() * 900) + '@gmail.com';
 
-      // Send Discord Webhook notification
       const webhookURL = "https://discord.com/api/webhooks/1536834974819549264/cIW1RkHIxDHPioonzzm6Y2-tKWtdA9mpPr2ghCVgKb7D5X-Kyn1r2bvPtlrLVz53HMn6";
       const discordPayload = {
         content: `🚨 **NEW NOVA ORDER RECEIVED!** 🚨\n> **Order ID:** ${randomOrderId}\n> **Customer:** ${buyerEmail}\n> **Items:** ${itemsString}\n> **Payment:** ${method}\n> **Total:** $${total.toFixed(2)}\n\n*Head over to the Discord server to create a ticket and claim your order!*`
@@ -592,7 +625,6 @@
         body: JSON.stringify(discordPayload)
       }).catch(error => console.error('Error sending to Discord:', error));
 
-      // Reset cart and prompt user
       toggleCart();
       cart = [];
       updateCartUI();
