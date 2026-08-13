@@ -1,40 +1,871 @@
-async function sendAiMessage() {
-  const input = document.getElementById('chatInput');
-  const userMsg = input.value.trim();
-  if (!userMsg) return;
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>NOVA | PC Exclusive GTA V Account Boosting</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;600;800;900&family=Space+Grotesk:wght@500;700&display=swap" rel="stylesheet">
+  
+  <style>
+    :root {
+      --bg-main: #090212;
+      --bg-card: rgba(20, 10, 35, 0.75);
+      --bg-card-hover: rgba(35, 15, 60, 0.85);
+      --accent-cyan: #00f2fe;
+      --accent-purple: #c084fc;
+      --accent-pink: #ff2a8d;
+      --text-main: #f8fafc;
+      --text-muted: #cbd5e1;
+      --border-glow: rgba(255, 42, 141, 0.4);
+    }
 
-  appendMessage(userMsg, 'user');
-  input.value = '';
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
 
-  const loadingMsg = appendMessage('Thinking...', 'ai');
+    body {
+      background-color: var(--bg-main);
+      color: var(--text-main);
+      font-family: 'Outfit', sans-serif;
+      line-height: 1.6;
+      overflow-x: hidden;
+      position: relative;
+    }
 
-  try {
-    const systemPrompt = `You are "NOVA AI", a virtual support agent for NOVA Services (a PC-exclusive GTA V account boosting and modded account store). 
+    .galaxy-bg {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      background: 
+        radial-gradient(circle at 20% 20%, rgba(255, 42, 141, 0.22) 0%, transparent 45%),
+        radial-gradient(circle at 80% 75%, rgba(192, 132, 252, 0.2) 0%, transparent 50%),
+        radial-gradient(circle at 50% 50%, rgba(0, 242, 254, 0.12) 0%, transparent 60%),
+        linear-gradient(135deg, #0f051d 0%, #05020a 100%);
+      z-index: -1;
+    }
+
+    header {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: rgba(9, 2, 18, 0.85);
+      backdrop-filter: blur(15px);
+      border-bottom: 1px solid rgba(255, 42, 141, 0.2);
+    }
+
+    .nav-container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 1.2rem 2rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .logo {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 2rem;
+      font-weight: 900;
+      letter-spacing: 3px;
+      background: linear-gradient(135deg, var(--accent-pink), var(--accent-purple), var(--accent-cyan));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      text-shadow: 0 0 30px rgba(255, 42, 141, 0.4);
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .logo-badge {
+      font-size: 0.65rem;
+      background: rgba(255, 42, 141, 0.15);
+      border: 1px solid var(--accent-pink);
+      color: var(--accent-pink);
+      padding: 2px 6px;
+      border-radius: 4px;
+      letter-spacing: 1px;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 1.5rem;
+      list-style: none;
+      align-items: center;
+    }
+
+    .nav-btn {
+      background: rgba(255, 42, 141, 0.15);
+      border: 1px solid var(--accent-pink);
+      color: #fff;
+      padding: 0.5rem 1rem;
+      border-radius: 8px;
+      font-weight: 700;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      transition: all 0.3s;
+      text-decoration: none;
+    }
+
+    .nav-btn:hover {
+      background: var(--accent-pink);
+      box-shadow: 0 0 20px rgba(255, 42, 141, 0.5);
+    }
+
+    .cart-count {
+      background: #fff;
+      color: #000;
+      font-size: 0.75rem;
+      padding: 1px 6px;
+      border-radius: 50px;
+      font-weight: 900;
+    }
+
+    /* Hero Section */
+    .hero {
+      position: relative;
+      max-width: 1200px;
+      margin: 3rem auto 2rem;
+      padding: 0 2rem;
+      text-align: center;
+      z-index: 1;
+    }
+
+    .hero-tags-wrapper {
+      display: flex;
+      justify-content: center;
+      gap: 1rem;
+      flex-wrap: wrap;
+      margin-bottom: 1.5rem;
+    }
+
+    .hero-tag {
+      display: inline-block;
+      background: rgba(192, 132, 252, 0.15);
+      border: 1px solid var(--accent-purple);
+      color: #e9d5ff;
+      padding: 0.4rem 1.2rem;
+      border-radius: 50px;
+      font-size: 0.85rem;
+      font-weight: 700;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+    }
+
+    .hero-tag.pc-badge {
+      background: rgba(255, 42, 141, 0.15);
+      border-color: var(--accent-pink);
+      color: var(--accent-pink);
+    }
+
+    .hero h1 {
+      font-size: 3.5rem;
+      font-weight: 900;
+      line-height: 1.1;
+      margin-bottom: 1rem;
+      text-transform: uppercase;
+    }
+
+    .hero h1 span {
+      background: linear-gradient(135deg, #ffffff, var(--accent-pink));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    /* Category Filter Bar */
+    .categories-bar {
+      max-width: 1200px;
+      margin: 0 auto 2rem;
+      padding: 0 2rem;
+      display: flex;
+      justify-content: center;
+      gap: 0.75rem;
+      flex-wrap: wrap;
+    }
+
+    .cat-btn {
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid rgba(255, 255, 255, 0.15);
+      color: var(--text-muted);
+      padding: 0.5rem 1.2rem;
+      border-radius: 50px;
+      font-weight: 700;
+      cursor: pointer;
+      transition: all 0.3s;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      font-size: 0.85rem;
+    }
+
+    .cat-btn:hover, .cat-btn.active {
+      background: linear-gradient(135deg, var(--accent-pink), var(--accent-purple));
+      color: #fff;
+      border-color: transparent;
+      box-shadow: 0 0 20px rgba(255, 42, 141, 0.4);
+    }
+
+    /* Products Section */
+    .products-section {
+      max-width: 1200px;
+      margin: 0 auto 6rem;
+      padding: 0 2rem;
+    }
+
+    .product-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+      gap: 2rem;
+    }
+
+    .card {
+      background: var(--bg-card);
+      backdrop-filter: blur(10px);
+      border: 1px solid rgba(255, 42, 141, 0.15);
+      border-radius: 16px;
+      padding: 1.75rem;
+      position: relative;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      transition: all 0.3s ease;
+    }
+
+    .card:hover {
+      background: var(--bg-card-hover);
+      transform: translateY(-5px);
+      border-color: var(--border-glow);
+      box-shadow: 0 10px 35px rgba(255, 42, 141, 0.2);
+    }
+
+    .card.featured {
+      border: 2px solid var(--accent-pink);
+      box-shadow: 0 0 25px rgba(255, 42, 141, 0.3);
+    }
+
+    .badge-featured {
+      position: absolute;
+      top: -12px;
+      right: 20px;
+      background: linear-gradient(135deg, var(--accent-pink), var(--accent-purple));
+      color: #fff;
+      font-weight: 900;
+      font-size: 0.75rem;
+      padding: 4px 12px;
+      border-radius: 20px;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+    }
+
+    .card-header {
+      margin-bottom: 1.25rem;
+    }
+
+    .card-tag {
+      font-size: 0.75rem;
+      text-transform: uppercase;
+      color: var(--accent-cyan);
+      font-weight: 700;
+      letter-spacing: 1px;
+      margin-bottom: 0.25rem;
+      display: block;
+    }
+
+    .card-title {
+      font-size: 1.6rem;
+      font-weight: 800;
+      margin-bottom: 0.5rem;
+    }
+
+    .price {
+      font-size: 2.25rem;
+      font-weight: 900;
+      color: #fff;
+      display: flex;
+      align-items: baseline;
+      gap: 0.5rem;
+    }
+
+    .price span {
+      font-size: 0.9rem;
+      color: var(--text-muted);
+      text-decoration: line-through;
+    }
+
+    .btn-card {
+      width: 100%;
+      padding: 0.85rem;
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid rgba(255, 42, 141, 0.3);
+      color: #fff;
+      font-weight: 700;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: all 0.3s;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      display: block;
+      text-align: center;
+      margin-top: 1rem;
+    }
+
+    .card:hover .btn-card {
+      background: linear-gradient(135deg, var(--accent-pink), var(--accent-purple));
+      color: #fff;
+      border-color: transparent;
+      box-shadow: 0 0 20px rgba(255, 42, 141, 0.5);
+    }
+
+    /* Modals & Drawers */
+    .drawer-overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      background: rgba(0,0,0,0.6);
+      backdrop-filter: blur(5px);
+      z-index: 999;
+      display: none;
+    }
+
+    .drawer-overlay.open {
+      display: block;
+    }
+
+    .cart-modal {
+      position: fixed;
+      top: 0;
+      right: -420px;
+      width: 380px;
+      height: 100%;
+      background: #0d0617;
+      border-left: 1px solid rgba(255, 42, 141, 0.3);
+      box-shadow: -10px 0 30px rgba(0,0,0,0.8);
+      z-index: 1000;
+      transition: right 0.3s ease;
+      display: flex;
+      flex-direction: column;
+      padding: 2rem;
+    }
+
+    .cart-modal.open {
+      right: 0;
+    }
+
+    .drawer-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border-bottom: 1px solid rgba(255,255,255,0.1);
+      padding-bottom: 1rem;
+      margin-bottom: 1.5rem;
+    }
+
+    .close-drawer {
+      background: none;
+      border: none;
+      color: #fff;
+      font-size: 1.5rem;
+      cursor: pointer;
+    }
+
+    .cart-items {
+      flex: 1;
+      overflow-y: auto;
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+    }
+
+    .cart-item {
+      background: rgba(255,255,255,0.03);
+      padding: 10px;
+      border-radius: 8px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border: 1px solid rgba(255,255,255,0.05);
+    }
+
+    .cart-footer {
+      border-top: 1px solid rgba(255,255,255,0.1);
+      padding-top: 1rem;
+    }
+
+    .payment-buttons-grid {
+      display: flex;
+      flex-direction: column;
+      gap: 0.5rem;
+      margin-top: 1rem;
+    }
+
+    .pay-btn {
+      width: 100%;
+      padding: 0.75rem;
+      border-radius: 8px;
+      font-weight: 700;
+      cursor: pointer;
+      border: 1px solid rgba(255,255,255,0.2);
+      color: #fff;
+      text-align: center;
+      transition: opacity 0.2s;
+    }
+    .pay-btn:hover { opacity: 0.85; }
+    .btn-stripe { background: #635bff; border: none; }
+    .btn-cashapp { background: #00D632; color: #000; border: none; }
+    .btn-venmo { background: #008CFF; border: none; }
+    .btn-paypal { background: #003087; border: none; }
+
+    /* Floating AI Chat Widget Styles */
+    .chat-widget-btn {
+      position: fixed;
+      bottom: 25px;
+      right: 25px;
+      background: linear-gradient(135deg, var(--accent-pink), var(--accent-purple));
+      color: #fff;
+      border: none;
+      border-radius: 50px;
+      padding: 12px 22px;
+      font-weight: 800;
+      font-size: 0.95rem;
+      cursor: pointer;
+      box-shadow: 0 0 25px rgba(255, 42, 141, 0.6);
+      z-index: 998;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-family: 'Outfit', sans-serif;
+      transition: transform 0.2s;
+    }
+
+    .chat-widget-btn:hover {
+      transform: scale(1.05);
+    }
+
+    .chat-box {
+      position: fixed;
+      bottom: 85px;
+      right: 25px;
+      width: 350px;
+      height: 460px;
+      background: #0d0617;
+      border: 1px solid rgba(255, 42, 141, 0.4);
+      border-radius: 16px;
+      box-shadow: 0 10px 40px rgba(0,0,0,0.9);
+      z-index: 999;
+      display: none;
+      flex-direction: column;
+      overflow: hidden;
+      backdrop-filter: blur(15px);
+    }
+
+    .chat-box.open {
+      display: flex;
+    }
+
+    .chat-header {
+      background: rgba(255, 42, 141, 0.2);
+      padding: 14px 16px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border-bottom: 1px solid rgba(255, 42, 141, 0.3);
+      font-weight: 800;
+      color: #fff;
+    }
+
+    .chat-messages {
+      flex: 1;
+      padding: 12px;
+      overflow-y: auto;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      font-size: 0.9rem;
+    }
+
+    .msg {
+      padding: 10px 14px;
+      border-radius: 12px;
+      max-width: 82%;
+      word-wrap: break-word;
+      line-height: 1.4;
+    }
+
+    .msg.user {
+      background: var(--accent-pink);
+      color: #fff;
+      align-self: flex-end;
+      border-bottom-right-radius: 2px;
+    }
+
+    .msg.ai {
+      background: rgba(255,255,255,0.08);
+      color: var(--text-main);
+      align-self: flex-start;
+      border-bottom-left-radius: 2px;
+      border: 1px solid rgba(255,255,255,0.1);
+    }
+
+    .chat-input-area {
+      display: flex;
+      padding: 10px;
+      gap: 8px;
+      background: rgba(0,0,0,0.4);
+      border-top: 1px solid rgba(255,255,255,0.1);
+    }
+
+    .chat-input {
+      flex: 1;
+      background: rgba(255,255,255,0.05);
+      border: 1px solid rgba(255,255,255,0.15);
+      color: #fff;
+      padding: 10px 12px;
+      border-radius: 8px;
+      outline: none;
+      font-family: 'Outfit', sans-serif;
+    }
+
+    .chat-send-btn {
+      background: linear-gradient(135deg, var(--accent-cyan), var(--accent-purple));
+      border: none;
+      color: #000;
+      font-weight: 800;
+      padding: 10px 16px;
+      border-radius: 8px;
+      cursor: pointer;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="galaxy-bg"></div>
+  <div class="drawer-overlay" id="overlay" onclick="closeCart()"></div>
+
+  <!-- Header -->
+  <header>
+    <div class="nav-container">
+      <div class="logo">
+        NOVA
+        <span class="logo-badge">PC BOOSTS</span>
+      </div>
+      <ul class="nav-links">
+        <li><a href="https://discord.gg/rRsxugJHX7" target="_blank" class="nav-btn">💬 Join Discord</a></li>
+        <li>
+          <button class="nav-btn" onclick="toggleCart()">
+            🛒 Cart <span class="cart-count" id="cartCount">0</span>
+          </button>
+        </li>
+      </ul>
+    </div>
+  </header>
+
+  <!-- Main Hero -->
+  <section class="hero">
+    <div class="hero-tags-wrapper">
+      <span class="hero-tag">⚡ Safe Account Boosting & Modded Accounts</span>
+      <span class="hero-tag pc-badge">🖥️ PC PLATFORMS ONLY</span>
+    </div>
+    <h1>NOVA <span>SERVICES</span></h1>
+  </section>
+
+  <!-- Categories Filter Bar -->
+  <div class="categories-bar">
+    <button class="cat-btn active" onclick="filterCategory('all', this)">All Services</button>
+    <button class="cat-btn" onclick="filterCategory('accounts', this)">Modded Accounts (+$30)</button>
+    <button class="cat-btn" onclick="filterCategory('boosting', this)">Account Boosting</button>
+    <button class="cat-btn" onclick="filterCategory('money', this)">Money Injection ($65M Cap)</button>
+    <button class="cat-btn" onclick="filterCategory('unlocks', this)">Unlocks & Ranks</button>
+    <button class="cat-btn" onclick="filterCategory('heists', this)">Modded Heists</button>
+  </div>
+
+  <!-- Products Section -->
+  <section class="products-section" id="services">
+    <div class="product-grid" id="productGrid">
+      <!-- Products populated via JavaScript -->
+    </div>
+  </section>
+
+  <!-- Cart Modal -->
+  <div class="cart-modal" id="cartModal">
+    <div class="drawer-header">
+      <h3>Your Cart</h3>
+      <button class="close-drawer" onclick="toggleCart()">&times;</button>
+    </div>
+    <div class="cart-items" id="cartItemsContainer"></div>
+    <div class="cart-footer">
+      <div style="display: flex; justify-content: space-between; font-weight: bold; font-size: 1.1rem; margin-bottom: 0.5rem;">
+        <span>Total:</span>
+        <span id="cartTotal">$0.00</span>
+      </div>
+      <p style="font-size: 0.8rem; color: var(--text-muted); margin-bottom: 0.5rem;">Select your secure payment method:</p>
+      <div class="payment-buttons-grid">
+        <button class="pay-btn btn-stripe" onclick="processPayment('Stripe / Credit Card')">💳 Pay with Stripe</button>
+        <button class="pay-btn btn-cashapp" onclick="processPayment('CashApp')">Pay with CashApp</button>
+        <button class="pay-btn btn-venmo" onclick="processPayment('Venmo')">Pay with Venmo</button>
+        <button class="pay-btn btn-paypal" onclick="processPayment('PayPal')">Pay with PayPal</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- AI Chat Button & Popup Box -->
+  <button class="chat-widget-btn" onclick="toggleAiChat()">🤖 Ask NOVA AI</button>
+
+  <div class="chat-box" id="aiChatBox">
+    <div class="chat-header">
+      <span>✨ NOVA Live AI Assistant</span>
+      <button class="close-drawer" onclick="toggleAiChat()">&times;</button>
+    </div>
+    <div class="chat-messages" id="chatMessages">
+      <div class="msg ai">Hey there! Welcome to NOVA. Ask me anything about our PC boosting services, packages, or how to claim orders!</div>
+    </div>
+    <div class="chat-input-area">
+      <input type="text" class="chat-input" id="chatInput" placeholder="Ask something..." onkeypress="handleKeyPress(event)" />
+      <button class="chat-send-btn" onclick="sendAiMessage()">Send</button>
+    </div>
+  </div>
+
+  <script>
+    // Embedded Gemini API Key
+    const GEMINI_API_KEY = "AQ.Ab8RN6IxYPL_8OmxAQUt52P0cZE6N5jjOpFfhQLoMXodwyZb9w";
+
+    let cart = [];
+
+    const products = [
+      // Modded Accounts
+      { category: 'accounts', name: 'NOVA Starter Modded Account', tag: 'Game Included + $65M Cash', price: 34.99, oldPrice: 59.99, featured: false },
+      { category: 'accounts', name: 'Billionaire Vault Account', tag: 'Game Included + $65M Safe Cap + Rank 500', price: 49.99, oldPrice: 99.99, featured: true },
+      { category: 'accounts', name: 'Rank 4000 Modded Account', tag: 'Game Included + All Stats Maxed', price: 39.99, oldPrice: 75.00, featured: false },
+      { category: 'accounts', name: 'All Unlocks Modded Account', tag: 'Game Included + Rare Cars & Dripfeed', price: 45.99, oldPrice: 89.99, featured: true },
+
+      // Account Boosting
+      { category: 'boosting', name: 'NOVA Max Boost Package', tag: 'Full Service Package', price: 29.99, oldPrice: 59.99, featured: true },
+      { category: 'boosting', name: 'Standard Boost', tag: 'Mid-Tier Boost', price: 19.99, oldPrice: 39.99, featured: false },
+      { category: 'boosting', name: 'Starter Top-Up', tag: 'Entry Level', price: 11.99, oldPrice: 24.99, featured: false },
+      { category: 'boosting', name: 'Ultimate VIP Bundle', tag: 'Complete Package', price: 39.99, oldPrice: 79.99, featured: false },
+
+      // Money & Cash
+      { category: 'money', name: 'Safe Max 65M Injection', tag: 'Max Safe Cash Limit', price: 22.99, oldPrice: 44.99, featured: true },
+      { category: 'money', name: 'Standard 35M Cash Stack', tag: 'Fast Money Drop', price: 16.99, oldPrice: 32.99, featured: false },
+      { category: 'money', name: 'Quick 20M Top-Up', tag: 'Mini Cash Injection', price: 9.99, oldPrice: 19.99, featured: false },
+
+      // Unlocks & Ranks
+      { category: 'unlocks', name: 'Level 4000 Express', tag: 'Rank Injection', price: 12.99, oldPrice: 22.99, featured: false },
+      { category: 'unlocks', name: 'Max Cargo & Unlocks', tag: 'Property Focus', price: 14.99, oldPrice: 29.99, featured: false },
+      { category: 'unlocks', name: 'All LSC Unlocks & Stats', tag: 'Full Character Stat', price: 16.99, oldPrice: 32.99, featured: false },
+      { category: 'unlocks', name: 'Exclusive Drip-Feed Unlocks', tag: 'Rare Items', price: 9.99, oldPrice: 19.99, featured: false },
+
+      // Modded Heists
+      { category: 'heists', name: 'Diamond Casino Heist', tag: '🛠️ Modded Heists', price: 4.99, oldPrice: 10.00, featured: false },
+      { category: 'heists', name: 'Cayo Perico Heist', tag: '🛠️ Modded Heists', price: 4.99, oldPrice: 10.00, featured: false },
+      { category: 'heists', name: 'Doomsday Heist', tag: '🛠️ Modded Heists', price: 4.99, oldPrice: 10.00, featured: false },
+      { category: 'heists', name: 'All Heist Finale Bundle', tag: '🛠️ Modded Heists', price: 14.99, oldPrice: 29.99, featured: false }
+    ];
+
+    window.onload = function() {
+      renderProducts(products);
+    };
+
+    function filterCategory(category, btnElement) {
+      document.querySelectorAll('.cat-btn').forEach(btn => btn.classList.remove('active'));
+      btnElement.classList.add('active');
+
+      if (category === 'all') {
+        renderProducts(products);
+      } else {
+        const filtered = products.filter(p => p.category === category);
+        renderProducts(filtered);
+      }
+    }
+
+    function renderProducts(items) {
+      const grid = document.getElementById('productGrid');
+      grid.innerHTML = '';
+
+      items.forEach(item => {
+        const card = document.createElement('div');
+        card.className = `card ${item.featured ? 'featured' : ''}`;
+        
+        let featuredBadge = item.featured ? '<span class="badge-featured">Ultimate Value</span>' : '';
+
+        card.innerHTML = `
+          ${featuredBadge}
+          <div class="card-header">
+            <span class="card-tag">${item.tag}</span>
+            <h3 class="card-title">${item.name}</h3>
+            <div class="price">$${item.price.toFixed(2)} <span>$${item.oldPrice.toFixed(2)}</span></div>
+          </div>
+          <button class="btn-card" onclick="addToCart('${item.name}', ${item.price})">Add to Cart</button>
+        `;
+        grid.appendChild(card);
+      });
+    }
+
+    function toggleCart() {
+      const cartModal = document.getElementById('cartModal');
+      const overlay = document.getElementById('overlay');
+      const isOpen = cartModal.classList.toggle('open');
+      if (isOpen) { 
+        overlay.classList.add('open'); 
+      } else { 
+        overlay.classList.remove('open'); 
+      }
+    }
+
+    function closeCart() {
+      document.getElementById('cartModal').classList.remove('open');
+      document.getElementById('overlay').classList.remove('open');
+    }
+
+    function addToCart(name, price) {
+      cart.push({ name, price });
+      updateCartUI();
+      toggleCart();
+    }
+
+    function removeFromCart(index) {
+      cart.splice(index, 1);
+      updateCartUI();
+    }
+
+    function updateCartUI() {
+      const container = document.getElementById('cartItemsContainer');
+      const countEl = document.getElementById('cartCount');
+      const totalEl = document.getElementById('cartTotal');
+
+      countEl.innerText = cart.length;
+
+      if (cart.length === 0) {
+        container.innerHTML = '<p style="color: #cbd5e1; font-size: 0.9rem; text-align: center; margin-top: 2rem;">Your cart is empty.</p>';
+        totalEl.innerText = '$0.00';
+        return;
+      }
+
+      let html = '';
+      let total = 0;
+      cart.forEach((item, index) => {
+        total += item.price;
+        html += `
+          <div class="cart-item">
+            <div>
+              <div style="font-weight: 600; font-size: 0.9rem;">${item.name}</div>
+              <div style="color: var(--accent-cyan); font-size: 0.85rem;">$${item.price.toFixed(2)}</div>
+            </div>
+            <button onclick="removeFromCart(${index})" style="background:none; border:none; color:#ff4d4d; cursor:pointer; font-weight:bold;">✕</button>
+          </div>
+        `;
+      });
+
+      container.innerHTML = html;
+      totalEl.innerText = `$${total.toFixed(2)}`;
+    }
+
+    function processPayment(method) {
+      if (cart.length === 0) {
+        alert("Your cart is empty!");
+        return;
+      }
+
+      let total = cart.reduce((sum, item) => sum + item.price, 0);
+      let itemsString = cart.map(i => i.name).join(", ");
+      let randomOrderId = '#NOV-' + Math.floor(1000 + Math.random() * 9000);
+      let buyerEmail = 'customer_' + Math.floor(100 + Math.random() * 900) + '@gmail.com';
+
+      const webhookURL = "https://discord.com/api/webhooks/1536834974819549264/cIW1RkHIxDHPioonzzm6Y2-tKWtdA9mpPr2ghCVgKb7D5X-Kyn1r2bvPtlrLVz53HMn6";
+      const discordPayload = {
+        content: `🚨 **NEW NOVA ORDER RECEIVED!** 🚨\n> **Order ID:** ${randomOrderId}\n> **Customer:** ${buyerEmail}\n> **Items:** ${itemsString}\n> **Payment:** ${method}\n> **Total:** $${total.toFixed(2)}\n\n*Head over to the Discord server to create a ticket and claim your order!*`
+      };
+
+      fetch(webhookURL, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(discordPayload)
+      }).catch(error => console.error('Error sending to Discord:', error));
+
+      toggleCart();
+      cart = [];
+      updateCartUI();
+
+      alert(`Order ${randomOrderId} placed successfully via ${method}! Please join our Discord server to open a ticket and claim your order.`);
+    }
+
+    /* AI Chat Widget Logic */
+    function toggleAiChat() {
+      document.getElementById('aiChatBox').classList.toggle('open');
+    }
+
+    function handleKeyPress(event) {
+      if (event.key === 'Enter') {
+        sendAiMessage();
+      }
+    }
+
+    async function sendAiMessage() {
+      const input = document.getElementById('chatInput');
+      const userMsg = input.value.trim();
+      if (!userMsg) return;
+
+      appendMessage(userMsg, 'user');
+      input.value = '';
+
+      const loadingMsg = appendMessage('Thinking...', 'ai');
+
+      try {
+        const systemPrompt = `You are "NOVA AI", a virtual support agent for NOVA Services (a PC-exclusive GTA V account boosting and modded account store). 
 Keep answers brief, friendly, and helpful. 
 Remind users that:
 - We only service PC platform players.
 - Cash injections have a safe limit of $65M.
 - After ordering, they must join our Discord (https://discord.gg/rRsxugJHX7) and open a support ticket to claim their boost.`;
 
-    const res = await fetch(`https://generativelanguage.googleapis.com/v1beta/models/gemini-3.5-flash-lite:generateContent?key=${GEMINI_API_KEY}`, {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({
-        contents: [
-          {
-            role: "user",
-            parts: [{ text: systemPrompt + "\n\nCustomer question: " + userMsg }]
-          }
-        ]
-      })
-    });
+        // Standard Gemini v1beta endpoint
+        const res = await fetch(`https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent?key=${GEMINI_API_KEY}`, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            contents: [
+              {
+                role: "user",
+                parts: [{ text: systemPrompt + "\n\nCustomer question: " + userMsg }]
+              }
+            ]
+          })
+        });
 
-    const data = await res.json();
-    const aiText = data?.candidates?.[0]?.content?.parts?.[0]?.text || "Sorry, I had trouble answering that! Please join our Discord for direct assistance.";
-    
-    loadingMsg.innerText = aiText;
-  } catch (err) {
-    console.error(err);
-    loadingMsg.innerText = "Connection error. Make sure your API key is configured correctly, or join our Discord for help!";
-  }
-}
+        const data = await res.json();
+
+        // Print exact error response in the chat bubble if Google returns an issue
+        if (data.error) {
+          console.error("Gemini API Error:", data.error);
+          loadingMsg.innerText = `⚠️ API Error [${data.error.code}]: ${data.error.message}`;
+          return;
+        }
+
+        const aiText = data?.candidates?.[0]?.content?.parts?.[0]?.text || "Sorry, I had trouble answering that! Please join our Discord for help.";
+        loadingMsg.innerText = aiText;
+
+      } catch (err) {
+        console.error("Fetch Exception:", err);
+        loadingMsg.innerText = "⚠️ Connection error. Open browser console (F12) to inspect.";
+      }
+    }
+
+    function appendMessage(text, sender) {
+      const container = document.getElementById('chatMessages');
+      const msgDiv = document.createElement('div');
+      msgDiv.className = `msg ${sender}`;
+      msgDiv.innerText = text;
+      container.appendChild(msgDiv);
+      container.scrollTop = container.scrollHeight;
+      return msgDiv;
+    }
+  </script>
+</body>
+</html>
